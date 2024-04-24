@@ -23,6 +23,7 @@ export default function Home() {
     autoplaySpeed: 3000,
     pauseOnHover: true,
     arrows: false,
+    
   };
   var settingsProducts = {
     dots: true,
@@ -31,6 +32,17 @@ export default function Home() {
     slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
+    responsive: [
+      {
+        breakpoint: 786,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+          centerMode: true,
+        }
+      },]
   };
   return (
     <div>
@@ -42,18 +54,18 @@ export default function Home() {
         style={{
           boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.75)",
         }}
-        className="mx-auto mt-10 w-[34vw] h-[70vh] shadow-2xl"
+        className="mx-auto mt-10 w-[24em] md:w-[34em] h-[65vh] md:h-[70vh] shadow-2xl"
       >
         <Slider {...settings}>
           <div
             style={{
               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.75)",
             }}
-            className="mx-auto w-[34vw] h-[70vh] shadow-2xl"
+            className="mx-auto w-[24em] h-[65vh] md:h-[70vh] shadow-2xl"
           >
-            <div className="h-[5vh]"></div>
+            <div className="h-[3vh] md:h-[5vh]"></div>
             {/*polaroid image */}
-            <div className="mx-auto w-[30vw] h-[45vh] shadow-2xl">
+            <div className="mx-auto w-[22em] h-[45vh] shadow-2xl">
               <Image
                 style={{
                   objectFit: "cover",
@@ -66,12 +78,21 @@ export default function Home() {
               />
             </div>
             {/*polaroid description */}
-            <div className="mx-auto text-center mt-8 w-[28vw] italic">
-              <p className="font-bold text-[2.5em]">Heading</p>
-              <p className="text-[1.5em]">Subtitle</p>
+            <div className="mx-auto text-center mt-8 w-[17em] md:w-[28em] italic">
+              <p className="font-bold text-[1.7em] md:text-[2.5em]">Heading</p>
+              <p className="text-[1.1em] md:text-[1.5em]">Subtitle</p>
             </div>
           </div>
-          <div>shivam</div>
+          <div><Image
+                style={{
+                  objectFit: "fill",
+                  height: "100%",
+                }}
+                alt="polaroid"
+                src="/Images/home/1.webp"
+                width={1600}
+                height={1600}
+              /></div>
         </Slider>
       </div>
       {/*2nd division */}
@@ -79,7 +100,7 @@ export default function Home() {
         <p className="text-[2em] text-center">
           Find the perfect custom canvas for you
         </p>
-        <div className="w-[40vw] mx-auto flex justify-between mt-10">
+        <div className="w-full md:w-[40em] mx-auto flex max-md:flex-col items-center md:justify-between mt-10">
           <button
             style={{
               boxShadow: "0px 4px 4px rgba(255, 0, 0, 0.5)",
@@ -92,7 +113,7 @@ export default function Home() {
             style={{
               boxShadow: "0px 4px 4px rgba(0, 0, 255, 0.5)",
             }}
-            className="rounded-xl w-[12em] h-[3.5em] text-center text-white bg-black"
+            className="rounded-xl w-[12em] h-[3.5em] text-center text-white bg-black max-md:mt-3"
           >
             Design Your Own
           </button>
@@ -127,10 +148,10 @@ export default function Home() {
       <p className="text-[#503114] text-2xl font-semibold mt-10 text-center">
         FEATURED DROPS
       </p>
-      <div className="w-fit gap-5 grid grid-cols-4 mx-auto mt-10 mb-10">
+      <div className="w-fit gap-2 md:gap-5 grid grid-cols-2 md:grid-cols-4 mx-auto mt-10 mb-10">
         {featuredDrops.map((item, index) => (
           <div className="" key={index}>
-            <div className="w-[23vw] h-[23vw]">
+            <div className="md:w-[23em] md:h-[23em] w-[12.5em] h-[12.5em]">
               <Image
                 style={{
                   objectFit: "cover",
