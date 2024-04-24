@@ -31,16 +31,51 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
     autoplaySpeed: 3000,
     pauseOnHover: true,
     arrows: false,
+    responsive: [
+      {
+        breakpoint: 1750,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          centerMode: true,
+        }
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      }
+    ]
+    
   };
   return (
     <div className="mt-10">
-      <div className="w-[60em] mx-auto">
+      <div className="w-[97vw] lg:w-[60em] mx-auto">
         <div className="flex font-light">
           Home / Collection / <p className="ml-2 text-gray-400">Poloroid</p>
         </div>
         {/*images of products and slider dots */}
         <div className="w-fit mx-auto flex flex-col items-center mt-5 ">
-          <div className="w-[32em] h-[38em]">
+          <div className="w-[95vw] h-[60vh] max-sm:h-[48vh] md:w-[32em] md:h-[38em]">
             <Image
               style={{
                 objectFit: "cover",
@@ -55,11 +90,11 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
           <div className="mt-3">dots</div>
         </div>
         {/*product details */}
-        <div className="w-full mt-10 flex justify-between">
+        <div className="w-full mt-10 flex justify-between max-md:flex-col-reverse">
           {/*left box */}
-          <div className="w-[60%] text-lg p-5">
-            <p className="text-2xl font-medium">Product Name</p>
-            <p className="mt-5 font-light">
+          <div className="md:w-[60%] text-lg p-5">
+            <p className="text-2xl font-medium max-md:hidden">Product Name</p>
+            <p className="-mt-4 md:mt-5 font-light">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi
               dolorem, asperiores nostrum quibusdam ducimus quam aspernatur
               aliquam eum aliquid quisquam molestias! Laborum pariatur amet
@@ -70,8 +105,9 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
             </p>
           </div>
           {/*right box */}
-          <div className="w-[30%] p-5 text-xl font-light">
-            <p className="mb-5">Price</p>
+          <div className="md:w-[30%] p-5 text-xl font-light">
+          <p className="text-4xl md:text-2xl max-md:mb-3 font-medium md:hidden">Product Name</p>
+            <p className="mb-3">Price</p>
             <label className="mt-5" htmlFor="select">
               Select the type
             </label>
@@ -96,11 +132,11 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
               <option value="">1</option>
               <option value="">2</option>
             </select>
-            <div className="w-full flex justify-between mt-3">
-              <div className="w-[75%] border-2 rounded-lg p-2 text-center">
+            <div className="w-full flex max-lg:flex-col  justify-between mt-3">
+              <div className="lg:w-[75%] border-2 rounded-lg p-2 text-center">
                 Add to cart
               </div>
-              <div className="w-[20%] border-2 rounded-lg p-2 flex items-center justify-center">
+              <div className="max-md:hidden lg:w-[20%] max-lg:mt-3 border-2 lg:p-2 rounded-lg flex items-center justify-center">
                 <FaRegHeart
                   onClick={() => {
                     heart ? setHeart(false) : setHeart(true);
@@ -117,7 +153,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
         </div>
       </div>
       {/*recommendation sections */}
-      <div className="w-[80vw] mt-10 mx-auto">
+      <div className="w-[80vw] max-sm:w-[96vw] max-lg:w-[97vw] mt-10 mx-auto">
         <p className="text-[#503114] mb-5 text-2xl font-semibold mt-10 text-center">
           FEATURED DROPS
         </p>

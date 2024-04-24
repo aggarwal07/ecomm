@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const ProductCard = () => {
   return (
-    <div>
+    <div className="w-fit">
       <div className="md:w-[23em] md:h-[23em] w-[12.5em] h-[12.5em]">
         <Image
           style={{

@@ -4,7 +4,6 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import ProductCard from "@/components/products/ProductCard";
@@ -159,7 +158,7 @@ export default function Home() {
       </p>
       <div className="w-fit gap-2 md:gap-5 grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mx-auto mt-10 mb-10">
         {featuredDrops.map((item, index) => (
-          <div onClick={()=>{
+          <div className="cursor-pointer" onClick={()=>{
             var query = "/products/" + item;
             router.push(query)}} key={index}>
             <ProductCard />
