@@ -5,15 +5,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState } from "react";
-import { FaHeadset } from "react-icons/fa6";
-import { FaWhatsapp } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaPinterest } from "react-icons/fa";
-import { MdAlternateEmail } from "react-icons/md";
+
+import ProductCard from "@/components/products/ProductCard";
+import ContactUs from "@/components/contact/ContactUs";
 
 export default function Home() {
-  //toggle contact us
-  const [toggleContact, setContact] = useState(false);
   //FeaturedDrops List
   const featuredDrops = [
     { id: "1", imageLink: "/Images/home/1.webp" },
@@ -161,43 +157,12 @@ export default function Home() {
       <div className="w-fit gap-2 md:gap-5 grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mx-auto mt-10 mb-10">
         {featuredDrops.map((item, index) => (
           <div className="" key={index}>
-            <div className="md:w-[23em] md:h-[23em] w-[12.5em] h-[12.5em]">
-              <Image
-                style={{
-                  objectFit: "cover",
-                  height: "100%",
-                }}
-                alt="polaroid"
-                src="/Images/home/1.webp"
-                width={1600}
-                height={1600}
-              />
-            </div>
-            <p className="text-center mt-5 text-lg">Name</p>
-            <p className="text-center text-sm text-gray-400 font-light">
-              Price
-            </p>
+            <ProductCard />
           </div>
         ))}
       </div>
       {/*contanct action button */}
-      <div className="fixed bottom-5 right-7 flex flex-col space-y-3 items-center">
-        <div className={`space-y-3 flex-col ${toggleContact ? "flex" : "hidden"}`}>
-          <div><FaInstagram size={35} /></div>
-          <div><FaWhatsapp size={35} /></div>
-          <div><FaPinterest size={35} /></div>
-          <div><MdAlternateEmail size={35} /></div>
-        </div>
-
-        <div
-          onClick={() => {
-            toggleContact ? setContact(false) : setContact(true);
-          }}
-          className=" rounded-lg  cursor-pointer hover:shadow-2xl hover:text-gray-400"
-        >
-          <FaHeadset size={35}/>
-        </div>
-      </div>
+      <ContactUs />
     </div>
   );
 }

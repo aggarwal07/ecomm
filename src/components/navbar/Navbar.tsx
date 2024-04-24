@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
+import Link from "next/link";
 
 const Navbar = () => {
   const [toggleMore, setMore] = useState(false);
@@ -16,14 +17,16 @@ const Navbar = () => {
         FREE SHIPPPING PAN INDIA
       </div>
       <div className="flex items-center justify-between w-full h-[3.4em] px-2 md:px-24 mt-3">
-        <div className=" cursor-pointer">
-          <Image
-            src="/Images/logo/logo.svg"
-            alt="logo"
-            width={100}
-            height={55}
-          />
-        </div>
+        <Link href="/">
+          <div className=" cursor-pointer">
+            <Image
+              src="/Images/logo/logo.svg"
+              alt="logo"
+              width={100}
+              height={55}
+            />
+          </div>
+        </Link>
         {/*menue for mobile*/}
         <div className="sm:hidden">
           <div
@@ -31,7 +34,7 @@ const Navbar = () => {
               toggleMore ? setMore(false) : setMore(true);
             }}
           >
-            <GiHamburgerMenu size={28}/>
+            <GiHamburgerMenu size={28} />
           </div>
           <Drawer
             open={toggleMore}
