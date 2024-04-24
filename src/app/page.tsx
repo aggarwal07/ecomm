@@ -62,18 +62,18 @@ export default function Home() {
         style={{
           boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.75)",
         }}
-        className="mx-auto mt-10 w-[24em] md:w-[34em] h-[65vh] md:h-[70vh] shadow-2xl border-2 border-gray-500"
+        className="mx-auto mt-10 w-[22em] md:w-[34em] h-[65vh] md:h-[70vh] shadow-2xl border-2 border-gray-500"
       >
         <Slider {...settings}>
           <div
             style={{
               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.75)",
             }}
-            className="mx-auto w-[24em] md:w-[34em] h-[65vh] md:h-[70vh] shadow-2xl"
+            className="mx-auto w-[22em] md:w-[34em] h-[65vh] md:h-[70vh] shadow-2xl"
           >
             <div className="h-[3vh] md:h-[5vh]"></div>
             {/*polaroid image */}
-            <div className="mx-auto w-[22em] md:w-[30em] h-[45vh] shadow-2xl ">
+            <div className="mx-auto w-[20em] md:w-[30em] h-[45vh] shadow-2xl ">
               <Image
                 style={{
                   objectFit: "cover",
