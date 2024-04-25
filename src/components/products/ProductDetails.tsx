@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeartCirclePlus } from "react-icons/fa6";
 import { useState } from "react";
 import ProductCard from "./ProductCard";
 import Slider from "react-slick";
@@ -11,6 +11,7 @@ interface ProductDetails {
   productName: string;
 }
 const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
+  // const [activeGalleryImage, setGalleryImage] = useState(featuredDrops[0]);
   //for heart
   const [heart, setHeart] = useState(false);
   //FeaturedDrops List
@@ -38,8 +39,8 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 1400,
@@ -48,24 +49,23 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
           slidesToScroll: 2,
           initialSlide: 2,
           centerMode: true,
-        }
+        },
       },
       {
         breakpoint: 900,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-        }
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-        }
-      }
-    ]
-    
+        },
+      },
+    ],
   };
   return (
     <div className="mt-10">
@@ -75,7 +75,16 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
         </div>
         {/*images of products and slider dots */}
         <div className="w-fit mx-auto flex flex-col items-center mt-5 ">
-          <div className="w-[95vw] h-[60vh] max-sm:h-[48vh] md:w-[32em] md:h-[38em]">
+          <div className="w-[95vw] h-[60vh] max-sm:h-[48vh] md:w-[32em] md:h-[38em] max-md:relative">
+            <div className="rounded-full p-1 bg-white md:hidden absolute top-3 right-3">
+              <FaHeartCirclePlus
+                onClick={() => {
+                  heart ? setHeart(false) : setHeart(true);
+                }}
+                className={`${heart ? "text-red-600" : "text-black"} `}
+                size={30}
+              />
+            </div>
             <Image
               style={{
                 objectFit: "cover",
@@ -87,7 +96,21 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
               height={1600}
             />
           </div>
-          <div className="mt-3">dots</div>
+          <div className="grid grid-cols-4 gap-2 md:gap-6 mt-4 mx-2">
+            {featuredDrops.map((item,i)=>(
+              <div key={i} 
+              // onClick={()=>{setGalleryImage(item)}} 
+              className="cursor-pointer">
+              <Image
+              className="h-full"
+              src={item.imageLink}
+              alt="productLayout2"
+              width={190}
+              height={150}
+            />
+            </div>
+
+            ))}</div>
         </div>
         {/*product details */}
         <div className="w-full mt-10 flex justify-between max-md:flex-col-reverse">
@@ -106,7 +129,9 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
           </div>
           {/*right box */}
           <div className="md:w-[30%] p-5 text-xl font-light">
-          <p className="text-4xl md:text-2xl max-md:mb-3 font-medium md:hidden">Product Name</p>
+            <p className="text-4xl md:text-2xl max-md:mb-3 font-medium md:hidden">
+              Product Name
+            </p>
             <p className="mb-3">Price</p>
             <label className="mt-5" htmlFor="select">
               Select the type
@@ -137,7 +162,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                 Add to cart
               </div>
               <div className="max-md:hidden lg:w-[20%] max-lg:mt-3 border-2 lg:p-2 rounded-lg flex items-center justify-center">
-                <FaRegHeart
+                <FaHeartCirclePlus
                   onClick={() => {
                     heart ? setHeart(false) : setHeart(true);
                   }}

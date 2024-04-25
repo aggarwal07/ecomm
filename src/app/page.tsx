@@ -159,7 +159,7 @@ export default function Home() {
       <div className="w-fit gap-2 md:gap-5 grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mx-auto mt-10 mb-10">
         {featuredDrops.map((item, index) => (
           <div className="cursor-pointer" onClick={()=>{
-            var query = "/products/" + item;
+            var query = "/products/" + item.id;
             router.push(query)}} key={index}>
             <ProductCard />
           </div>
