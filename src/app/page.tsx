@@ -131,8 +131,8 @@ export default function Home() {
       <div className="bg-black mt-10 py-2">
         <div className="mx-5 my-5">
           <Slider {...settingsProducts}>
-            {featuredDrops.map((index, item) => (
-              <div className="w-[23vw] h-[16em] md:h-[25em] bg-red-600 outline relative">
+            {featuredDrops.map((item,index) => (
+              <div key={index} className="w-[23vw] h-[16em] md:h-[25em] bg-red-600 outline relative">
                 <Image
                   style={{
                     objectFit: "cover",
