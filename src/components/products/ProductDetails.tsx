@@ -7,7 +7,7 @@ import ProductCard from "./ProductCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ImageGen from "./ImageGen";
+// import ImageGen from "./ImageGen";
 interface ProductDetails {
   productName: string;
 }
