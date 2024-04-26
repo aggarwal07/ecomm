@@ -60,18 +60,18 @@ export default function Home() {
         style={{
           boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.75)",
         }}
-        className="mx-auto mt-10 w-[22em] md:w-[34em] h-[65vh] md:h-[70vh] shadow-2xl border-2 border-gray-500"
+        className="mx-auto mt-10 w-[22em] md:w-[34em] h-[33em] md:h-[41.375em] shadow-2xl border-2 border-gray-500"
       >
         <Slider {...settings}>
           <div
             style={{
               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.75)",
             }}
-            className="mx-auto w-[22em] md:w-[34em] h-[65vh] md:h-[70vh] shadow-2xl"
+            className="mx-auto w-[22em] md:w-[34em] h-[33em] md:h-[41.375em] shadow-2xl"
           >
-            <div className="h-[3vh] md:h-[5vh]"></div>
+            <div className="h-[2em] md:h-[3em]"></div>
             {/*polaroid image */}
-            <div className="mx-auto w-[20em] md:w-[30em] h-[45vh] shadow-2xl ">
+            <div className="mx-auto w-[20em] md:w-[30em] h-[22em] md:h-[27em] shadow-2xl ">
               <Image
                 style={{
                   objectFit: "cover",
@@ -132,7 +132,7 @@ export default function Home() {
         <div className="mx-5 my-5">
           <Slider {...settingsProducts}>
             {featuredDrops.map((index, item) => (
-              <div className="w-[23vw] h-[45vh] bg-red-600 outline relative">
+              <div className="w-[23vw] h-[16em] md:h-[25em] bg-red-600 outline relative">
                 <Image
                   style={{
                     objectFit: "cover",

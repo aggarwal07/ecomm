@@ -7,6 +7,7 @@ import ProductCard from "./ProductCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ImageGen from "./ImageGen";
 interface ProductDetails {
   productName: string;
 }
@@ -75,7 +76,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
         </div>
         {/*images of products and slider dots */}
         <div className="w-fit mx-auto flex flex-col items-center mt-5 ">
-          <div className="w-[95vw] h-[60vh] max-sm:h-[48vh] md:w-[32em] md:h-[38em] max-md:relative">
+          <div className="w-[95vw] h-[60vh] max-sm:h-[26em] md:w-[32em] md:h-[38em] max-md:relative">
             <div className="rounded-full p-1 bg-white md:hidden absolute top-3 right-3">
               <FaHeartCirclePlus
                 onClick={() => {
@@ -189,6 +190,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
             </div>
           ))}
         </Slider>
+        {/* <ImageGen/> */}
       </div>
     </div>
   );
