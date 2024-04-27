@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { CiSearch } from "react-icons/ci";
 import { BsBag } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Image from "next/image";
@@ -8,8 +7,12 @@ import { useState } from "react";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  //router 
+  const router = useRouter();
+  //Drawer Menu
   const [toggleMore, setMore] = useState(false);
   return (
     <div className=" font-light">
@@ -49,9 +52,9 @@ const Navbar = () => {
             }}
           >
             <div className="flex flex-col w-fit mx-auto text-center text-xl mt-52">
-              <div className="p-2">Home</div>
+              <div onClick={()=>{router.push("/")}} className="p-2">Home</div>
               <div className="p-2">Collection</div>
-              <div className="p-2">Design Your Own</div>
+              <div onClick={()=>{router.push("/designYourOwn")}} className="p-2">Design Your Own</div>
               <div className="p-2">More</div>
               <div className="p-2">Bag</div>
             </div>
@@ -62,11 +65,11 @@ const Navbar = () => {
           {/* <div className="h-full px-3 cursor-pointer">
             <CiSearch size={22} />
           </div> */}
-          <div className="border-r-2 h-full px-3 cursor-pointer">Home</div>
+          <div onClick={()=>{router.push("/")}} className="border-r-2 h-full px-3 cursor-pointer">Home</div>
           <div className="border-r-2 h-full px-3 cursor-pointer">
             Collection
           </div>
-          <div className="border-r-2 h-full px-3 cursor-pointer">
+          <div onClick={()=>{router.push("/designYourOwn")}} className="border-r-2 h-full px-3 cursor-pointer">
             Design Your Own
           </div>
           <div className="px-3 cursor-pointer h-full">More</div>

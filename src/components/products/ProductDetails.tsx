@@ -7,6 +7,7 @@ import ProductCard from "./ProductCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ImagePreview from "@/ImageTools/Upload/ImagePreview";
 // import ImageGen from "./ImageGen";
 interface ProductDetails {
   productName: string;
@@ -190,8 +191,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
             </div>
           ))}
         </Slider>
-        {/* <ImageGen/> */}
-      {/* <Images/> */}
+        {/* <ImagePreview/> */}
       </div>
     </div>
   );

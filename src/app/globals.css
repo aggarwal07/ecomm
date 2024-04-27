@@ -25,3 +25,17 @@ body {
     text-wrap: balance;
   }
 }
+/* upload image input tag */
+.inputFile {
+  overflow: hidden;
+  text-indent: -9999px;
+  width: 2.4em;
+  height: 2.4em;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
