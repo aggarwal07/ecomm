@@ -191,6 +191,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
           ))}
         </Slider>
         {/* <ImageGen/> */}
+      {/* <Images/> */}
       </div>
     </div>
   );
