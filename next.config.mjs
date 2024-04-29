@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['random.imagecdn.app'],
+        domains: ['random.imagecdn.app','fastly.picsum.photos'],
       },
 };
 
