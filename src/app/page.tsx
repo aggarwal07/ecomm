@@ -5,11 +5,54 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { setUnit } from "@/store/slices/units";
+import { setProducts } from "@/store/slices/products";
 
 import ProductCard from "@/components/products/ProductCard";
 import ContactUs from "@/components/contact/ContactUs";
+import { useAppDispatch } from "@/store/hooks";
+interface Product {
+  _id: string;
+  name: string;
+  price: string;
+  description: string[];
+  images: string[];
+  type: ProductType[];
+  category: string;
+  __v: number;
+}
+
+interface ProductType {
+  size: string;
+  material: string;
+  price: string;
+  _id: string;
+}
 
 export default function Home() {
+  const dispatch = useAppDispatch();
+  //Product Api data fetching
+  const [ProductData, setProdData] = useState<Product[] | null>(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://backendfiggle.onrender.com/api/products"
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const jsonData = await response.json();
+        setProdData(jsonData);
+        dispatch(setProducts(jsonData));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+  console.log(ProductData);
   //router
   const router = useRouter();
   //FeaturedDrops List
@@ -131,8 +174,11 @@ export default function Home() {
       <div className="bg-black mt-10 py-2">
         <div className="mx-5 my-5">
           <Slider {...settingsProducts}>
-            {featuredDrops.map((item,index) => (
-              <div key={index} className="w-[23vw] h-[16em] md:h-[25em] bg-red-600 outline relative">
+            {featuredDrops.map((item, index) => (
+              <div
+                key={index}
+                className="w-[23vw] h-[16em] md:h-[25em] bg-red-600 outline relative"
+              >
                 <Image
                   style={{
                     objectFit: "cover",
@@ -157,13 +203,20 @@ export default function Home() {
         FEATURED DROPS
       </p>
       <div className="w-fit gap-2 md:gap-5 grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mx-auto mt-10 mb-10">
-        {featuredDrops.map((item, index) => (
-          <div className="cursor-pointer" onClick={()=>{
-            var query = "/products/" + item.id;
-            router.push(query)}} key={index}>
-            <ProductCard />
-          </div>
-        ))}
+        {ProductData &&
+          ProductData.map((item, index) => (
+            <div
+              className="cursor-pointer"
+              onClick={() => {
+                var query = "/products/" + item.name;
+                router.push(query);
+                dispatch(setUnit(item));
+              }}
+              key={index}
+            >
+              <ProductCard product={item} />
+            </div>
+          ))}
       </div>
       {/*contanct action button */}
       <ContactUs />

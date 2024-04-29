@@ -7,13 +7,14 @@ import ProductCard from "./ProductCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ImagePreview from "@/ImageTools/Upload/ImagePreview";
+import { useAppSelector } from "@/store/hooks";
 // import ImageGen from "./ImageGen";
 interface ProductDetails {
   productName: string;
 }
 const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
-  // const [activeGalleryImage, setGalleryImage] = useState(featuredDrops[0]);
+  const unit = useAppSelector((state) => state.units.unit);
+  const Products = useAppSelector((state) => state.product.products);
   //for heart
   const [heart, setHeart] = useState(false);
   //FeaturedDrops List
@@ -99,43 +100,60 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
             />
           </div>
           <div className="grid grid-cols-4 gap-2 md:gap-6 mt-4 mx-2">
-            {featuredDrops.map((item,i)=>(
-              <div key={i} 
-              // onClick={()=>{setGalleryImage(item)}} 
-              className="cursor-pointer">
-              <Image
-              className="h-full"
-              src={item.imageLink}
-              alt="productLayout2"
-              width={190}
-              height={150}
-            />
-            </div>
-
-            ))}</div>
+            {featuredDrops.map((item, i) => (
+              <div
+                key={i}
+                // onClick={()=>{setGalleryImage(item)}}
+                className="cursor-pointer"
+              >
+                <Image
+                  className="h-full"
+                  src={item.imageLink}
+                  alt="productLayout2"
+                  width={190}
+                  height={150}
+                />
+              </div>
+            ))}
+          </div>
         </div>
         {/*product details */}
         <div className="w-full mt-10 flex justify-between max-md:flex-col-reverse">
           {/*left box */}
           <div className="md:w-[60%] text-lg p-5">
-            <p className="text-2xl font-medium max-md:hidden">Product Name</p>
+            <p className="text-2xl font-medium max-md:hidden">{unit?.name}</p>
             <p className="-mt-4 md:mt-5 font-light">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi
-              dolorem, asperiores nostrum quibusdam ducimus quam aspernatur
-              aliquam eum aliquid quisquam molestias! Laborum pariatur amet
-              quaerat enim sed nihil repellat quibusdam ut, necessitatibus sequi
-              quia distinctio dolorum eaque perspiciatis fuga laboriosam,
-              aperiam, inventore sint corrupti cumque. Amet iure provident
-              consectetur voluptates.
+              {unit?.description.map((item, index) => {
+                return <div key={index}>{item}</div>;
+              })}
             </p>
           </div>
           {/*right box */}
           <div className="md:w-[30%] p-5 text-xl font-light">
             <p className="text-4xl md:text-2xl max-md:mb-3 font-medium md:hidden">
-              Product Name
+              {unit?.name}
             </p>
-            <p className="mb-3">Price</p>
+            <p className="mb-3">{unit?.price}</p>
             <label className="mt-5" htmlFor="select">
+              Select the type
+            </label>
+            <br />
+            <select
+              className="w-full rounded-lg border-2 p-1 mt-2 text-center"
+              name=""
+              id="select"
+            >
+              {unit?.type.map((item, index) => {
+                return (
+                  <option key={index} value={item._id}>
+                    {item.price} - {item.material} - {item.size}
+                  </option>
+                );
+              })}
+              {/* <option value="">1</option>
+              <option value="">2</option> */}
+            </select>
+            {/* <label className="mt-5" htmlFor="select">
               Select the type
             </label>
             <br />
@@ -146,19 +164,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
             >
               <option value="">1</option>
               <option value="">2</option>
-            </select>
-            <label className="mt-5" htmlFor="select">
-              Select the type
-            </label>
-            <br />
-            <select
-              className="w-full rounded-lg border-2 p-1 mt-2 text-center"
-              name=""
-              id="select"
-            >
-              <option value="">1</option>
-              <option value="">2</option>
-            </select>
+            </select> */}
             <div className="w-full flex max-lg:flex-col  justify-between mt-3">
               <div className="lg:w-[75%] border-2 rounded-lg p-2 text-center">
                 Add to cart
@@ -185,9 +191,9 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
           FEATURED DROPS
         </p>
         <Slider {...settings}>
-          {featuredDrops.map((item, index) => (
+          {Products.map((item, index) => (
             <div className="" key={index}>
-              <ProductCard />
+              <ProductCard product={item} />
             </div>
           ))}
         </Slider>
