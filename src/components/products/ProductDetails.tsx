@@ -74,7 +74,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
     <div className="mt-10">
       <div className="w-[97vw] lg:w-[60em] mx-auto">
         <div className="flex font-light">
-          Home / Collection / <p className="ml-2 text-gray-400">Poloroid</p>
+          Home / Collection / <p className="ml-2 text-gray-400">{unit?.name}</p>
         </div>
         {/*images of products and slider dots */}
         <div className="w-fit mx-auto flex flex-col items-center mt-5 ">
@@ -94,13 +94,13 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                 height: "100%",
               }}
               alt="polaroid"
-              src="/Images/home/1.webp"
+              src={unit?.images[0] || ""}
               width={1600}
               height={1600}
             />
           </div>
           <div className="grid grid-cols-4 gap-2 md:gap-6 mt-4 mx-2">
-            {featuredDrops.map((item, i) => (
+            {unit?.images.slice(1).map((item, i) => (
               <div
                 key={i}
                 // onClick={()=>{setGalleryImage(item)}}
@@ -108,7 +108,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
               >
                 <Image
                   className="h-full"
-                  src={item.imageLink}
+                  src={item}
                   alt="productLayout2"
                   width={190}
                   height={150}
