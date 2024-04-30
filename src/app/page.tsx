@@ -8,32 +8,20 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { setUnit } from "@/store/slices/units";
 import { setProducts } from "@/store/slices/products";
-
+import { useAppSelector } from "@/store/hooks";
 import ProductCard from "@/components/products/ProductCard";
 import ContactUs from "@/components/contact/ContactUs";
 import { useAppDispatch } from "@/store/hooks";
-interface Product {
-  _id: string;
-  name: string;
-  price: string;
-  description: string[];
-  images: string[];
-  type: ProductType[];
-  category: string;
-  __v: number;
-}
+import { Product } from "@/types/types";
 
-interface ProductType {
-  size: string;
-  material: string;
-  price: string;
-  _id: string;
-}
+
+
 
 export default function Home() {
   const dispatch = useAppDispatch();
   //Product Api data fetching
   const [ProductData, setProdData] = useState<Product[] | null>(null);
+  // const Products = useAppSelector((state) => state.product.products);
   useEffect(() => {
     const fetchData = async () => {
       try {
