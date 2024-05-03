@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { setUnit } from "@/store/slices/units";
 import { setProducts } from "@/store/slices/products";
 import { useAppSelector } from "@/store/hooks";
 import ProductCard from "@/components/products/ProductCard";
@@ -197,7 +196,6 @@ export default function Home() {
               onClick={() => {
                 var query = "/products/" + item._id;
                 router.push(query);
-                dispatch(setUnit(item));
               }}
               key={index}
             >
