@@ -46,6 +46,38 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   console.log(unit);
   //for heart
   const [heart, setHeart] = useState(false);
+  //handleCart
+  const handelAddToCart = async () => {
+    try {
+      const endpoint = "https://backendfiggle.onrender.com/api/accounts/66351812d3a0f70699518ee1";
+      const requestBody = {
+        email: "shivam@example.com", 
+        name: "John Doe", 
+        contactNo: "1234567890", 
+        password: "password123", 
+        cart: unit, 
+        wishlist: [] 
+      };
+      const response = await fetch(endpoint, {
+        method: "PUT",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody),
+      });
+      if (response.ok) {
+        console.log("Product added to cart successfully");
+      } else {
+        console.error(
+          "Failed to add product to cart:",
+          response.status,
+          response.statusText
+        );
+      }
+    } catch (error:any) {
+      console.error("Error adding product to cart:", error.message);
+    }
+  };
   //slider settings
   var settings = {
     dots: true,
@@ -188,7 +220,10 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
               <option value="">2</option>
             </select> */}
             <div className="w-full flex max-lg:flex-col  justify-between mt-3">
-              <div className="lg:w-[75%] border-2 rounded-lg p-2 text-center">
+              <div
+                onClick={handelAddToCart}
+                className="lg:w-[75%] border-2 rounded-lg p-2 text-center"
+              >
                 Add to cart
               </div>
               <div className="max-md:hidden lg:w-[20%] max-lg:mt-3 border-2 lg:p-2 rounded-lg flex items-center justify-center">
