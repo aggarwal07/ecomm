@@ -7,23 +7,45 @@ import ProductCard from "./ProductCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useAppSelector } from "@/store/hooks";
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
+import { useEffect } from "react";
+import { Product } from "@/types/types";
+import { setProducts } from "@/store/slices/products";
 // import ImageGen from "./ImageGen";
 interface ProductDetails {
   productName: string;
 }
 const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
-  const unit = useAppSelector((state) => state.units.unit);
-  const Products = useAppSelector((state) => state.product.products);
+  const dispatch = useAppDispatch();
+  //Product Api data fetching
+  const [ProductData, setProdData] = useState<Product[] | null>(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://backendfiggle.onrender.com/api/products"
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const jsonData = await response.json();
+        setProdData(jsonData);
+        dispatch(setProducts(jsonData));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+  console.log(ProductData);
+  // Function to find a product by its _id
+  const findProductById = (productId: any) => {
+    return ProductData?.find((product) => product._id === productId);
+  };
+  const unit = findProductById(productName);
+  console.log(unit);
   //for heart
   const [heart, setHeart] = useState(false);
-  //FeaturedDrops List
-  const featuredDrops = [
-    { id: "1", imageLink: "/Images/home/1.webp" },
-    { id: "2", imageLink: "/Images/home/1.webp" },
-    { id: "3", imageLink: "/Images/home/1.webp" },
-    { id: "4", imageLink: "/Images/home/1.webp" },
-  ];
   //slider settings
   var settings = {
     dots: true,
@@ -191,7 +213,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
           FEATURED DROPS
         </p>
         <Slider {...settings}>
-          {Products.map((item, index) => (
+          {ProductData?.map((item, index) => (
             <div className="" key={index}>
               <ProductCard product={item} />
             </div>

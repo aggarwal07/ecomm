@@ -10,7 +10,7 @@ interface PageProps {
 }
 
 const Page: React.FC<PageProps> = ({ params }) => {
-  console.log(params, "param");
+  console.log(params, "params");
   return (
     <div>
       <div>

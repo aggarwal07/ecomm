@@ -21,7 +21,6 @@ export default function Home() {
   const dispatch = useAppDispatch();
   //Product Api data fetching
   const [ProductData, setProdData] = useState<Product[] | null>(null);
-  // const Products = useAppSelector((state) => state.product.products);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -196,7 +195,7 @@ export default function Home() {
             <div
               className="cursor-pointer"
               onClick={() => {
-                var query = "/products/" + item.name;
+                var query = "/products/" + item._id;
                 router.push(query);
                 dispatch(setUnit(item));
               }}
