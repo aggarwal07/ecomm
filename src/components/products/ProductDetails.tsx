@@ -53,6 +53,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const user = useAppSelector((state) => state.auth.user);
   const handelAddToCart = async () => {
     //updating Redux before adding to cart
+    if (user){
     try {
       const response = await fetch(`https://backendfiggle.onrender.com/api/accounts/${user.email}/${user.password}`);
       if (response.ok) {
@@ -68,7 +69,6 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
       setErrors('An error occurred. Please try again later.');
   }
     const newCart = user?.cart.concat(unit);
-    if (user){
 
       try {
         const endpoint = `https://backendfiggle.onrender.com/api/accounts/${user._id}`;
