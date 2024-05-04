@@ -79,7 +79,7 @@ const Navbar = () => {
               >
                 {user ? "Hi, " + user.name : "Sign In"}
               </div>
-              <div className="p-2">Bag</div>
+              <div onClick={()=>{router.push("/cart")}} className="p-2">Bag</div>
             </div>
           </Drawer>
         </div>
@@ -111,12 +111,12 @@ const Navbar = () => {
             onClick={() => {
               user ? router.push("/user") : router.push("/accounts");
             }}
-            className="p-2"
+            className="p-2 h-full px-3 cursor-pointer"
           >
             {user ? "Hi, " + user.name : "Sign In"}
           </div>
 
-          <div className="px-3 cursor-pointer h-full">
+          <div onClick={()=>{router.push("/cart")}} className="px-3 cursor-pointer h-full">
             <BsBag className=" font-thin" size={24} />
           </div>
         </div>
