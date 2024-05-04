@@ -1,9 +1,34 @@
 'use client'
-import { useAppSelector } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { setErrors, setUser } from '@/store/slices/auth';
 import React from 'react'
+import { useEffect } from 'react';
 
 const Cart = () => {
     const cart = useAppSelector((state) => state.auth.user?.cart || []);
+    const user = useAppSelector((state) => state.auth.user);
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+      const loginUser = async () => {
+        try {
+          const response = await fetch(`https://backendfiggle.onrender.com/api/accounts/${user.email}/${user.password}`);
+          if (response.ok) {
+            const data = await response.json();
+            console.log('Login successful', data);
+            dispatch(setUser(data));
+          } else {
+            const { message } = await response.json();
+            dispatch(setErrors(message));
+          }
+        } catch (error) {
+          console.error('Login error:', error);
+          dispatch(setErrors('An error occurred. Please try again later.'));
+        }
+      };
+  
+      // Call the loginUser function when the component mounts
+      loginUser();
+    }, []);
   return (
     <div className="container mx-auto mt-10">
       <h1 className="text-3xl font-semibold mb-4">Shopping Cart</h1>
