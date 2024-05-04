@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { Product } from "@/types/types";
 import { setProducts } from "@/store/slices/products";
 import { useRouter } from "next/navigation";
+import { setErrors, setUser } from "@/store/slices/auth";
 // import ImageGen from "./ImageGen";
 interface ProductDetails {
   productName: string;
@@ -51,12 +52,28 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   //handleCart
   const user = useAppSelector((state) => state.auth.user);
   const handelAddToCart = async () => {
+    //updating Redux before adding to cart
+    try {
+      const response = await fetch(`https://backendfiggle.onrender.com/api/accounts/${user.email}/${user.password}`);
+      if (response.ok) {
+          const data = await response.json();
+          console.log('Login successful', data);
+          dispatch(setUser(data));
+      } else {
+          const { message } = await response.json();
+          setErrors(message);
+      }
+  } catch (error) {
+      console.error('Login error:', error);
+      setErrors('An error occurred. Please try again later.');
+  }
+    const newCart = user?.cart.concat(unit);
     if (user){
 
       try {
-        const endpoint = "https://backendfiggle.onrender.com/api/accounts/66351812d3a0f70699518ee1";
+        const endpoint = `https://backendfiggle.onrender.com/api/accounts/${user._id}`;
         const requestBody = {
-          cart: unit, 
+          cart: newCart, 
         };
         const response = await fetch(endpoint, {
         method: "PUT",
