@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const user = localStorage.getItem('user'); 
   //router 
   const router = useRouter();
   //Drawer Menu
@@ -55,7 +56,7 @@ const Navbar = () => {
               <div onClick={()=>{router.push("/")}} className="p-2">Home</div>
               <div className="p-2">Collection</div>
               <div onClick={()=>{router.push("/designYourOwn")}} className="p-2">Design Your Own</div>
-              <div className="p-2">More</div>
+              <div onClick={()=>{router.push("/accounts")}} className="p-2">{user?"Hi, " + JSON.parse(user).name:"Sign In"}</div>
               <div className="p-2">Bag</div>
             </div>
           </Drawer>
@@ -72,7 +73,7 @@ const Navbar = () => {
           <div onClick={()=>{router.push("/designYourOwn")}} className="border-r-2 h-full px-3 cursor-pointer">
             Design Your Own
           </div>
-          <div className="px-3 cursor-pointer h-full">More</div>
+          <div onClick={()=>{router.push("/accounts")}} className="p-2">{user?"Hi, " + JSON.parse(user).name:"Sign In"}</div>
 
           <div className="px-3 cursor-pointer h-full">
             <BsBag className=" font-thin" size={24} />

@@ -11,11 +11,13 @@ import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { useEffect } from "react";
 import { Product } from "@/types/types";
 import { setProducts } from "@/store/slices/products";
+import { useRouter } from "next/navigation";
 // import ImageGen from "./ImageGen";
 interface ProductDetails {
   productName: string;
 }
 const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   //Product Api data fetching
   const [ProductData, setProdData] = useState<Product[] | null>(null);
@@ -48,17 +50,16 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const [heart, setHeart] = useState(false);
   //handleCart
   const handelAddToCart = async () => {
-    try {
-      const endpoint = "https://backendfiggle.onrender.com/api/accounts/66351812d3a0f70699518ee1";
-      const requestBody = {
-        email: "shivam@example.com", 
-        name: "John Doe", 
-        contactNo: "1234567890", 
-        password: "password123", 
-        cart: unit, 
-        wishlist: [] 
-      };
-      const response = await fetch(endpoint, {
+    const user = localStorage.getItem('user');    
+    console.log(user,"user details");
+    if (user){
+
+      try {
+        const endpoint = "https://backendfiggle.onrender.com/api/accounts/66351812d3a0f70699518ee1";
+        const requestBody = {
+          cart: unit, 
+        };
+        const response = await fetch(endpoint, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json'
@@ -77,6 +78,10 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
     } catch (error:any) {
       console.error("Error adding product to cart:", error.message);
     }
+  }
+  else{
+    router.push('/accounts');
+  }
   };
   //slider settings
   var settings = {
