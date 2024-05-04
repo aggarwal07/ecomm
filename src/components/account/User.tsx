@@ -2,24 +2,15 @@
 import React from "react";
 import { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { clearUser } from "@/store/slices/auth";
 
 const User = () => {
     const router = useRouter();
-    const [user, setUser] = useState<any>(null);
-    useEffect(() => {
-        // Fetch user data from local storage or API
-        const userData = localStorage.getItem('user');
-        if (userData) {
-            setUser(JSON.parse(userData));
-        } else {
-            // If user data is not found in local storage, you might want to fetch it from the API
-            // Example API call:
-            // fetchUserData();
-        }
-    }, []);
+    const dispatch = useAppDispatch();
+    const user = useAppSelector((state)=> state.auth.user);
     const handleLogOut = () => {
-        setUser(null);
-        localStorage.removeItem('user');
+        dispatch(clearUser());
         router.back();
     };
 

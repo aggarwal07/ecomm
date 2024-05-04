@@ -49,9 +49,8 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   //for heart
   const [heart, setHeart] = useState(false);
   //handleCart
+  const user = useAppSelector((state) => state.auth.user);
   const handelAddToCart = async () => {
-    const user = localStorage.getItem('user');    
-    console.log(user,"user details");
     if (user){
 
       try {

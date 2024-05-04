@@ -1,5 +1,4 @@
 import Auth from '@/components/account/Auth'
-import User from '@/components/account/User';
 import React from 'react'
 
 const page = () => {   

@@ -8,10 +8,11 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/store/hooks";
 
 const Navbar = () => {
-  const user = localStorage.getItem('user'); 
-  //router 
+  const user = useAppSelector((state) => state.auth.user);
+  //router
   const router = useRouter();
   //Drawer Menu
   const [toggleMore, setMore] = useState(false);
@@ -53,10 +54,31 @@ const Navbar = () => {
             }}
           >
             <div className="flex flex-col w-fit mx-auto text-center text-xl mt-52">
-              <div onClick={()=>{router.push("/")}} className="p-2">Home</div>
+              <div
+                onClick={() => {
+                  router.push("/");
+                }}
+                className="p-2"
+              >
+                Home
+              </div>
               <div className="p-2">Collection</div>
-              <div onClick={()=>{router.push("/designYourOwn")}} className="p-2">Design Your Own</div>
-              <div onClick={()=>{router.push("/accounts")}} className="p-2">{user?"Hi, " + JSON.parse(user).name:"Sign In"}</div>
+              <div
+                onClick={() => {
+                  router.push("/designYourOwn");
+                }}
+                className="p-2"
+              >
+                Design Your Own
+              </div>
+              <div
+                onClick={() => {
+                  user ? router.push("/user") : router.push("/accounts");
+                }}
+                className="p-2"
+              >
+                {user ? "Hi, " + user.name : "Sign In"}
+              </div>
               <div className="p-2">Bag</div>
             </div>
           </Drawer>
@@ -66,14 +88,33 @@ const Navbar = () => {
           {/* <div className="h-full px-3 cursor-pointer">
             <CiSearch size={22} />
           </div> */}
-          <div onClick={()=>{router.push("/")}} className="border-r-2 h-full px-3 cursor-pointer">Home</div>
+          <div
+            onClick={() => {
+              router.push("/");
+            }}
+            className="border-r-2 h-full px-3 cursor-pointer"
+          >
+            Home
+          </div>
           <div className="border-r-2 h-full px-3 cursor-pointer">
             Collection
           </div>
-          <div onClick={()=>{router.push("/designYourOwn")}} className="border-r-2 h-full px-3 cursor-pointer">
+          <div
+            onClick={() => {
+              router.push("/designYourOwn");
+            }}
+            className="border-r-2 h-full px-3 cursor-pointer"
+          >
             Design Your Own
           </div>
-          <div onClick={()=>{router.push("/accounts")}} className="p-2">{user?"Hi, " + JSON.parse(user).name:"Sign In"}</div>
+          <div
+            onClick={() => {
+              user ? router.push("/user") : router.push("/accounts");
+            }}
+            className="p-2"
+          >
+            {user ? "Hi, " + user.name : "Sign In"}
+          </div>
 
           <div className="px-3 cursor-pointer h-full">
             <BsBag className=" font-thin" size={24} />

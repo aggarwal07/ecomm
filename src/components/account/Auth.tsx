@@ -3,17 +3,20 @@ import React from 'react'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import User from './User';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { setErrors, setUser } from '@/store/slices/auth';
 
-const Auth = () => {
-    const user = localStorage.getItem('user');  
-    if (user){
-        return (
-          <div>
-            <User/>
-          </div>
-        )
-      }
+const Auth = () => {  
+    // const user = useAppSelector((state) => state.auth.user);
+    // if (user){
+    //     return (
+    //       <div>
+    //         <User/>
+    //       </div>
+    //     )
+    //   }
     const router = useRouter();
+    const dispatch = useAppDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -26,14 +29,16 @@ const Auth = () => {
                 const data = await response.json();
                 // Handle successful login, e.g., set user state or redirect
                 console.log('Login successful', data);
-                localStorage.setItem('user', JSON.stringify(data));
+                dispatch(setUser(data));
                 router.back();
             } else {
                 const { message } = await response.json();
+                setErrors(message);
                 setError(message);
             }
         } catch (error) {
             console.error('Login error:', error);
+            setErrors('An error occurred. Please try again later.');
             setError('An error occurred. Please try again later.');
         }
     };
