@@ -13,6 +13,7 @@ import { Product } from "@/types/types";
 import { setProducts } from "@/store/slices/products";
 import { useRouter } from "next/navigation";
 import { setErrors, setUser } from "@/store/slices/auth";
+import Alert from "../alert/Alert";
 // import ImageGen from "./ImageGen";
 interface ProductDetails {
   productName: string;
@@ -20,6 +21,14 @@ interface ProductDetails {
 const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  //Added to Cart Succesfully
+  const [showAlert, setShowAlert] = useState(false);
+  const handleShowAlert = () => {
+    setShowAlert(true);
+  };
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
   //Product Api data fetching
   const [ProductData, setProdData] = useState<Product[] | null>(null);
   useEffect(() => {
@@ -53,51 +62,53 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const user = useAppSelector((state) => state.auth.user);
   const handelAddToCart = async () => {
     //updating Redux before adding to cart
-    if (user){
-    try {
-      const response = await fetch(`https://backendfiggle.onrender.com/api/accounts/${user.email}/${user.password}`);
-      if (response.ok) {
+    if (user) {
+      try {
+        const response = await fetch(
+          `https://backendfiggle.onrender.com/api/accounts/${user.email}/${user.password}`
+        );
+        if (response.ok) {
           const data = await response.json();
-          console.log('Login successful', data);
+          console.log("Login successful", data);
           dispatch(setUser(data));
-      } else {
+        } else {
           const { message } = await response.json();
           setErrors(message);
+        }
+      } catch (error) {
+        console.error("Login error:", error);
+        setErrors("An error occurred. Please try again later.");
       }
-  } catch (error) {
-      console.error('Login error:', error);
-      setErrors('An error occurred. Please try again later.');
-  }
-    const newCart = user?.cart.concat(unit);
+      const newCart = user?.cart.concat(unit);
 
       try {
         const endpoint = `https://backendfiggle.onrender.com/api/accounts/${user._id}`;
         const requestBody = {
-          cart: newCart, 
+          cart: newCart,
         };
         const response = await fetch(endpoint, {
-        method: "PUT",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestBody),
-      });
-      if (response.ok) {
-        console.log("Product added to cart successfully");
-      } else {
-        console.error(
-          "Failed to add product to cart:",
-          response.status,
-          response.statusText
-        );
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        });
+        if (response.ok) {
+          console.log("Product added to cart successfully");
+          handleShowAlert();
+        } else {
+          console.error(
+            "Failed to add product to cart:",
+            response.status,
+            response.statusText
+          );
+        }
+      } catch (error: any) {
+        console.error("Error adding product to cart:", error.message);
       }
-    } catch (error:any) {
-      console.error("Error adding product to cart:", error.message);
+    } else {
+      router.push("/accounts");
     }
-  }
-  else{
-    router.push('/accounts');
-  }
   };
   //slider settings
   var settings = {
@@ -225,28 +236,21 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                   </option>
                 );
               })}
-              {/* <option value="">1</option>
-              <option value="">2</option> */}
             </select>
-            {/* <label className="mt-5" htmlFor="select">
-              Select the type
-            </label>
-            <br />
-            <select
-              className="w-full rounded-lg border-2 p-1 mt-2 text-center"
-              name=""
-              id="select"
-            >
-              <option value="">1</option>
-              <option value="">2</option>
-            </select> */}
             <div className="w-full flex max-lg:flex-col  justify-between mt-3">
               <div
                 onClick={handelAddToCart}
                 className="lg:w-[75%] border-2 rounded-lg p-2 text-center"
               >
-                Add to cart
+                Add to Cart
               </div>
+              {/* product added successful popup */}
+              {showAlert && (
+                <Alert
+                  message="Product Added To Cart!"
+                  onClose={handleCloseAlert}
+                />
+              )}
               <div className="max-md:hidden lg:w-[20%] max-lg:mt-3 border-2 lg:p-2 rounded-lg flex items-center justify-center">
                 <FaHeartCirclePlus
                   onClick={() => {

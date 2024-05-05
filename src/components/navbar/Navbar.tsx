@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { BsBag } from "react-icons/bs";
+import { GrCart } from "react-icons/gr";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Image from "next/image";
 import { useState } from "react";
@@ -117,7 +118,7 @@ const Navbar = () => {
           </div>
 
           <div onClick={()=>{router.push("/cart")}} className="px-3 cursor-pointer h-full">
-            <BsBag className=" font-thin" size={24} />
+            <GrCart className=" font-thin" size={24} />
           </div>
         </div>
       </div>
