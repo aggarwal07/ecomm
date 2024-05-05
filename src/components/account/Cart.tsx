@@ -95,10 +95,10 @@ const Cart = () => {
       <h1 className="text-3xl font-semibold mb-4 w-fit mx-auto">
         Shopping Cart
       </h1>
-      <div className="flex w-[50vw] mt-10 mx-auto">
+      <div className="flex max-lg:flex-col w-[25em] lg:w-[55em] mt-10 mx-auto">
         <div className="w-fit gap-2 md:gap-5 flex flex-col">
           {cart.map((product: any, index: any) => (
-            <div key={index} className="h-fit p-3 w-[30vw] border relative">
+            <div key={index} className="h-fit p-3 lg:w-[34em] border relative">
               <RxCross2
                 onClick={() => {
                   handleRemoveCart(index);
@@ -110,7 +110,7 @@ const Cart = () => {
             </div>
           ))}
         </div>
-        <div className="border p-3 w-[20vw] justify-self-end">
+        <div className="border p-3 w-[24em] justify-self-end">
           <p>Price Details ({cart.length} items)</p>
           <div className="flex mt-2 w-full justify-between">
             <div>

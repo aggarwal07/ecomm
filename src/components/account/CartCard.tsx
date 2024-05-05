@@ -7,7 +7,7 @@ interface ProductCardProps {
 const CartCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="flex h-fit w-fit">
-      <div className="w-[5vw] h-[14vh]">
+      <div className="w-[7.5em] h-[10em]">
         <Image
           style={{
             objectFit: "cover",
