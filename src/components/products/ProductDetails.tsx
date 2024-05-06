@@ -54,8 +54,30 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const findProductById = (productId: any) => {
     return ProductData?.find((product) => product._id === productId);
   };
-  const unit = findProductById(productName);
-  console.log(unit);
+  var unit = findProductById(productName);
+  const [selectedPrice , setSelectedPrice] = useState("");
+
+  //handle type selection
+  const handleTypeSelect = (e: any) => {
+    console.log(unit, "initializing");
+    const selectedItemId = e.target.value;
+    if (unit) {
+      //moving the selected type to the top of the array
+      const selectedIndex = unit.type.findIndex(
+        (item) => item._id === selectedItemId
+      );
+      const sortedType = [...unit.type];
+      const selectedItem = sortedType.splice(selectedIndex, 1)[0];
+      sortedType.unshift(selectedItem);
+      unit = { ...unit, type: sortedType };
+      //setting the price of unit as the type selected
+      // setSelectedPrice(selectedItem.price);
+      unit = {...unit , price : selectedItem.price}
+    }
+    console.log(unit, "final");
+  };
+
+
   //for heart
   const [heart, setHeart] = useState(false);
   //handleCart
@@ -208,18 +230,18 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
           {/*left box */}
           <div className="md:w-[60%] text-lg p-5">
             <p className="text-2xl font-medium max-md:hidden">{unit?.name}</p>
-            <p className="-mt-4 md:mt-5 font-light">
+            <div className="-mt-4 md:mt-5 font-light">
               {unit?.description.map((item, index) => {
                 return <div key={index}>{item}</div>;
               })}
-            </p>
+            </div>
           </div>
           {/*right box */}
           <div className="md:w-[30%] p-5 text-xl font-light">
             <p className="text-4xl md:text-2xl max-md:mb-3 font-medium md:hidden">
               {unit?.name}
             </p>
-            <p className="mb-3">{unit?.price}</p>
+            <p className="mb-3">{selectedPrice?selectedPrice:unit?.price}</p>
             <label className="mt-5" htmlFor="select">
               Select the type
             </label>
@@ -228,6 +250,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
               className="w-full rounded-lg border-2 p-1 mt-2 text-center"
               name=""
               id="select"
+              onChange={handleTypeSelect}
             >
               {unit?.type.map((item, index) => {
                 return (

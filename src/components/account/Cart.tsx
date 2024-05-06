@@ -98,7 +98,7 @@ const Cart = () => {
       <div className="flex max-lg:flex-col w-[25em] lg:w-[55em] mt-10 mx-auto">
         <div className="w-fit gap-2 md:gap-5 flex flex-col">
           {cart.map((product: any, index: any) => (
-            <div key={index} className="h-fit p-3 lg:w-[34em] border relative">
+            <div key={index} className="h-fit p-3 lg:w-[34em] relative shadow-2xl rounded-md">
               <RxCross2
                 onClick={() => {
                   handleRemoveCart(index);
