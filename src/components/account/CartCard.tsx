@@ -3,24 +3,19 @@ import React from "react";
 import { Product } from "@/types/types";
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 interface ProductCardProps {
   product: Product;
 }
 const CartCard: React.FC<ProductCardProps> = ({ product }) => {
-  const [selectedPrice, setSelectedPrice] = useState("");
-  const handleTypeSelect = (e: any) => {
-    const selectedItemId = e.target.value;
-    const selectedItem = product?.type.find(
-      (item) => item._id === selectedItemId
-    );
-    if (selectedItem) {
-      setSelectedPrice(selectedItem.price);
-    }
-  };
+  const router = useRouter();
   return (
     <div className="flex items-center justify-between h-fit w-full lg:w-[29.5em] text-gray-600">
       <div className="flex items-center">
-        <div className="w-[7.5em] h-[7.5em] rounded-2xl overflow-hidden">
+        <div onClick={() => {
+                var query = "/products/" + product._id;
+                router.push(query);
+              }} className="w-[7.5em] h-[7.5em] rounded-2xl overflow-hidden cursor-pointer ">
           <Image
             style={{
               objectFit: "cover",

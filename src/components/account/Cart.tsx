@@ -93,7 +93,7 @@ const Cart = () => {
 }
   return (
     <div className="mt-10 w-[97vw] lg:w-[60em] mx-auto text-gray-600">
-      <div className="text-xl flex items-center font-bold mb-4 w-fit">
+      <div onClick={()=>{router.push("/collection")}} className="text-xl flex items-center font-bold mb-4 w-fit">
       <HiOutlineArrowLongLeft size={32}/> <p className="ml-2">Continue Shopping</p>
       </div>
       <hr />
@@ -116,7 +116,7 @@ const Cart = () => {
             </div>
           ))}
         </div>
-        <div className="border p-3 w-[97vw] lg:w-[24em] rounded-lg text-white bg-gradient-to-b from-[#3b71ca] to bg-[#2f5aa2] lg:p-5">
+        <div className="border p-3 w-[97vw] h-fit lg:w-[24em] rounded-lg text-white bg-gradient-to-b from-[#3b71ca] to bg-[#2f5aa2] lg:p-5">
           <p className="font-bold text-xl lg:mb-2">Price Details</p>
           <hr />
           <div className="flex mt-2 w-full justify-between">

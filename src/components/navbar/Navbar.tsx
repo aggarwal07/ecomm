@@ -63,7 +63,9 @@ const Navbar = () => {
               >
                 Home
               </div>
-              <div className="p-2">Collection</div>
+              <div onClick={() => {
+              router.push("/collection");
+            }} className="p-2">Collection</div>
               <div
                 onClick={() => {
                   router.push("/designYourOwn");
@@ -97,7 +99,9 @@ const Navbar = () => {
           >
             Home
           </div>
-          <div className="border-r-2 h-full px-3 cursor-pointer">
+          <div onClick={() => {
+              router.push("/collection");
+            }} className="border-r-2 h-full px-3 cursor-pointer">
             Collection
           </div>
           <div
