@@ -4,8 +4,9 @@ import { setErrors, setUser } from "@/store/slices/auth";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useEffect } from "react";
-import { RxCross2 } from "react-icons/rx";
+import { MdDelete } from "react-icons/md";
 import CartCard from "./CartCard";
+import { HiOutlineArrowLongLeft,HiMiniArrowLongRight } from "react-icons/hi2";
 
 const Cart = () => {
   const router = useRouter();
@@ -91,43 +92,48 @@ const Cart = () => {
     return totalPrice;
 }
   return (
-    <div className="mt-10">
-      <h1 className="text-3xl font-semibold mb-4 w-fit mx-auto">
-        Shopping Cart
-      </h1>
-      <div className="flex max-lg:flex-col w-[25em] lg:w-[55em] mt-10 mx-auto">
+    <div className="mt-10 w-[97vw] lg:w-[60em] mx-auto text-gray-600">
+      <div className="text-xl flex items-center font-bold mb-4 w-fit">
+      <HiOutlineArrowLongLeft size={32}/> <p className="ml-2">Continue Shopping</p>
+      </div>
+      <hr />
+      <div className="mt-4 font-medium">
+        <p>Shopping Cart</p>
+        <p className="mt-1">You have {cart.length} {cart.length>1?"items":"item"} in your cart</p>
+      </div>
+      <div className="flex max-lg:flex-col justify-between w-full mt-8">
         <div className="w-fit gap-2 md:gap-5 flex flex-col">
           {cart.map((product: any, index: any) => (
-            <div key={index} className="h-fit p-3 lg:w-[34em] relative shadow-2xl rounded-md">
-              <RxCross2
+            <div key={index} className="h-fit p-3 w-[97vw] lg:w-[34em] flex items-center relative shadow-2xl rounded-md mb-5">
+              <MdDelete
                 onClick={() => {
                   handleRemoveCart(index);
                 }}
-                className="absolute top-1 right-1 cursor-pointer"
+                className="absolute right-2 cursor-pointer"
                 size={25}
               />
               <CartCard product={product} />
             </div>
           ))}
         </div>
-        <div className="border p-3 w-[24em] justify-self-end">
-          <p>Price Details ({cart.length} items)</p>
+        <div className="border p-3 w-[97vw] lg:w-[24em] rounded-lg text-white bg-gradient-to-b from-[#3b71ca] to bg-[#2f5aa2] lg:p-5">
+          <p className="font-bold text-xl lg:mb-2">Price Details</p>
+          <hr />
           <div className="flex mt-2 w-full justify-between">
             <div>
-              <p>Total MRP</p>
-              <p>Misclenous Charges</p>
-              <p>Shipping Fee</p>
+              <p className="mt-2">Total MRP</p>
+              <p className="mt-2">Misclenous Charges</p>
+              <p className="mt-2">Shipping Fee</p>
             </div>
             <div className="text-right">
-              <p>₹ {calculateTotalPrice()}</p>
-              <p>₹ 0</p>
-              <p>Free</p>
+              <p className="mt-2">₹ {calculateTotalPrice()}</p>
+              <p className="mt-2">₹ 0</p>
+              <p className="mt-2">Free</p>
             </div>
           </div>
-          <hr className="mt-2 mb-2" />
-          <div className="flex w-full justify-between">
-            <p>Grand Total</p>
+          <div className="flex w-[19em] items-center p-2 px-5 mx-auto bg-gradient-to-r from-[#4ca2be] to bg-[#54b4d3] rounded-lg  mt-5 justify-between">
             <p className="text-right">₹ {calculateTotalPrice()}</p>
+            <div className="flex items-center">CHECKOUT <HiMiniArrowLongRight className="ml-2" size={25} /> </div>
           </div>
         </div>
       </div>
