@@ -16,6 +16,7 @@ const SignUp = () => {
     wishlist : []
   });
   const [error, setError] = useState('');
+  const [isEmailValid, setIsEmailValid] = useState(true);
 
   const handleSubmit = async (e:any) => {
     e.preventDefault();
@@ -50,6 +51,11 @@ const SignUp = () => {
       [e.target.name]: e.target.value
     });
   };
+  const validateEmail = () => {
+    const emailRegex = /.+@.+\..+/;
+    const isValid = emailRegex.test(formData.email);
+    setIsEmailValid(isValid);
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -58,7 +64,8 @@ const SignUp = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email:</label>
-            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 p-2 border border-gray-300 rounded-md w-full" required />
+            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} onBlur={validateEmail} className="mt-1 p-2 border border-gray-300 rounded-md w-full" required />
+          {isEmailValid ? null : <p style={{ color: 'red' }}>Please enter a valid email address.</p>}
           </div>
           <div className="mb-4">
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name:</label>
