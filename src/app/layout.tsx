@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter , Playfair_Display,Italiana,Cinzel} from '@next/font/google';
 import "./globals.css";
 import { Providers } from "@/store/provider";
 
 
 const inter = Inter({ subsets: ["latin"] });
+const lucky = Cinzel({ subsets: ["latin"], weight : ['400'] });
 
 export const metadata: Metadata = {
   title: "Ecomm",
@@ -20,7 +21,7 @@ export default function RootLayout({
     
     <html lang="en">
       
-      <body className={inter.className}>
+      <body className={lucky.className}>
         <Providers>
 
         {children}

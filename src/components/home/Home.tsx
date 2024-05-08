@@ -60,12 +60,14 @@ const LandingSection = () => {
     arrows: false,
   };
   var settingsProducts = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    arrows: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: false,
     responsive: [
       {
         breakpoint: 786,
@@ -325,7 +327,7 @@ const LandingSection = () => {
               {featuredDrops.map((item, index) => (
                 <div
                   key={index}
-                  className="w-[23vw] h-[16em] md:h-[25em] bg-red-600 outline relative"
+                  className="w-[23vw] h-[16em] md:h-[25em] bg-red-600 relative overflow-hidden"
                 >
                   <Image
                     style={{
@@ -337,9 +339,9 @@ const LandingSection = () => {
                     width={1600}
                     height={1600}
                   />
-                  <p className="text-white text-2xl absolute top-[50%] left-[46%] uppercase">
+                  <div className="hover:bg-opacity-0 hover:text-[0px] text-white text-2xl absolute top-0 left-0 w-full h-full bg-black bg-opacity-60 flex items-center justify-center uppercase">
                     text
-                  </p>
+                  </div>
                 </div>
               ))}
             </Slider>
