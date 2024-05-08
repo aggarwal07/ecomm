@@ -79,6 +79,28 @@ const LandingSection = () => {
       },
     ],
   };
+  const popularCategories = [
+    {
+      image: "https://picsum.photos/200/300",
+      text: "Fashion",
+      slug: "fashion",
+    },
+    {
+      image: "https://picsum.photos/200/300",
+      text: "Technology",
+      slug: "technology",
+    },
+    {
+      image: "https://picsum.photos/200/300",
+      text: "Travel",
+      slug: "travel",
+    },
+    {
+      image: "https://picsum.photos/200/300",
+      text: "Food",
+      slug: "food",
+    },
+  ];
   const controls = useAnimation();
   const { scrollYProgress } = useScroll();
 
@@ -91,92 +113,90 @@ const LandingSection = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-      <div className="w-[66em] h-[75vh] mx-auto rounded-md overflow-hidden relative">
-        <Image
-          style={{
-            objectFit: "cover",
-            height: "100%",
-            width: "100%",
-          }}
-          alt="polaroid"
-          src="/Images/home/landingNew.jpg"
-          width={1600}
-          height={1600}
-        />
-        <div className="absolute w-[30em] left-10 top-96">
-          <p className=" w-fit bg-opacity-30 bg-green-600 text-green-400 border border-green-600 rounded-full px-4">
-            Elevating Ideas, Creating Experiences
-          </p>
-          <p className="text-5xl mt-4">
-            Transform your ideas into wearable art with our customizable
-            print-on-demand platform.
-          </p>
+        <div className="w-full h-[90vh] mx-auto rounded-md overflow-hidden relative">
+          <Image
+            style={{
+              objectFit: "cover",
+              height: "100%",
+              width: "100%",
+            }}
+            alt="polaroid"
+            src="/Images/home/landing.png"
+            width={1600}
+            height={1600}
+          />
+          {/* <div className="absolute w-[30em] left-10 top-96">
+            <p className=" w-fit bg-opacity-30 bg-green-600 text-green-400 border border-green-600 rounded-full px-4">
+              Elevating Ideas, Creating Experiences
+            </p>
+            <p className="text-5xl mt-4">
+              Transform your ideas into wearable art with our customizable
+              print-on-demand platform.
+            </p>
+          </div> */}
+        </div>
+      </motion.div>
+      {/*Popular Category */}
+      <div className="w-[66em] mt-10 mx-auto">
+        <p className="py-3 text-3xl font-bold">
+          Discover the Best: Explore Our Popular Categories!
+        </p>
+        <div className="w-full flex gap-5 h-[25em]">
+        {popularCategories.map((item,index)=>{
+          return (
+          <div key={index} className="h-full w-[20em] flex justify-center items-center overflow-hidden rounded-sm relative">
+            <Image
+              style={{
+                objectFit: "fill",
+                height: "100%",
+              }}
+              alt="polaroid"
+              src={item.image }
+              width={1600}
+              height={1600}
+              className="transition-transform duration-300 transform hover:scale-110"
+            />
+            <p className="absolute font-bold text-3xl z-[1000]  w-fit">{item.text}</p>
+            <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
+              Shop Now
+              <HiArrowLongRight size={22} className="ml-2" />
+            </div>
+          </div>
+        )
+        })}
         </div>
       </div>
-      </motion.div>
-      {/*Category Slider */}
-      <motion.div
+      
+      {/*2nd division */}
+      {/* <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="bg-black mt-10 py-2">
-          <div className="mx-5 my-5">
-            <Slider {...settingsProducts}>
-              {featuredDrops.map((item, index) => (
-                <div
-                  key={index}
-                  className="w-[23vw] h-[16em] md:h-[25em] bg-red-600 outline relative"
-                >
-                  <Image
-                    style={{
-                      objectFit: "cover",
-                      height: "100%",
-                    }}
-                    alt="polaroid"
-                    src="/Images/home/1.webp"
-                    width={1600}
-                    height={1600}
-                  />
-                  <p className="text-white text-2xl absolute top-[50%] left-[46%] uppercase">
-                    text
-                  </p>
-                </div>
-              ))}
-            </Slider>
+        <div className="w-full py-8">
+          <p className="text-[2em] text-center">
+            Find the perfect custom canvas for you
+          </p>
+          <div className="w-full md:w-[40em] mx-auto flex max-md:flex-col items-center md:justify-between mt-10">
+            <button
+              style={{
+                boxShadow: "0px 4px 4px rgba(255, 0, 0, 0.5)",
+              }}
+              className="rounded-xl w-[12em] h-[3.5em] text-center text-white bg-black"
+            >
+              Explore Collection
+            </button>
+            <button
+              style={{
+                boxShadow: "0px 4px 4px rgba(0, 0, 255, 0.5)",
+              }}
+              className="rounded-xl w-[12em] h-[3.5em] text-center text-white bg-black max-md:mt-3"
+            >
+              Design Your Own
+            </button>
           </div>
         </div>
-      </motion.div>
-      {/*2nd division */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-      <div className="w-full py-8">
-        <p className="text-[2em] text-center">
-          Find the perfect custom canvas for you
-        </p>
-        <div className="w-full md:w-[40em] mx-auto flex max-md:flex-col items-center md:justify-between mt-10">
-          <button
-            style={{
-              boxShadow: "0px 4px 4px rgba(255, 0, 0, 0.5)",
-            }}
-            className="rounded-xl w-[12em] h-[3.5em] text-center text-white bg-black"
-          >
-            Explore Collection
-          </button>
-          <button
-            style={{
-              boxShadow: "0px 4px 4px rgba(0, 0, 255, 0.5)",
-            }}
-            className="rounded-xl w-[12em] h-[3.5em] text-center text-white bg-black max-md:mt-3"
-          >
-            Design Your Own
-          </button>
-        </div>
-      </div>
-      </motion.div>
+      </motion.div> */}
       {/*Polaroid */}
       {/* <div
         style={{
@@ -230,62 +250,101 @@ const LandingSection = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
+        className="w-66em mx-auto mt-10"
       >
-      <div className="w-[66em] h-[45em] flex mx-auto gap-4">
-        <div className="w-[50%] h-full overflow-hidden rounded-sm relative">
-          <Image
-            style={{
-              objectFit: "fill",
-              height: "100%",
-            }}
-            alt="polaroid"
-            src="/Images/home/1.webp"
-            width={1600}
-            height={1600}
-            className="transition-transform duration-300 transform hover:scale-110"
-          />
-          <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
-            Shop Now
-            <HiArrowLongRight size={22} className="ml-2" />
+        <div className="w-[66em] mx-auto">
+          <p className="font-bold text-3xl py-4">
+            Browse by Genre: Find Your Perfect Poster!
+          </p>
+          <div className="w-full h-[45em] flex gap-4">
+            <div className="w-[50%] h-full overflow-hidden rounded-sm relative">
+              <Image
+                style={{
+                  objectFit: "fill",
+                  height: "100%",
+                }}
+                alt="polaroid"
+                src="/Images/home/1.webp"
+                width={1600}
+                height={1600}
+                className="transition-transform duration-300 transform hover:scale-110"
+              />
+              <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
+                Shop Now
+                <HiArrowLongRight size={22} className="ml-2" />
+              </div>
+            </div>
+            <div className="w-[50%] flex flex-col gap-4">
+              <div className="w-full h-[50%] overflow-hidden rounded-sm relative">
+                <Image
+                  style={{
+                    objectFit: "fill",
+                    height: "100%",
+                  }}
+                  alt="polaroid"
+                  src="/Images/home/1.webp"
+                  width={1600}
+                  height={1600}
+                  className="transition-transform duration-300 transform hover:scale-110"
+                />
+                <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
+                  Shop Now
+                  <HiArrowLongRight size={22} className="ml-2" />
+                </div>
+              </div>
+              <div className="w-full h-[50%] overflow-hidden rounded-sm relative">
+                <Image
+                  style={{
+                    objectFit: "fill",
+                    height: "100%",
+                  }}
+                  alt="polaroid"
+                  src="/Images/home/1.webp"
+                  width={1600}
+                  height={1600}
+                  className="transition-transform duration-300 transform hover:scale-110"
+                />
+                <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
+                  Shop Now
+                  <HiArrowLongRight size={22} className="ml-2" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="w-[50%] flex flex-col gap-4">
-          <div className="w-full h-[50%] overflow-hidden rounded-sm relative">
-            <Image
-              style={{
-                objectFit: "fill",
-                height: "100%",
-              }}
-              alt="polaroid"
-              src="/Images/home/1.webp"
-              width={1600}
-              height={1600}
-              className="transition-transform duration-300 transform hover:scale-110"
-            />
-            <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
-            Shop Now
-            <HiArrowLongRight size={22} className="ml-2" />
-          </div>
-          </div>
-          <div className="w-full h-[50%] overflow-hidden rounded-sm relative">
-            <Image
-              style={{
-                objectFit: "fill",
-                height: "100%",
-              }}
-              alt="polaroid"
-              src="/Images/home/1.webp"
-              width={1600}
-              height={1600}
-              className="transition-transform duration-300 transform hover:scale-110"
-            />
-            <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
-            Shop Now
-            <HiArrowLongRight size={22} className="ml-2" />
-          </div>
+      </motion.div>
+      {/*Category Slider */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <div className="bg-black mt-10 py-2">
+          <div className="mx-5 my-5">
+            <Slider {...settingsProducts}>
+              {featuredDrops.map((item, index) => (
+                <div
+                  key={index}
+                  className="w-[23vw] h-[16em] md:h-[25em] bg-red-600 outline relative"
+                >
+                  <Image
+                    style={{
+                      objectFit: "cover",
+                      height: "100%",
+                    }}
+                    alt="polaroid"
+                    src="/Images/home/1.webp"
+                    width={1600}
+                    height={1600}
+                  />
+                  <p className="text-white text-2xl absolute top-[50%] left-[46%] uppercase">
+                    text
+                  </p>
+                </div>
+              ))}
+            </Slider>
           </div>
         </div>
-      </div>
       </motion.div>
 
       {/*product categories*/}
@@ -294,22 +353,24 @@ const LandingSection = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-      <p className="text-3xl font-semibold mt-10 text-center">FEATURED DROPS</p>
-      <div className="w-[66em] flex flex-wrap gap-5 mx-auto mt-10 mb-10">
-        {ProductData &&
-          ProductData.map((item, index) => (
-            <div
-              className="cursor-pointer"
-              onClick={() => {
-                var query = "/products/" + item._id;
-                router.push(query);
-              }}
-              key={index}
-            >
-              <ProductCard product={item} />
-            </div>
-          ))}
-      </div>
+        <p className="text-3xl font-semibold mt-10 text-center">
+          FEATURED DROPS
+        </p>
+        <div className="w-[66em] flex flex-wrap gap-5 mx-auto mt-10 mb-10">
+          {ProductData &&
+            ProductData.map((item, index) => (
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  var query = "/products/" + item._id;
+                  router.push(query);
+                }}
+                key={index}
+              >
+                <ProductCard product={item} />
+              </div>
+            ))}
+        </div>
       </motion.div>
       {/*contanct action button */}
       <ContactUs />
