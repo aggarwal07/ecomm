@@ -95,20 +95,20 @@ const Navbar = () => {
             onClick={() => {
               router.push("/");
             }}
-            className=" h-full px-3 cursor-pointer"
+            className=" h-full py-2 mx-3 cursor-pointer hover:border-b"
           >
             Home
           </div>
           <div onClick={() => {
               router.push("/collection");
-            }} className=" h-full px-3 cursor-pointer">
+            }} className=" h-full py-2 mx-3 cursor-pointer hover:border-b">
             Collection
           </div>
           <div
             onClick={() => {
               router.push("/designYourOwn");
             }}
-            className=" h-full px-3 cursor-pointer"
+            className=" h-full py-2 mx-3 cursor-pointer hover:border-b"
           >
             Design Your Own
           </div>
@@ -116,9 +116,9 @@ const Navbar = () => {
             onClick={() => {
               user ? router.push("/user") : router.push("/accounts");
             }}
-            className="p-2 h-full px-3 cursor-pointer"
+            className="h-full py-2 mx-3 cursor-pointer hover:border-b"
           >
-            {user ? "Hi, " + user.name : "Sign In"}
+            {user ? "Hi, " + user.name.split(" ")[0].charAt(0).toUpperCase()+user.name.split(" ")[0].slice(1) : "Sign In"}
           </div>
 
           <div onClick={()=>{router.push("/cart")}} className="px-3 cursor-pointer h-full">

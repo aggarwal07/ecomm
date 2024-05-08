@@ -14,6 +14,7 @@ import { useAppDispatch } from "@/store/hooks";
 import { Product } from "@/types/types";
 import { motion, useScroll } from "framer-motion";
 import { HiArrowLongRight } from "react-icons/hi2";
+import { useAnimation, useMotionValue, useTransform } from "framer-motion";
 
 const LandingSection = () => {
   const dispatch = useAppDispatch();
@@ -78,7 +79,10 @@ const LandingSection = () => {
       },
     ],
   };
+  const controls = useAnimation();
+  const { scrollYProgress } = useScroll();
 
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   return (
     <div className="text-white">
       {/*landing image */}
@@ -238,6 +242,7 @@ const LandingSection = () => {
             src="/Images/home/1.webp"
             width={1600}
             height={1600}
+            className="transition-transform duration-300 transform hover:scale-110"
           />
           <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
             Shop Now
@@ -255,6 +260,7 @@ const LandingSection = () => {
               src="/Images/home/1.webp"
               width={1600}
               height={1600}
+              className="transition-transform duration-300 transform hover:scale-110"
             />
             <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
             Shop Now
@@ -271,6 +277,7 @@ const LandingSection = () => {
               src="/Images/home/1.webp"
               width={1600}
               height={1600}
+              className="transition-transform duration-300 transform hover:scale-110"
             />
             <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
             Shop Now

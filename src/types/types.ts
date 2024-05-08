@@ -9,6 +9,7 @@ export interface ProductType {
     _id: string;
     name: string;
     price: string;
+    maxPrice : string;
     description: string[];
     images: string[];
     type: ProductType[];
