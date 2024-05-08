@@ -23,7 +23,7 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="w-fit">
-      <div className="md:w-[23em] md:h-[23em] w-[12.5em] h-[12.5em]">
+      <div className="md:w-[15.5em] md:h-[19.5em] w-[12.5em] h-[12.5em]">
         <Image
           style={{
             objectFit: "cover",
@@ -35,8 +35,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           height={1600}
         />
       </div>
-      <p className="text-center mt-5 text-lg">{product.name}</p>
-      <p className="text-center text-sm text-gray-400 font-light">₹ {product.price}</p>
+      <div className="p-6 bg-[#dbdbdb] text-gray-800">
+
+      <p className=" text-lg font-semibold uppercase">{product.name}</p>
+      <p className=" text-md ">₹ {product.price}</p>
+      </div>
     </div>
   );
 };

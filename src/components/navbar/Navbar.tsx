@@ -19,14 +19,14 @@ const Navbar = () => {
   const [toggleMore, setMore] = useState(false);
   return (
     <div className=" font-light">
-      <div className=" bg-[#1a1109] text-center text-[11px] font-bold py-2 text-white">
+      <div className=" bg-white text-center text-[11px] font-bold py-2 text-black">
         FREE SHIPPPING PAN INDIA
       </div>
-      <div className="flex items-center justify-between w-full h-[3.4em] px-2 md:px-24 mt-3">
+      <div className="flex items-center justify-between w-[81.25em] mx-auto h-[3.4em] px-2 md:px-24 py-10 bg-black text-white">
         <Link href="/">
           <div className=" cursor-pointer">
             <Image
-              src="/Images/logo/logo.svg"
+              src="/Images/logo/logoNew.png"
               alt="logo"
               width={100}
               height={55}
@@ -95,20 +95,20 @@ const Navbar = () => {
             onClick={() => {
               router.push("/");
             }}
-            className="border-r-2 h-full px-3 cursor-pointer"
+            className=" h-full px-3 cursor-pointer"
           >
             Home
           </div>
           <div onClick={() => {
               router.push("/collection");
-            }} className="border-r-2 h-full px-3 cursor-pointer">
+            }} className=" h-full px-3 cursor-pointer">
             Collection
           </div>
           <div
             onClick={() => {
               router.push("/designYourOwn");
             }}
-            className="border-r-2 h-full px-3 cursor-pointer"
+            className=" h-full px-3 cursor-pointer"
           >
             Design Your Own
           </div>
