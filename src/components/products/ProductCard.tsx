@@ -9,7 +9,7 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="w-fit transition-transform duration-300 transform hover:scale-105">
-      <div className="md:w-[15.5em] md:h-[19.5em] w-[12.5em] h-[12.5em] ">
+      <div className="md:w-[15.5em] md:h-[19.5em] w-[11.5em] h-[12.5em] ">
         <Image
           style={{
             objectFit: "cover",
