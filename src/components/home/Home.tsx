@@ -143,10 +143,10 @@ const LandingSection = () => {
         <p className="py-3 text-3xl font-bold">
           Discover the Best: Explore Our Popular Categories!
         </p>
-        <div className="w-full grid xl:grid-cols-4 gap-5 h-[25em]">
+        <div className="w-full grid xl:grid-cols-4 grid-cols-2 max-xl:w-fit mx-auto gap-10 xl:gap-5 h-[25em]">
         {popularCategories.map((item,index)=>{
           return (
-          <div key={index} className="h-full w-[15.5em] flex justify-center items-center overflow-hidden rounded-sm relative">
+          <div key={index} className="h-full w-[11.5em] md:w-[13em] xl:w-[15.5em] flex justify-center items-center overflow-hidden rounded-sm relative">
             <Image
               style={{
                 objectFit: "fill",
@@ -158,7 +158,7 @@ const LandingSection = () => {
               height={1600}
               className="transition-transform duration-300 transform hover:scale-110"
             />
-            <p className="absolute font-bold text-3xl z-[1000]  w-fit">{item.text}</p>
+            <p className="absolute font-bold text-xl xl:text-3xl z-[1000]  w-fit">{item.text}</p>
             <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
               Shop Now
               <HiArrowLongRight size={22} className="ml-2" />
@@ -254,11 +254,11 @@ const LandingSection = () => {
         transition={{ duration: 1 }}
         className="w-66em mx-auto mt-10"
       >
-        <div className="w-[66em] mx-auto">
+        <div className="w-[97vw] xl:w-[66em] mx-auto">
           <p className="font-bold text-3xl py-4">
             Browse by Genre: Find Your Perfect Poster!
           </p>
-          <div className="w-full h-[45em] flex gap-4">
+          <div className="w-full h-[25em] md:h-[35em] xl:h-[45em] flex gap-4">
             <div className="w-[50%] h-full overflow-hidden rounded-sm relative">
               <Image
                 style={{
@@ -358,7 +358,7 @@ const LandingSection = () => {
         <p className="text-3xl font-semibold mt-10 text-center">
           FEATURED DROPS
         </p>
-        <div className="w-[66em] flex flex-wrap gap-5 mx-auto mt-10 mb-10">
+        <div className="w-fit xl:w-[66em] flex flex-wrap gap-4 xl:gap-5 mx-auto mt-10 mb-10">
           {ProductData &&
             ProductData.map((item, index) => (
               <div

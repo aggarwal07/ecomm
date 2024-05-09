@@ -137,7 +137,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -145,25 +145,25 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
     arrows: false,
     responsive: [
       {
-        breakpoint: 1750,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
         breakpoint: 1400,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-          centerMode: true,
+          slidesToShow: 4,
+          slidesToScroll: 3,
+          infinite: true,
+          // dots: true,
         },
       },
       {
-        breakpoint: 900,
+        breakpoint: 1130,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          // initialSlide: 2,
+          // centerMode: true,
+        },
+      },
+      {
+        breakpoint: 784,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -315,7 +315,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
       {/*white space */}
       <div className="w-full h-[1em] sm:h-[2em] bg-white"></div>
       {/*recommendation sections */}
-      <div className="text-white w-[60vw] max-sm:w-[96vw] max-lg:w-[97vw] mt-10 mx-auto">
+      <div className="text-white w-[90vw] max-sm:w-[96vw] max-lg:w-[97vw] mt-10 mx-auto">
         <p className="mb-5 text-2xl font-semibold mt-10 text-center">
           FEATURED DROPS
         </p>
