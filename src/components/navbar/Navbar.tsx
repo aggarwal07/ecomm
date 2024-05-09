@@ -26,7 +26,7 @@ const Navbar = () => {
         <Link href="/">
           <div className=" cursor-pointer">
             <Image
-              src="/Images/logo/logoNew.png"
+              src="/Images/logo/image.png"
               alt="logo"
               width={100}
               height={55}
