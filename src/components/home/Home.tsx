@@ -143,7 +143,7 @@ const LandingSection = () => {
         <p className="py-3 text-3xl font-bold">
           Discover the Best: Explore Our Popular Categories!
         </p>
-        <div className="w-full grid xl:grid-cols-4 grid-cols-2 max-xl:w-fit mx-auto gap-10 xl:gap-5 h-[25em]">
+        <div className="w-full grid xl:grid-cols-4 grid-cols-2 max-xl:w-fit mx-auto gap-5 h-[25em]">
         {popularCategories.map((item,index)=>{
           return (
           <div key={index} className="h-full w-[11.5em] md:w-[13em] xl:w-[15.5em] flex justify-center items-center overflow-hidden rounded-sm relative">
@@ -358,7 +358,7 @@ const LandingSection = () => {
         <p className="text-3xl font-semibold mt-10 text-center">
           FEATURED DROPS
         </p>
-        <div className="w-fit xl:w-[66em] flex flex-wrap gap-4 xl:gap-5 mx-auto mt-10 mb-10">
+        <div className="w-[97vw] max-sm:grid max-sm:grid-cols-2 xl:w-[66em] flex flex-wrap gap-2 xl:gap-5 mx-auto mt-10 mb-10">
           {ProductData &&
             ProductData.map((item, index) => (
               <div

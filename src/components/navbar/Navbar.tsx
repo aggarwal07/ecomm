@@ -48,7 +48,7 @@ const Navbar = () => {
               toggleMore ? setMore(false) : setMore(true);
             }}
             direction="right"
-            className=""
+            className="text-black"
             size="70%"
             style={{
               background: "linear-gradient(to bottom, #f5f5f5, #ffffff)",
