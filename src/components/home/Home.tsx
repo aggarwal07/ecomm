@@ -115,7 +115,7 @@ const LandingSection = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="w-full h-[90vh] mx-auto rounded-md overflow-hidden relative">
+        <div className="w-full  mx-auto rounded-md overflow-hidden relative">
           <Image
             style={{
               objectFit: "cover",
@@ -139,14 +139,14 @@ const LandingSection = () => {
         </div>
       </motion.div>
       {/*Popular Category */}
-      <div className="w-[66em] mt-10 mx-auto">
+      <div className="w-[97vw] xl:w-[66em] mt-10 mx-auto">
         <p className="py-3 text-3xl font-bold">
           Discover the Best: Explore Our Popular Categories!
         </p>
-        <div className="w-full flex gap-5 h-[25em]">
+        <div className="w-full grid xl:grid-cols-4 gap-5 h-[25em]">
         {popularCategories.map((item,index)=>{
           return (
-          <div key={index} className="h-full w-[20em] flex justify-center items-center overflow-hidden rounded-sm relative">
+          <div key={index} className="h-full w-[15.5em] flex justify-center items-center overflow-hidden rounded-sm relative">
             <Image
               style={{
                 objectFit: "fill",

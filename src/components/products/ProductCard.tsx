@@ -23,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         />
         {product.maxPrice && <div className="border-b border-r absolute top-0 left-0 p-1 italic px-4 bg-black">SALE</div>}
       </div>
-      <div className="p-6 bg-[#dbdbdb] text-gray-800 h-28">
+      <div className="px-5 py-4 bg-[#dbdbdb] text-gray-800 h-28">
         <p className=" text-lg font-semibold uppercase">{product.name}</p>
         {product.maxPrice && (
           <p className=" line-through text-sm ">Rs. {product.maxPrice}</p>

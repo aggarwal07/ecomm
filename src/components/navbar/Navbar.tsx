@@ -22,7 +22,7 @@ const Navbar = () => {
       <div className=" bg-white text-center text-[11px] font-bold py-2 text-black">
         FREE SHIPPPING PAN INDIA
       </div>
-      <div className="flex items-center justify-between w-[81.25em] mx-auto h-[3.4em] px-2 md:px-24 py-10 bg-black text-white">
+      <div className="flex items-center justify-between min-[1300px]:w-[81.25em] mx-auto h-[3.4em] px-2 md:px-24 py-10 bg-black text-white">
         <Link href="/">
           <div className=" cursor-pointer">
             <Image
