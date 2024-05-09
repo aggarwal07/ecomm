@@ -23,6 +23,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const dispatch = useAppDispatch();
   //Added to Cart Succesfully
   const [showAlert, setShowAlert] = useState(false);
+  const [selectedType , setSelectedType] = useState(0);
   const handleShowAlert = () => {
     setShowAlert(true);
   };
@@ -55,7 +56,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
     return ProductData?.find((product) => product._id === productId);
   };
   var unit = findProductById(productName);
-  const [selectedPrice , setSelectedPrice] = useState("");
+  const [selectedPrice, setSelectedPrice] = useState("");
 
   //handle type selection
   const handleTypeSelect = (e: any) => {
@@ -72,11 +73,10 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
       unit = { ...unit, type: sortedType };
       //setting the price of unit as the type selected
       // setSelectedPrice(selectedItem.price);
-      unit = {...unit , price : selectedItem.price}
+      unit = { ...unit, price: selectedItem.price };
     }
     console.log(unit, "final");
   };
-
 
   //for heart
   const [heart, setHeart] = useState(false);
@@ -179,91 +179,113 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
     ],
   };
   return (
-    <div className="mt-10">
-      <div className="w-[97vw] lg:w-[60em] mx-auto">
-        <div className="flex font-light">
-          Home / Collection / <p className="ml-2 text-gray-400">{unit?.name}</p>
-        </div>
-        {/*images of products and slider dots */}
-        <div className="w-fit mx-auto flex flex-col items-center mt-5 ">
-          <div className="w-[95vw] h-[60vh] max-sm:h-[26em] md:w-[32em] md:h-[38em] max-md:relative">
-            <div className="rounded-full p-1 bg-white md:hidden absolute top-3 right-3">
-              <FaHeartCirclePlus
-                onClick={() => {
-                  heart ? setHeart(false) : setHeart(true);
-                }}
-                className={`${heart ? "text-red-600" : "text-black"} `}
-                size={30}
-              />
-            </div>
-            <Image
-              style={{
-                objectFit: "cover",
-                height: "100%",
-              }}
-              alt="polaroid"
-              src={unit?.images[0] || ""}
-              width={1600}
-              height={1600}
-            />
+    <div className="">
+      {/* white space */}
+      <div className="w-full h-[1em] sm:h-[2em] bg-white"></div>
+      <div className="w-full bg-white">
+        <div className="w-[97vw] lg:w-[66em] mx-auto">
+          <div className="flex font-light">
+            Home / Collection /{" "}
+            <p className="ml-2 text-gray-400">{unit?.name}</p>
           </div>
-          <div className="grid grid-cols-4 gap-2 md:gap-6 mt-4 mx-2">
-            {unit?.images.slice(1).map((item, i) => (
-              <div
-                key={i}
-                // onClick={()=>{setGalleryImage(item)}}
-                className="cursor-pointer"
-              >
+          {/*images of products and slider dots */}
+          <div className="flex max-xl:flex-col max-xl:items-center">
+            <div className="w-fit mx-auto flex flex-col items-center mt-5 ">
+              <div className="w-[95vw] h-[60vh] max-sm:h-[26em] md:w-[32em] md:h-[38em] max-md:relative">
+                <div className="rounded-full p-1 bg-white md:hidden absolute top-3 right-3">
+                  <FaHeartCirclePlus
+                    onClick={() => {
+                      heart ? setHeart(false) : setHeart(true);
+                    }}
+                    className={`${heart ? "text-red-600" : "text-black"} `}
+                    size={30}
+                  />
+                </div>
                 <Image
-                  className="h-full"
-                  src={item}
-                  alt="productLayout2"
-                  width={190}
-                  height={150}
+                  style={{
+                    objectFit: "cover",
+                    height: "100%",
+                  }}
+                  alt="polaroid"
+                  src={unit?.images[0] || ""}
+                  width={1600}
+                  height={1600}
                 />
               </div>
-            ))}
-          </div>
-        </div>
-        {/*product details */}
-        <div className="w-full mt-10 flex justify-between max-md:flex-col-reverse">
-          {/*left box */}
-          <div className="md:w-[60%] text-lg p-5">
-            <p className="text-2xl font-medium max-md:hidden">{unit?.name}</p>
-            <div className="-mt-4 md:mt-5 font-light">
-              {unit?.description.map((item, index) => {
-                return <div key={index}>{item}</div>;
-              })}
+              <div className="grid grid-cols-4 gap-2 md:gap-6 mt-4 mx-2">
+                {unit?.images.slice(1).map((item, i) => (
+                  <div
+                    key={i}
+                    // onClick={()=>{setGalleryImage(item)}}
+                    className="cursor-pointer"
+                  >
+                    <Image
+                      className="h-full"
+                      src={item}
+                      alt="productLayout2"
+                      width={190}
+                      height={150}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-          {/*right box */}
-          <div className="md:w-[30%] p-5 text-xl font-light">
-            <p className="text-4xl md:text-2xl max-md:mb-3 font-medium md:hidden">
-              {unit?.name}
-            </p>
-            <p className="mb-3">{selectedPrice?selectedPrice:unit?.price}</p>
-            <label className="mt-5" htmlFor="select">
-              Select the type
-            </label>
-            <br />
-            <select
-              className="w-full rounded-lg border-2 p-1 mt-2 text-center"
-              name=""
-              id="select"
-              onChange={handleTypeSelect}
-            >
-              {unit?.type.map((item, index) => {
-                return (
-                  <option key={index} value={item._id}>
-                    {item.price} - {item.material} - {item.size}
-                  </option>
-                );
-              })}
-            </select>
-            <div className="w-full flex max-lg:flex-col  justify-between mt-3">
+            {/*product details */}
+            <div className="w-full mt-5 px-5">
+              <p className="text-4xl font-black ">{unit?.name}</p>
+              <p className="text-sm">{unit?.category}</p>
+              <hr className="my-4" />
+              <div className="flex items-center mt-1">
+                {unit?.maxPrice && (
+                  <p className=" line-through text-lg ">Rs. {unit?.maxPrice}</p>
+                )}
+                <p className=" text-xl font-semibold ml-2 ">
+                  Rs. {unit?.price}
+                </p>
+              </div>
+              {/* <div className="mt-2">
+                <label className="" htmlFor="select">
+                  Select the type
+                </label>
+                <br />
+                <select
+                  className="w-[50%] rounded-lg border-2 p-1 mt-1 text-center"
+                  name=""
+                  id="select"
+                  onChange={handleTypeSelect}
+                >
+                  {unit?.type.map((item, index) => {
+                    return (
+                      <option key={index} value={item._id}>
+                        {item.price} - {item.material} - {item.size}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div> */}
+              <div className="mt-2">
+                <p>Select the type</p>
+                <div className="mt-1 flex flex-wrap gap-3">
+
+                {unit?.type.map((item, index) => {
+                  return (
+                    <div key={index} onClick={handleTypeSelect} className={`${selectedType==index?"bg-black text-white":""} border rounded-md flex flex-col items-center min-w-fit p-5 cursor-pointer hover:bg-black hover:text-white`}>
+                      <p>Rs. {item.price}</p>
+                      <p>{item.material}</p>
+                      <p>{item.size}</p>
+                    </div>
+                  );
+                })}
+                </div>
+              </div>
+              <div className="mt-3">
+                {unit?.description.map((item, index) => {
+                  return <div key={index}>{item}</div>;
+                })}
+              </div>
               <div
                 onClick={handelAddToCart}
-                className="lg:w-[75%] border-2 rounded-lg p-2 text-center"
+                className="lg:w-[50%] mt-2 border-2 rounded-lg p-2 text-center cursor-pointer bg-black text-white font-black"
               >
                 Add to Cart
               </div>
@@ -274,7 +296,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                   onClose={handleCloseAlert}
                 />
               )}
-              <div className="max-md:hidden lg:w-[20%] max-lg:mt-3 border-2 lg:p-2 rounded-lg flex items-center justify-center">
+              {/* <div className="max-md:hidden lg:w-[20%] max-lg:mt-3 border-2 lg:p-2 rounded-lg flex items-center justify-center">
                 <FaHeartCirclePlus
                   onClick={() => {
                     heart ? setHeart(false) : setHeart(true);
@@ -282,17 +304,19 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                   className={`${heart ? "text-red-600" : "text-black"}`}
                   size={30}
                 />
-              </div>
-            </div>
-            <div className="w-full p-2 rounded-lg bg-black text-white mt-3 text-center text-2xl font-medium ">
-              Buy Now
+              </div> */}
+              {/* <div className="w-full p-2 rounded-lg bg-black text-white mt-3 text-center text-2xl font-medium ">
+                Buy Now
+              </div> */}
             </div>
           </div>
         </div>
       </div>
+      {/*white space */}
+      <div className="w-full h-[1em] sm:h-[2em] bg-white"></div>
       {/*recommendation sections */}
-      <div className="w-[80vw] max-sm:w-[96vw] max-lg:w-[97vw] mt-10 mx-auto">
-        <p className="text-[#503114] mb-5 text-2xl font-semibold mt-10 text-center">
+      <div className="text-white w-[60vw] max-sm:w-[96vw] max-lg:w-[97vw] mt-10 mx-auto">
+        <p className="mb-5 text-2xl font-semibold mt-10 text-center">
           FEATURED DROPS
         </p>
         <Slider {...settings}>
