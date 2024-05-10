@@ -55,34 +55,34 @@ const Navbar = () => {
             }}
           >
             <div className="flex flex-col w-fit mx-auto text-center text-xl mt-52">
-              <div
+              <button
                 onClick={() => {
                   router.push("/");
                 }}
                 className="p-2"
               >
                 Home
-              </div>
+              </button>
               <div onClick={() => {
               router.push("/collection");
             }} className="p-2">Collection</div>
-              <div
+              <button
                 onClick={() => {
                   router.push("/designYourOwn");
                 }}
                 className="p-2"
               >
                 Design Your Own
-              </div>
-              <div
+              </button>
+              <button
                 onClick={() => {
                   user ? router.push("/user") : router.push("/accounts");
                 }}
                 className="p-2"
               >
                 {user ? "Hi, " + user.name : "Sign In"}
-              </div>
-              <div onClick={()=>{router.push("/cart")}} className="p-2">Bag</div>
+              </button>
+              <button onClick={()=>{router.push("/cart")}} className="p-2">Bag</button>
             </div>
           </Drawer>
         </div>
