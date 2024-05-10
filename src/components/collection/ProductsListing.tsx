@@ -31,6 +31,14 @@ const ProductsListing: React.FC<ProductListing> = ({ productType }) => {
     };
     fetchData();
   }, []);
+  const handleClick = (category: string) => {
+    const filteredProducts = ProductData?.filter(
+      (product) => product.category === category
+    );
+    if (filteredProducts) {
+      setProdData(filteredProducts);
+    }
+  };
   return (
     <div className="mt-10 text-white w-[97vw] xl:w-[66em] mx-auto">
       <div className="w-full text-2xl md:text-3xl xl:text-4xl font-bold">
@@ -45,7 +53,11 @@ const ProductsListing: React.FC<ProductListing> = ({ productType }) => {
           <hr className="mb-5 mt-5" />
           <p className="mb-2">Genre</p>
           <div className="flex items-center mb-1 text-sm">
-            <input type="checkbox" name="Football" />
+            <input
+              type="checkbox"
+              name="Football"
+              onClick={() => handleClick("Football")}
+            />
             <p className="ml-4">football</p>
           </div>
           <div className="flex items-center mb-1 text-sm">

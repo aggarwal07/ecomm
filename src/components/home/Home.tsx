@@ -140,10 +140,10 @@ const LandingSection = () => {
       </motion.div>
       {/*Popular Category */}
       <div className="w-[97vw] xl:w-[66em] mt-10 mx-auto">
-        <p className="py-3 text-3xl font-bold">
+        <p className="py-3 tex-xl md:text-2xl xl:text-3xl font-bold">
           Discover the Best: Explore Our Popular Categories!
         </p>
-        <div className="w-full grid xl:grid-cols-4 grid-cols-2 max-xl:w-fit mx-auto gap-5 h-[25em]">
+        <div className="w-full grid xl:grid-cols-4 grid-cols-2 max-xl:w-fit mx-auto gap-2 md:gap-4 h-[25em]">
         {popularCategories.map((item,index)=>{
           return (
           <div key={index} className="h-full w-[11.5em] md:w-[13em] xl:w-[15.5em] flex justify-center items-center overflow-hidden rounded-sm relative">
@@ -158,8 +158,8 @@ const LandingSection = () => {
               height={1600}
               className="transition-transform duration-300 transform hover:scale-110"
             />
-            <p className="absolute font-bold text-xl xl:text-3xl z-[1000]  w-fit">{item.text}</p>
-            <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
+            <p className="absolute font-bold text-md md:text-2xl xl:text-3xl z-[1000]  w-fit">{item.text}</p>
+            <div className="text-black font-semibold text-md lg:text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-1 lg:py-2 bg-[#dbdbdb]">
               Shop Now
               <HiArrowLongRight size={22} className="ml-2" />
             </div>
@@ -252,13 +252,13 @@ const LandingSection = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="w-66em mx-auto mt-10"
+        className="w-66em mx-auto mt-5 md:mt-10"
       >
         <div className="w-[97vw] xl:w-[66em] mx-auto">
-          <p className="font-bold text-3xl py-4">
+          <p className="font-bold tex-xl md:text-2xl xl:text-3xl py-4">
             Browse by Genre: Find Your Perfect Poster!
           </p>
-          <div className="w-full h-[25em] md:h-[35em] xl:h-[45em] flex gap-4">
+          <div className="w-full h-[25em] md:h-[35em] xl:h-[45em] flex gap-2 md:gap-4">
             <div className="w-[50%] h-full overflow-hidden rounded-sm relative">
               <Image
                 style={{
@@ -271,12 +271,12 @@ const LandingSection = () => {
                 height={1600}
                 className="transition-transform duration-300 transform hover:scale-110"
               />
-              <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
+              <div className="text-black font-semibold text-md lg:text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-1 lg:py-2 bg-[#dbdbdb]">
                 Shop Now
                 <HiArrowLongRight size={22} className="ml-2" />
               </div>
             </div>
-            <div className="w-[50%] flex flex-col gap-4">
+            <div className="w-[50%] flex flex-col gap-2 md:gap-4">
               <div className="w-full h-[50%] overflow-hidden rounded-sm relative">
                 <Image
                   style={{
@@ -289,7 +289,7 @@ const LandingSection = () => {
                   height={1600}
                   className="transition-transform duration-300 transform hover:scale-110"
                 />
-                <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
+                <div className="text-black font-semibold text-md lg:text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-1 lg:py-2 bg-[#dbdbdb]">
                   Shop Now
                   <HiArrowLongRight size={22} className="ml-2" />
                 </div>
@@ -306,7 +306,7 @@ const LandingSection = () => {
                   height={1600}
                   className="transition-transform duration-300 transform hover:scale-110"
                 />
-                <div className="text-black font-semibold text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-2 bg-[#dbdbdb]">
+                <div className="text-black font-semibold text-md lg:text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-1 lg:py-2 bg-[#dbdbdb]">
                   Shop Now
                   <HiArrowLongRight size={22} className="ml-2" />
                 </div>
@@ -339,7 +339,7 @@ const LandingSection = () => {
                     width={1600}
                     height={1600}
                   />
-                  <div className="hover:bg-opacity-0 hover:text-[0px] text-white text-2xl absolute top-0 left-0 w-full h-full bg-black bg-opacity-60 flex items-center justify-center uppercase">
+                  <div className="hover:bg-opacity-0 hover:text-[0px] text-white text-xl md:text-2xl absolute top-0 left-0 w-full h-full bg-black bg-opacity-60 flex items-center justify-center uppercase">
                     text
                   </div>
                 </div>
@@ -355,7 +355,7 @@ const LandingSection = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <p className="text-3xl font-semibold mt-10 text-center">
+        <p className="text-xl md:text-2xl xl:text-3xl font-semibold mt-10 text-center">
           FEATURED DROPS
         </p>
         <div className="w-[97vw] max-sm:grid max-sm:grid-cols-2 xl:w-[66em] flex flex-wrap gap-2 xl:gap-5 mx-auto mt-10 mb-10">

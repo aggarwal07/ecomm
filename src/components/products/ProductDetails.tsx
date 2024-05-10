@@ -23,7 +23,6 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const dispatch = useAppDispatch();
   //Added to Cart Succesfully
   const [showAlert, setShowAlert] = useState(false);
-  const [selectedType , setSelectedType] = useState(0);
   const handleShowAlert = () => {
     setShowAlert(true);
   };
@@ -56,7 +55,6 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
     return ProductData?.find((product) => product._id === productId);
   };
   var unit = findProductById(productName);
-  const [selectedPrice, setSelectedPrice] = useState("");
 
   //handle type selection
   const handleTypeSelect = (e: any) => {
@@ -269,7 +267,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
 
                 {unit?.type.map((item, index) => {
                   return (
-                    <div key={index} onClick={handleTypeSelect} className={`${selectedType==index?"bg-black text-white":""} border rounded-md flex flex-col items-center min-w-fit p-5 cursor-pointer hover:bg-black hover:text-white`}>
+                    <div key={index} onClick={handleTypeSelect} className={`border rounded-md flex flex-col items-center min-w-fit p-5 cursor-pointer hover:bg-black hover:text-white`}>
                       <p>Rs. {item.price}</p>
                       <p>{item.material}</p>
                       <p>{item.size}</p>
