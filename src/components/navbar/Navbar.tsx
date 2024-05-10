@@ -64,15 +64,23 @@ const Navbar = () => {
                 Home
               </button>
               <div onClick={() => {
-              router.push("/collection");
-            }} className="p-2">Collection</div>
+              router.push("/collection/Polaroid");
+            }} className="p-2">Polaroid</div>
               <button
                 onClick={() => {
-                  router.push("/designYourOwn");
+                  router.push("/collection/Mouse Pad");
                 }}
                 className="p-2"
               >
-                Design Your Own
+                Mouse Pads
+              </button>
+              <button
+                onClick={() => {
+                  router.push("/collection/Poster");
+                }}
+                className="p-2"
+              >
+                Posters
               </button>
               <button
                 onClick={() => {
@@ -100,17 +108,25 @@ const Navbar = () => {
             Home
           </div>
           <div onClick={() => {
-              router.push("/collection");
+              router.push("/collection/Poster");
             }} className=" h-full py-2 mx-3 cursor-pointer hover:border-b">
-            Collection
+            Posters
           </div>
           <div
             onClick={() => {
-              router.push("/designYourOwn");
+              router.push("/collection/Mouse Pad");
             }}
             className=" h-full py-2 mx-3 cursor-pointer hover:border-b"
           >
-            Design Your Own
+            Mouse Pads
+          </div>
+          <div
+            onClick={() => {
+              router.push("/collection/Polaroid");
+            }}
+            className=" h-full py-2 mx-3 cursor-pointer hover:border-b"
+          >
+            Polaroid
           </div>
           <div
             onClick={() => {

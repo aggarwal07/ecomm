@@ -360,7 +360,7 @@ const LandingSection = () => {
         </p>
         <div className="w-[97vw] max-sm:grid max-sm:grid-cols-2 xl:w-[66em] flex flex-wrap gap-2 xl:gap-5 mx-auto mt-10 mb-10">
           {ProductData &&
-            ProductData.map((item, index) => (
+            ProductData.slice(0,8).map((item, index) => (
               <div
                 className="cursor-pointer"
                 onClick={() => {

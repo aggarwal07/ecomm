@@ -9,7 +9,7 @@ interface ProductListing {
   productType: string;
 }
 
-const ProductsListing: React.FC<ProductListing>  = ({productType}) => {
+const ProductsListing: React.FC<ProductListing> = ({ productType }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [ProductData, setProdData] = useState<Product[] | null>(null);
@@ -17,7 +17,7 @@ const ProductsListing: React.FC<ProductListing>  = ({productType}) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://backendfiggle.onrender.com/api/products"
+          `https://backendfiggle.onrender.com/api/products/${productType}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -32,22 +32,48 @@ const ProductsListing: React.FC<ProductListing>  = ({productType}) => {
     fetchData();
   }, []);
   return (
-    <div className="mt-10 text-white">
-      <div className="w-fit gap-2 md:gap-5 grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mx-auto mt-10 mb-10">
-        {ProductData && ProductData.map((item, index) => {
-          return (
-            <div
-              key={index}
-              className="cursor-pointer"
-              onClick={() => {
-                var query = "/products/" + item._id;
-                router.push(query);
-              }}
-            >
-              <ProductCard product={item} />
-            </div>
-          );
-        })}
+    <div className="mt-10 text-white w-[97vw] xl:w-[66em] mx-auto">
+      <div className="w-full text-2xl md:text-3xl xl:text-4xl font-bold">
+        {decodeURIComponent(productType)}
+      </div>
+      <div className="w-full text-right text-sm mt-10 ">
+        {ProductData?.length} Products
+      </div>
+      <div className="flex mt-5">
+        <div className="xl:w-[22%] w-[18%] max-sm:hidden">
+          <p className="text-lg">Filters</p>
+          <hr className="mb-5 mt-5" />
+          <p className="mb-2">Genre</p>
+          <div className="flex items-center mb-1 text-sm">
+            <input type="checkbox" name="Football" />
+            <p className="ml-4">football</p>
+          </div>
+          <div className="flex items-center mb-1 text-sm">
+            <input type="checkbox" name="Football" />
+            <p className="ml-4">Marvels</p>
+          </div>
+          <div className="flex items-center mb-1 text-sm">
+            <input type="checkbox" name="Football" />
+            <p className="ml-4">Quotes</p>
+          </div>
+        </div>
+        <div className="w-fit gap-2 md:gap-5 grid grid-cols-2 lg:grid-cols-3 mx-auto  mb-10">
+          {ProductData &&
+            ProductData.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="cursor-pointer"
+                  onClick={() => {
+                    var query = "/products/" + item._id;
+                    router.push(query);
+                  }}
+                >
+                  <ProductCard product={item} />
+                </div>
+              );
+            })}
+        </div>
       </div>
     </div>
   );
