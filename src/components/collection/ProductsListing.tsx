@@ -5,8 +5,11 @@ import ProductCard from "../products/ProductCard";
 import { useRouter } from "next/navigation";
 import { Product } from "@/types/types";
 import { setProducts } from "@/store/slices/products";
+interface ProductListing {
+  productType: string;
+}
 
-const ProductsListing = () => {
+const ProductsListing: React.FC<ProductListing>  = ({productType}) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [ProductData, setProdData] = useState<Product[] | null>(null);
@@ -29,7 +32,7 @@ const ProductsListing = () => {
     fetchData();
   }, []);
   return (
-    <div className="mt-10">
+    <div className="mt-10 text-white">
       <div className="w-fit gap-2 md:gap-5 grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mx-auto mt-10 mb-10">
         {ProductData && ProductData.map((item, index) => {
           return (
