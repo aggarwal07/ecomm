@@ -15,6 +15,8 @@ const page: React.FC<PageProps> = ({ params }) => {
       <div>
         <ProductsListing productType={params.productType}/>
       </div>
+      <div>
+      </div>
     </div>
   )
 }

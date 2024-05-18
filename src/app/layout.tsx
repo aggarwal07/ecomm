@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter , Playfair_Display,Italiana,Cinzel} from '@next/font/google';
+import { Inter , Playfair_Display,Cinzel,Ubuntu_Mono,Sedan} from '@next/font/google';
 import "./globals.css";
 import { Providers } from "@/store/provider";
 
 
 const inter = Inter({ subsets: ["latin"] });
-const lucky = Cinzel({ subsets: ["latin"], weight : ['400'] });
+const lucky = Ubuntu_Mono({ subsets: ["latin"], weight : ['400'] });
 
 export const metadata: Metadata = {
   title: "Ecomm",

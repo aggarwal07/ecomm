@@ -39,9 +39,15 @@ const authSlice = createSlice({
             // Clear the user object from local storage
             localStorage.removeItem('user');
         },
+        setCart: (state, action) => {
+            state.user.cart = action.payload;
+            state.errors = null;
+            // Save the user object to local storage
+            localStorage.setItem('cart', JSON.stringify(action.payload));
+        },
     },
 });
 
-export const { setUser, setErrors, clearUser } = authSlice.actions;
+export const { setUser, setErrors, clearUser,setCart } = authSlice.actions;
 
 export default authSlice.reducer;

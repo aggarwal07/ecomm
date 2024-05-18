@@ -6,7 +6,7 @@ import React from "react";
 import { useEffect } from "react";
 import { MdDelete } from "react-icons/md";
 import CartCard from "./CartCard";
-import { HiOutlineArrowLongLeft,HiMiniArrowLongRight } from "react-icons/hi2";
+import { HiOutlineArrowLongLeft, HiMiniArrowLongRight } from "react-icons/hi2";
 
 const Cart = () => {
   const router = useRouter();
@@ -87,24 +87,26 @@ const Cart = () => {
   function calculateTotalPrice(): number {
     let totalPrice = 0;
     for (const item of cart) {
-        totalPrice += parseInt(item.price);
+      totalPrice += parseInt(item.price);
     }
     return totalPrice;
-}
+  }
   return (
-    <div className="mt-10 w-[97vw] lg:w-[60em] mx-auto text-gray-600">
-      <div onClick={()=>{router.push("/collection")}} className="text-xl flex items-center font-bold mb-4 w-fit">
-      <HiOutlineArrowLongLeft size={32}/> <p className="ml-2">Continue Shopping</p>
-      </div>
-      <hr />
-      <div className="mt-4 font-medium">
-        <p>Shopping Cart</p>
-        <p className="mt-1">You have {cart.length} {cart.length>1?"items":"item"} in your cart</p>
-      </div>
-      <div className="flex max-lg:flex-col justify-between w-full mt-8">
+    <div className="w-fit h-[78vh] mx-auto text-gray-600 p-5 ">
+      <div className="h-[46vh] overflow-y-auto">
+        <div className="font-medium">
+          <p>Shopping Cart</p>
+          <p className="mt-1">
+            You have {cart.length} {cart.length > 1 ? "items" : "item"} in your
+            cart
+          </p>
+        </div>
         <div className="w-fit gap-2 md:gap-5 flex flex-col">
           {cart.map((product: any, index: any) => (
-            <div key={index} className="h-fit p-3 w-[97vw] lg:w-[34em] flex items-center relative shadow-2xl rounded-md mb-5">
+            <div
+              key={index}
+              className="h-fit p-3 w-[97vw] lg:w-[34em] flex items-center relative shadow-2xl rounded-md mb-5"
+            >
               <MdDelete
                 onClick={() => {
                   handleRemoveCart(index);
@@ -116,25 +118,27 @@ const Cart = () => {
             </div>
           ))}
         </div>
-        <div className="border p-3 w-[97vw] h-fit lg:w-[24em] rounded-lg text-white bg-gradient-to-b from-[#3b71ca] to bg-[#2f5aa2] lg:p-5">
-          <p className="font-bold text-xl lg:mb-2">Price Details</p>
-          <hr />
-          <div className="flex mt-2 w-full justify-between">
-            <div>
-              <p className="mt-2">Total MRP</p>
-              <p className="mt-2">Misclenous Charges</p>
-              <p className="mt-2">Shipping Fee</p>
-            </div>
-            <div className="text-right">
-              <p className="mt-2">₹ {calculateTotalPrice()}</p>
-              <p className="mt-2">₹ 0</p>
-              <p className="mt-2">Free</p>
-            </div>
+      </div>
+      <div className="border p-3 mt-5 mx-auto h-[26vh] lg:w-[24em] rounded-lg text-white bg-gradient-to-b from-[#3b71ca] to bg-[#2f5aa2] lg:p-5">
+        <p className="font-bold text-xl lg:mb-2">Price Details</p>
+        <hr />
+        <div className="flex mt-2 w-full justify-between">
+          <div>
+            <p className="mt-2">Total MRP</p>
+            <p className="mt-2">Misclenous Charges</p>
+            <p className="mt-2">Shipping Fee</p>
           </div>
-          <div className="flex w-[19em] items-center p-2 px-5 mx-auto bg-gradient-to-r from-[#4ca2be] to bg-[#54b4d3] rounded-lg  mt-5 justify-between">
-            <p className="text-right">₹ {calculateTotalPrice()}</p>
-            <div className="flex items-center">CHECKOUT <HiMiniArrowLongRight className="ml-2" size={25} /> </div>
+          <div className="text-right">
+            <p className="mt-2">₹ {calculateTotalPrice()}</p>
+            <p className="mt-2">₹ 0</p>
+            <p className="mt-2">Free</p>
           </div>
+        </div>
+        <div className="flex w-[19em] items-center p-2 px-5 mx-auto bg-gradient-to-r from-[#4ca2be] to bg-[#54b4d3] rounded-lg  mt-5 justify-between">
+          <p className="text-right">₹ {calculateTotalPrice()}</p>
+          <button className="flex items-center">
+            CHECKOUT <HiMiniArrowLongRight className="ml-2" size={25} />{" "}
+          </button>
         </div>
       </div>
     </div>
