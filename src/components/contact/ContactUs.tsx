@@ -8,14 +8,17 @@ import { MdAlternateEmail } from "react-icons/md";
 import { useState } from "react";
 import Cart from "../account/Cart";
 import { GrCart } from "react-icons/gr";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { toggleCart } from "@/store/slices/cart";
 
 const ContactUs = () => {
   //toggle contact us
-  const [toggleContact, setContact] = useState(false);
+  const dispatch = useAppDispatch();
+  const isOpen = useAppSelector((state)=> state.isCartOpen.isOpen);
   return (
     <div>
       <div className="fixed bottom-9 right-14 flex flex-col items-end">
-       {toggleContact&& <div
+       {isOpen&& <div
           className={`bg-gray-200 rounded-2xl absolute -top-[78vh] -right-10`}
         >
           {/* <div>
@@ -35,7 +38,8 @@ const ContactUs = () => {
 
         <div
           onClick={() => {
-            toggleContact ? setContact(false) : setContact(true);
+            // toggleContact ? setContact(false) : setContact(true);
+            dispatch(toggleCart());
           }}
           className=" rounded-lg  cursor-pointer hover:shadow-2xl hover:text-gray-400 mt-3"
         >

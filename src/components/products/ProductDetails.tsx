@@ -14,6 +14,7 @@ import { setProducts } from "@/store/slices/products";
 import { useRouter } from "next/navigation";
 import { setCart, setErrors, setUser } from "@/store/slices/auth";
 import Alert from "../alert/Alert";
+import { openCart } from "@/store/slices/cart";
 // import ImageGen from "./ImageGen";
 interface ProductDetails {
   productName: string;
@@ -54,32 +55,38 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const findProductById = (productId: any) => {
     return ProductData?.find((product) => product._id === productId);
   };
-  const [unit,setUnit]  = useState(findProductById(productName))
+  const [unit, setUnit] = useState(findProductById(productName));
   useEffect(() => {
     if (ProductData) {
-      const foundProduct = ProductData.find((product) => product._id === productName);
+      const foundProduct = ProductData.find(
+        (product) => product._id === productName
+      );
       setUnit(foundProduct);
     }
   }, [ProductData, productName]);
 
   //handle type selection
   const handleTypeSelect = (e: any, selectedItemId: string) => {
-  console.log(unit, "initializing");
-  if (unit) {
-    // Moving the selected type to the top of the array
-    const selectedIndex = unit.type.findIndex(
-      (item) => item._id === selectedItemId
-    );
-    const sortedType = [...unit.type];
-    const selectedItem = sortedType.splice(selectedIndex, 1)[0];
-    sortedType.unshift(selectedItem);
-    // Setting the price of unit as the type selected
-    const updatedUnit = { ...unit, type: sortedType, price: selectedItem.price };
-    // Update the state with the modified unit
-    setUnit(updatedUnit);
-  }
-  console.log(unit, "final");
-};
+    console.log(unit, "initializing");
+    if (unit) {
+      // Moving the selected type to the top of the array
+      const selectedIndex = unit.type.findIndex(
+        (item) => item._id === selectedItemId
+      );
+      const sortedType = [...unit.type];
+      const selectedItem = sortedType.splice(selectedIndex, 1)[0];
+      sortedType.unshift(selectedItem);
+      // Setting the price of unit as the type selected
+      const updatedUnit = {
+        ...unit,
+        type: sortedType,
+        price: selectedItem.price,
+      };
+      // Update the state with the modified unit
+      setUnit(updatedUnit);
+    }
+    console.log(unit, "final");
+  };
 
   //for heart
   const [heart, setHeart] = useState(false);
@@ -120,6 +127,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
         });
         if (response.ok) {
           console.log("Product added to cart successfully");
+          dispatch(openCart());
           handleShowAlert();
         } else {
           console.error(
@@ -269,16 +277,19 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
               <div className="mt-2">
                 <p>Select the type</p>
                 <div className="mt-1 flex flex-wrap gap-3">
-
-                {unit?.type.map((item, index) => {
-  return (
-    <div key={index} onClick={(e) => handleTypeSelect(e, item._id)} className={`border rounded-md flex flex-col items-center min-w-fit p-5 cursor-pointer hover:bg-black hover:text-white`}>
-      <p>Rs. {item.price}</p>
-      <p>{item.material}</p>
-      <p>{item.size}</p>
-    </div>
-  );
-})}
+                  {unit?.type.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        onClick={(e) => handleTypeSelect(e, item._id)}
+                        className={`border rounded-md flex flex-col items-center min-w-fit p-5 cursor-pointer hover:bg-black hover:text-white`}
+                      >
+                        <p>Rs. {item.price}</p>
+                        <p>{item.material}</p>
+                        <p>{item.size}</p>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
               <div className="mt-3">
