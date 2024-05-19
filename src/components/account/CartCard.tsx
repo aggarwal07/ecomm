@@ -10,7 +10,7 @@ interface ProductCardProps {
 const CartCard: React.FC<ProductCardProps> = ({ product }) => {
   const router = useRouter();
   return (
-    <div className="flex items-center justify-between h-fit w-full lg:w-[29.5em] text-white p-3">
+    <div className="flex items-center justify-between h-fit w-full sm:w-[29.5em] text-white p-3">
       <div className="flex items-center">
         <div onClick={() => {
                 var query = "/products/" + product._id;

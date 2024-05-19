@@ -92,8 +92,8 @@ const Cart = () => {
     return totalPrice;
   }
   return (
-    <div className="w-fit h-[78vh] mx-auto text-gray-600 p-5 ">
-      <div className="font-medium">
+    <div className="w-fit h-[78vh] mx-auto text-gray-600 p-2 sm:p-5 bg-gray-200 ">
+      <div className="font-medium max-sm:mt-2">
         <p>Shopping Cart</p>
         <p className="mt-1">
           You have {cart.length} {cart.length > 1 ? "items" : "item"} in your
@@ -104,7 +104,7 @@ const Cart = () => {
         {cart.map((product: any, index: any) => (
           <div
             key={index}
-            className="h-fit w-[97vw] lg:w-[34em] flex items-center relative rounded-md bg-black"
+            className="h-fit w-[97vw] sm:w-[34em] flex items-center relative rounded-md bg-black"
           >
             <MdDelete
               onClick={() => {
@@ -117,7 +117,7 @@ const Cart = () => {
           </div>
         ))}
       </div>
-      <div className="border p-3 mt-5 mx-auto h-[26vh] lg:w-[24em] rounded-lg text-white bg-gradient-to-b from-black to bg-gray-700 lg:p-5">
+      <div className="border p-3 mt-5 mx-auto h-[26vh] w-[97vw] sm:w-[24em] rounded-lg text-white bg-gradient-to-b from-black to bg-gray-700 lg:p-5">
         <p className="font-bold text-xl lg:mb-2">Price Details</p>
         <hr />
         <div className="flex mt-2 w-full justify-between">

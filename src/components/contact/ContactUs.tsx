@@ -16,7 +16,7 @@ const ContactUs = () => {
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state)=> state.isCartOpen.isOpen);
   return (
-    <div>
+    <div className="max-sm:hidden">
       <div className="fixed bottom-9 right-14 flex flex-col items-end">
        {isOpen&& <div
           className={`bg-gray-200 rounded-2xl absolute -top-[78vh] -right-10`}
