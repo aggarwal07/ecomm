@@ -1,4 +1,4 @@
-import ContactUs from '@/components/contact/ContactUs'
+import ContactUs from '@/components/actionButton/CartActionButton'
 import Polaroid from '@/components/designing/Polaroid'
 import Navbar from '@/components/navbar/Navbar'
 import React from 'react'

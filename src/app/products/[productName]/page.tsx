@@ -1,4 +1,4 @@
-import ContactUs from "@/components/contact/ContactUs";
+import ContactUs from "@/components/actionButton/CartActionButton";
 import Navbar from "@/components/navbar/Navbar";
 import ProductDetails from "@/components/products/ProductDetails";
 import React from "react";

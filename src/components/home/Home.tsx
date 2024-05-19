@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { setProducts } from "@/store/slices/products";
 import { useAppSelector } from "@/store/hooks";
 import ProductCard from "@/components/products/ProductCard";
-import ContactUs from "@/components/contact/ContactUs";
+import ContactUs from "@/components/actionButton/CartActionButton";
 import { useAppDispatch } from "@/store/hooks";
 import { Product } from "@/types/types";
 import { motion, useScroll } from "framer-motion";
