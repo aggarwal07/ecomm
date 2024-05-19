@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { setCart, setErrors, setUser } from "@/store/slices/auth";
 import Alert from "../alert/Alert";
 import { openCart } from "@/store/slices/cart";
+import MobileCartPopUp from "../actionButton/MobileCartPopUp";
 // import ImageGen from "./ImageGen";
 interface ProductDetails {
   productName: string;
@@ -304,12 +305,12 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                 Add to Cart
               </div>
               {/* product added successful popup */}
-              {showAlert && (
+              {/* {showAlert && (
                 <Alert
                   message="Product Added To Cart!"
                   onClose={handleCloseAlert}
                 />
-              )}
+              )} */}
               {/* <div className="max-md:hidden lg:w-[20%] max-lg:mt-3 border-2 lg:p-2 rounded-lg flex items-center justify-center">
                 <FaHeartCirclePlus
                   onClick={() => {
@@ -341,6 +342,10 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
           ))}
         </Slider>
         {/* <ImagePreview/> */}
+      </div>
+      {/* added to cart PopUp */}
+      <div>
+        <MobileCartPopUp unit={unit}/>
       </div>
     </div>
   );

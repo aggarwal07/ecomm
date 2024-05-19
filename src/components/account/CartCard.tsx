@@ -6,8 +6,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 interface ProductCardProps {
   product: Product;
+  popup? : boolean;
 }
-const CartCard: React.FC<ProductCardProps> = ({ product }) => {
+const CartCard: React.FC<ProductCardProps> = ({ product,popup }) => {
   const router = useRouter();
   return (
     <div className="flex items-center justify-between h-fit w-full sm:w-[29.5em] text-white p-3">
@@ -40,7 +41,7 @@ const CartCard: React.FC<ProductCardProps> = ({ product }) => {
           className="w-[1.9em] h-[1.9em] border-2 text-center"
         /> */}
         {product.maxPrice && (
-          <p className=" line-through text-xs lg:text-sm ">Rs. {product.maxPrice}</p>
+          <p className={` line-through text-xs lg:text-sm ${popup?"hidden":""} `}>Rs. {product.maxPrice}</p>
         )}
         <p className="font-bold text-lg max-lg:mx-[2em] lg:ml-[0.5em]">₹ {product.price}</p>
       </div>

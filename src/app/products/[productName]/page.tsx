@@ -1,4 +1,5 @@
 import ContactUs from "@/components/actionButton/CartActionButton";
+import MobileCartPopUp from "@/components/actionButton/MobileCartPopUp";
 import Navbar from "@/components/navbar/Navbar";
 import ProductDetails from "@/components/products/ProductDetails";
 import React from "react";
