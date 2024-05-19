@@ -7,15 +7,16 @@ import { FaPinterest } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 import { useState } from "react";
 import Cart from "../account/Cart";
+import { GrCart } from "react-icons/gr";
 
 const ContactUs = () => {
   //toggle contact us
   const [toggleContact, setContact] = useState(false);
   return (
     <div>
-      <div className="fixed bottom-5 right-7 flex flex-col items-end">
+      <div className="fixed bottom-9 right-14 flex flex-col items-end">
        {toggleContact&& <div
-          className={`bg-gray-200 rounded-2xl`}
+          className={`bg-gray-200 rounded-2xl absolute -top-[78vh] -right-10`}
         >
           {/* <div>
             <FaInstagram size={35} />
@@ -38,7 +39,7 @@ const ContactUs = () => {
           }}
           className=" rounded-lg  cursor-pointer hover:shadow-2xl hover:text-gray-400 mt-3"
         >
-          <FaHeadset size={35} />
+          <GrCart size={35} />
         </div>
       </div>
     </div>

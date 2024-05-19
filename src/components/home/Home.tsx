@@ -158,7 +158,7 @@ const LandingSection = () => {
               height={1600}
               className="transition-transform duration-300 transform hover:scale-110"
             />
-            <p className="absolute font-bold text-md md:text-2xl xl:text-3xl z-[1000]  w-fit">{item.text}</p>
+            <p className="absolute font-bold text-md md:text-2xl xl:text-3xl z-[800]  w-fit">{item.text}</p>
             <div className="text-black font-semibold text-md lg:text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-1 lg:py-2 bg-[#dbdbdb]">
               Shop Now
               <HiArrowLongRight size={22} className="ml-2" />

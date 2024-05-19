@@ -10,12 +10,12 @@ interface ProductCardProps {
 const CartCard: React.FC<ProductCardProps> = ({ product }) => {
   const router = useRouter();
   return (
-    <div className="flex items-center justify-between h-fit w-full lg:w-[29.5em] text-gray-600">
+    <div className="flex items-center justify-between h-fit w-full lg:w-[29.5em] text-white p-3">
       <div className="flex items-center">
         <div onClick={() => {
                 var query = "/products/" + product._id;
                 router.push(query);
-              }} className="w-[7.5em] h-[7.5em] rounded-2xl overflow-hidden cursor-pointer ">
+              }} className="w-[4.5em] h-[4.5em] rounded-2xl overflow-hidden cursor-pointer ">
           <Image
             style={{
               objectFit: "cover",
@@ -28,7 +28,7 @@ const CartCard: React.FC<ProductCardProps> = ({ product }) => {
           />
         </div>
         <div className="flex flex-col h-fit justify-around ml-4">
-          <p className="font-bold text-2xl mb-1 ">{product.name.toUpperCase()}</p>
+          <p className="font-bold text-xl mb-1 ">{product.name.toUpperCase()}</p>
           <p>
             {product.type[0].size}, {product.type[0].material}
           </p>
@@ -39,7 +39,10 @@ const CartCard: React.FC<ProductCardProps> = ({ product }) => {
           type="text"
           className="w-[1.9em] h-[1.9em] border-2 text-center"
         /> */}
-        <p className="font-bold text-lg max-lg:mx-[2em] lg:ml-[2em]">₹ {product.price}</p>
+        {product.maxPrice && (
+          <p className=" line-through text-xs lg:text-sm ">Rs. {product.maxPrice}</p>
+        )}
+        <p className="font-bold text-lg max-lg:mx-[2em] lg:ml-[0.5em]">₹ {product.price}</p>
       </div>
     </div>
   );

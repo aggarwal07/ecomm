@@ -93,33 +93,31 @@ const Cart = () => {
   }
   return (
     <div className="w-fit h-[78vh] mx-auto text-gray-600 p-5 ">
-      <div className="h-[46vh] overflow-y-auto">
-        <div className="font-medium">
-          <p>Shopping Cart</p>
-          <p className="mt-1">
-            You have {cart.length} {cart.length > 1 ? "items" : "item"} in your
-            cart
-          </p>
-        </div>
-        <div className="w-fit gap-2 md:gap-5 flex flex-col">
-          {cart.map((product: any, index: any) => (
-            <div
-              key={index}
-              className="h-fit p-3 w-[97vw] lg:w-[34em] flex items-center relative shadow-2xl rounded-md mb-5"
-            >
-              <MdDelete
-                onClick={() => {
-                  handleRemoveCart(index);
-                }}
-                className="absolute right-2 cursor-pointer"
-                size={25}
-              />
-              <CartCard product={product} />
-            </div>
-          ))}
-        </div>
+      <div className="font-medium">
+        <p>Shopping Cart</p>
+        <p className="mt-1">
+          You have {cart.length} {cart.length > 1 ? "items" : "item"} in your
+          cart
+        </p>
       </div>
-      <div className="border p-3 mt-5 mx-auto h-[26vh] lg:w-[24em] rounded-lg text-white bg-gradient-to-b from-[#3b71ca] to bg-[#2f5aa2] lg:p-5">
+      <div className="w-fit gap-1 md:gap-2 mt-4 flex flex-col h-[40vh] overflow-y-auto">
+        {cart.map((product: any, index: any) => (
+          <div
+            key={index}
+            className="h-fit w-[97vw] lg:w-[34em] flex items-center relative rounded-md bg-black"
+          >
+            <MdDelete
+              onClick={() => {
+                handleRemoveCart(index);
+              }}
+              className="absolute right-2 cursor-pointer text-white"
+              size={25}
+            />
+            <CartCard product={product} />
+          </div>
+        ))}
+      </div>
+      <div className="border p-3 mt-5 mx-auto h-[26vh] lg:w-[24em] rounded-lg text-white bg-gradient-to-b from-black to bg-gray-700 lg:p-5">
         <p className="font-bold text-xl lg:mb-2">Price Details</p>
         <hr />
         <div className="flex mt-2 w-full justify-between">

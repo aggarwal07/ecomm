@@ -137,9 +137,9 @@ const Navbar = () => {
             {user ? "Hi, " + user.name.split(" ")[0].charAt(0).toUpperCase()+user.name.split(" ")[0].slice(1) : "Sign In"}
           </div>
 
-          <div onClick={()=>{router.push("/cart")}} className="px-3 cursor-pointer h-full">
+          {/* <div onClick={()=>{router.push("/cart")}} className="px-3 cursor-pointer h-full">
             <GrCart className=" font-thin" size={24} />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
