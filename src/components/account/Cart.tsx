@@ -17,7 +17,7 @@ const Cart = () => {
   if (user) {
   } else {
     return (
-      <div className="bg-gray-200 h-[46em] w-[24em] absolute top-0 rounded-xl right-0  flex flex-col items-center justify-center p-2">
+      <div className="bg-gray-200 h-[78vh] w-[24em] absolute top-0 rounded-xl right-0  flex flex-col items-center justify-center p-2">
         <p className="text-2xl text-gray-700 font-semibold text-center uppercase">Please sign in to add this product to your cart!!</p>
         {/* <form action=""></form> */}
       </div>

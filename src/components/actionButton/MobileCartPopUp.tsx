@@ -1,37 +1,60 @@
-'use client'
 import React, { useEffect, useState } from 'react';
-import Cart from '../account/Cart';
+import CartCard from '../account/CartCard';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { closeCart } from '@/store/slices/cart';
-import CartCard from '../account/CartCard';
 
 interface MobileCartPopUpProps {
   unit: any;
 }
 
+const useWindowSize = () => {
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return windowSize;
+};
+
 const MobileCartPopUp: React.FC<MobileCartPopUpProps> = ({ unit }) => {
   const isOpen = useAppSelector((state) => state.isCartOpen.isOpen);
   const dispatch = useAppDispatch();
   const [visible, setVisible] = useState(false);
+  const windowSize = useWindowSize();
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && windowSize.width <= 640) { // 640px is the breakpoint for 'sm' in Tailwind CSS
       setVisible(true);
       const timer = setTimeout(() => {
         setVisible(false);
         dispatch(closeCart());
-      }, 4000); // 3000 milliseconds = 3 seconds
+      }, 4000); // 4000 milliseconds = 4 seconds
 
       return () => clearTimeout(timer);
     }
-  }, [isOpen, dispatch]);
+  }, [isOpen, windowSize, dispatch]);
 
   if (!visible) {
     return null;
   }
 
   return (
-    <div className='fixed top-5 bg-black right-3'>
+    <div className='fixed top-5 bg-black right-3 sm:hidden'>
       <CartCard product={unit} popup={true}/>
     </div>
   );
