@@ -106,7 +106,7 @@ const Cart = () => {
           cart
         </p>
       </div>
-      <div className="w-fit gap-1 md:gap-2 mt-4 flex flex-col h-[40vh] overflow-y-auto">
+      <div className="w-fit gap-1 md:gap-2 mt-4 flex flex-col h-[50vh] overflow-y-auto">
         {cart.map((product: any, index: any) => (
           <div
             key={index}
@@ -118,13 +118,13 @@ const Cart = () => {
               }}
               className="absolute right-2 cursor-pointer text-white"
               size={25}
-            />
+              />
             <CartCard product={product} />
           </div>
         ))}
-      </div>
-      <div className="border p-3 mt-5 mx-auto h-[26vh] w-[97vw] sm:w-[24em] rounded-lg text-white bg-gradient-to-b from-black to bg-gray-700 lg:p-5">
-        <p className="font-bold text-xl lg:mb-2">Price Details</p>
+        </div>
+      {/* <div className="border p-3 mt-5 mx-auto w-[97vw] sm:w-[24em] rounded-lg text-white bg-gradient-to-b from-black to bg-gray-700 lg:p-5"> */}
+        {/* <p className="font-bold text-xl lg:mb-2">Price Details</p>
         <hr />
         <div className="flex mt-2 w-full justify-between">
           <div>
@@ -137,14 +137,14 @@ const Cart = () => {
             <p className="mt-2">₹ 0</p>
             <p className="mt-2">Free</p>
           </div>
-        </div>
+        </div> */}
         <div className="flex w-[19em] items-center p-2 px-5 mx-auto bg-gradient-to-r from-[#4ca2be] to bg-[#54b4d3] rounded-lg  mt-5 justify-between">
           <p className="text-right">₹ {calculateTotalPrice()}</p>
           <button className="flex items-center">
             CHECKOUT <HiMiniArrowLongRight className="ml-2" size={25} />{" "}
           </button>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 };
