@@ -24,8 +24,8 @@ const Checkout = () => {
   return (
     <div className="w-full bg-gray-100">
       <div className="w-full h-[2vh]"></div>
-      <div className="w-[66em] mx-auto">
-        <div className="flex items-center w-fit gap-8 mx-auto text-gray-700 uppercase text-sm">
+      <div className="w-[97vw] lg:w-[66em] mx-auto">
+        <div className="flex items-center w-fit gap-2 sm:gap-6 lg:gap-8 mx-auto text-gray-700 uppercase text-sm">
           <p className="">Address</p>
           <p>---------</p>
           <p>Review</p>

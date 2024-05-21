@@ -140,7 +140,7 @@ const Cart = () => {
         </div> */}
         <div className="flex w-[19em] items-center p-2 px-5 mx-auto bg-gradient-to-r from-[#4ca2be] to bg-[#54b4d3] rounded-lg  mt-5 justify-between">
           <p className="text-right">₹ {calculateTotalPrice()}</p>
-          <button className="flex items-center">
+          <button onClick={()=>{router.push("/checkout")}} className="flex items-center">
             CHECKOUT <HiMiniArrowLongRight className="ml-2" size={25} />{" "}
           </button>
         </div>
