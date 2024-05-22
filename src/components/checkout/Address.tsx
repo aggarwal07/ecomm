@@ -41,7 +41,39 @@ const Address: React.FC<AddressProps> = ({ onClick }) => {
     onClick();
   };
  // post request to api 
- const handlePlaceOrder = () => {
+ const handlePlaceOrder = async() => {
+  const formData = {
+    name : name,
+    phoneNumber : mobile,
+    address : {
+      pinCode : postal,
+      address : address,
+      city : city,
+      state : state,
+    },
+    cart : cart
+  };
+  // e.preventDefault();
+  try {
+    const response = await fetch(
+      "https://backendfiggle.onrender.com/api/orders",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+ if (response.ok) {
+    handlePay();
+    } else {
+      const { message } = await response.json();
+      alert(message);
+    }
+  } catch (error) {
+    alert(error);
+  }
 
  } 
   //total MRP
@@ -171,7 +203,7 @@ const Address: React.FC<AddressProps> = ({ onClick }) => {
       </div>
       <button
         onClick={() => {
-          handlePay();
+                    handlePlaceOrder();
         }}
         className="p-2 px-8 uppercase font-bold my-8 rounded-full w-fit bg-pink-600 text-white"
       >
