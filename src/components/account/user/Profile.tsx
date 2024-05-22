@@ -22,9 +22,9 @@ const Profile = () => {
           <p>Email:</p>
         </div>
         <div>
-          <p>{user.name.toUpperCase()}</p>
-          <p>+91 {user.contactNo}</p>
-          <p>{user.email}</p>
+          <p>{user?.name.toUpperCase()}</p>
+          <p>+91 {user?.contactNo}</p>
+          <p>{user?.email}</p>
         </div>
       </div>
       <button style={{
