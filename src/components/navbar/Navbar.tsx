@@ -9,12 +9,26 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { setTab } from "@/store/slices/TabSelected";
 
 const Navbar = () => {
   const user = useAppSelector((state) => state.auth.user);
+  const selectedTab = useAppSelector((state) => state.tabSelected.selectedTab);
+  //navbar items
+  const navItems = [
+    { name: 'Home', path: '/' },
+    { name: 'Posters', path: '/collection/Poster' },
+    { name: 'Mouse Pads', path: '/collection/Mouse Pad' },
+    { name: 'Polaroid', path: '/collection/Polaroid' },
+    { 
+      name: user ? `Hi, ${user.name.split(" ")[0].charAt(0).toUpperCase() + user.name.split(" ")[0].slice(1)}` : 'Sign In', 
+      path: user ? '/user' : '/accounts' 
+    }
+  ];
   //router
   const router = useRouter();
+  const dispatch = useAppDispatch();
   //Drawer Menu
   const [toggleMore, setMore] = useState(false);
   return (
@@ -24,7 +38,7 @@ const Navbar = () => {
       </div>
       <div className="flex items-center justify-between min-[1300px]:w-[81.25em] mx-auto h-[3.4em] px-2 md:px-24 py-10 bg-black text-white">
         <Link href="/">
-          <div className=" cursor-pointer">
+          <div onClick={()=>{dispatch(setTab(0))}} className=" cursor-pointer">
             <Image
               src="/Images/logo/image.png"
               alt="logo"
@@ -96,50 +110,15 @@ const Navbar = () => {
         </div>
         {/*menue for desktop */}
         <div className="flex text-sm items-center max-sm:hidden">
-          {/* <div className="h-full px-3 cursor-pointer">
-            <CiSearch size={22} />
-          </div> */}
-          <div
-            onClick={() => {
-              router.push("/");
-            }}
-            className=" h-full py-2 mx-3 cursor-pointer hover:border-b"
-          >
-            Home
-          </div>
-          <div onClick={() => {
-              router.push("/collection/Poster");
-            }} className=" h-full py-2 mx-3 cursor-pointer hover:border-b">
-            Posters
-          </div>
-          <div
-            onClick={() => {
-              router.push("/collection/Mouse Pad");
-            }}
-            className=" h-full py-2 mx-3 cursor-pointer hover:border-b"
-          >
-            Mouse Pads
-          </div>
-          <div
-            onClick={() => {
-              router.push("/collection/Polaroid");
-            }}
-            className=" h-full py-2 mx-3 cursor-pointer hover:border-b"
-          >
-            Polaroid
-          </div>
-          <div
-            onClick={() => {
-              user ? router.push("/user") : router.push("/accounts");
-            }}
-            className="h-full py-2 mx-3 cursor-pointer hover:border-b"
-          >
-            {user ? "Hi, " + user.name.split(" ")[0].charAt(0).toUpperCase()+user.name.split(" ")[0].slice(1) : "Sign In"}
-          </div>
-
-          {/* <div onClick={()=>{router.push("/cart")}} className="px-3 cursor-pointer h-full">
-            <GrCart className=" font-thin" size={24} />
-          </div> */}
+          {navItems.map((item, index:number) => (
+        <div
+          key={index}
+          onClick={() => {router.push(item.path); dispatch(setTab(index))}}
+          className={`h-full py-2 mx-3 cursor-pointer hover:border-b ${selectedTab==index?"border-b scale-125":""} `}
+        >
+          {item.name}
+        </div>
+      ))}
         </div>
       </div>
     </div>

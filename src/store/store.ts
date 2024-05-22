@@ -3,6 +3,7 @@ import productsReducer from './slices/products'
 import authReducer from './slices/auth';
 import cartReducer from './slices/cart';
 import addressReducer from './slices/checkout';
+import tabSelectedReducer from './slices/TabSelected';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     auth: authReducer,
     isCartOpen : cartReducer,
     address : addressReducer,
+    tabSelected: tabSelectedReducer,
   },
 })
 
