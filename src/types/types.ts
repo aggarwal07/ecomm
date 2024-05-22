@@ -28,3 +28,22 @@ export interface ProductType {
     wishlist: Product[];
     __v: number;
   }
+
+  export interface PostOffice {
+    Name: string;
+    Description: string;
+    BranchType: string;
+    DeliveryStatus: string;
+    Circle: string;
+    District: string;
+    Division: string;
+    Region: string;
+    Block: string;
+    State: string;
+    Country: string;
+  }
+  
+  export interface PostalData {
+    Status: string;
+    PostOffice: PostOffice[];
+  }

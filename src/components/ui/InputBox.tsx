@@ -2,10 +2,12 @@ import React from "react";
 interface InputBoxProps {
   label: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
 }
 const InputBox: React.FC<InputBoxProps> = ({
   label,
   onChange,
+  value
 }) => {
   return (
     <div className="relative my-4">
@@ -18,7 +20,8 @@ const InputBox: React.FC<InputBoxProps> = ({
       <input
         className="bg-gray-100 w-full h-[2.2em]  px-3 outline-none text-lg border-gray-300 border rounded-md focus:border-black"
         type="text"
-        onChange={onChange}
+        onBlur={onChange}
+        value={value}
       />
     </div>
   );
