@@ -1,7 +1,7 @@
 import React from "react";
 interface InputBoxProps {
   label: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
 }
 const InputBox: React.FC<InputBoxProps> = ({
