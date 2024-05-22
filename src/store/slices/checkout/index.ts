@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AddressState {
+  orderId: string;
   name: string;
   mobile: string;
   postal: string;
@@ -11,6 +12,7 @@ interface AddressState {
 }
 
 const initialState: AddressState = {
+  orderId: '',
   name: '',
   mobile: '',
   postal: '',
@@ -24,6 +26,9 @@ const addressSlice = createSlice({
   name: 'address',
   initialState,
   reducers: {
+    setOrderId(state, action: PayloadAction<string>) {
+      state.orderId = action.payload;
+    },
     setNames(state, action: PayloadAction<string>) {
       state.name = action.payload;
     },
@@ -48,5 +53,5 @@ const addressSlice = createSlice({
   },
 });
 
-export const { setNames, setMobiles, setPostals, setAddresss, setStates, setCarts,setCitys } = addressSlice.actions;
+export const { setNames, setMobiles, setPostals, setAddresss, setStates, setCarts,setCitys,setOrderId } = addressSlice.actions;
 export default addressSlice.reducer;

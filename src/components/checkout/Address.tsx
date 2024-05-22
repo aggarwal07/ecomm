@@ -9,6 +9,7 @@ import {
   setCitys,
   setMobiles,
   setNames,
+  setOrderId,
   setPostals,
   setStates,
 } from "@/store/slices/checkout";
@@ -30,7 +31,8 @@ const Address: React.FC<AddressProps> = ({ onClick }) => {
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [postalData, setPostalData] = useState<PostalData | null>(null);
-  const handlePay = () => {
+  const handlePay = (orderId:string) => {
+    dispatch(setOrderId(orderId));
     dispatch(setNames(name));
     dispatch(setMobiles(mobile));
     dispatch(setPostals(postal));
@@ -40,42 +42,58 @@ const Address: React.FC<AddressProps> = ({ onClick }) => {
     dispatch(setCarts(cart));
     onClick();
   };
- // post request to api 
- const handlePlaceOrder = async() => {
-  const formData = {
-    name : name,
-    phoneNumber : mobile,
-    address : {
-      pinCode : postal,
-      address : address,
-      city : city,
-      state : state,
-    },
-    cart : cart
-  };
-  // e.preventDefault();
-  try {
-    const response = await fetch(
-      "https://backendfiggle.onrender.com/api/orders",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+  // post request to api
+  const handlePlaceOrder = async () => {
+    //random order id
+    function generateRandomOrderId(length: number): string {
+      const characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      const charactersLength = characters.length;
+      let result = "";
+      for (let i = 0; i < length; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * charactersLength)
+        );
       }
-    );
- if (response.ok) {
-    handlePay();
-    } else {
-      const { message } = await response.json();
-      alert(message);
+      return result;
     }
-  } catch (error) {
-    alert(error);
-  }
-
- } 
+    const randomOrderId = generateRandomOrderId(10);
+    const formData = {
+      orderId : randomOrderId,
+      name: name,
+      phoneNumber: mobile,
+      address: {
+        pinCode: postal,
+        address: address,
+        city: city,
+        state: state,
+      },
+      cart: cart,
+    };
+    // e.preventDefault();
+    try {
+      const response = await fetch(
+        "https://backendfiggle.onrender.com/api/orders",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        handlePay(data.orderId)
+        console.log(data.orderId,"data");
+      } else {
+        const { message } = await response.json();
+        alert(message);
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
   //total MRP
   function calculateTotalPrice(): number {
     let totalPrice = 0;
@@ -144,30 +162,33 @@ const Address: React.FC<AddressProps> = ({ onClick }) => {
             label="Address(House No,Building,Street,City)*"
             onChange={(e) => setAddress(e.target.value)}
           />
-          {postalData?
-          <div className="relative my-4">
-            <label
-              className="absolute -top-[14.4px] left-2 bg-gray-100 p-1 text-[13px] text-gray-400"
-              htmlFor="city"
-            >
-              City*
-            </label>
-            <select
-              className="bg-gray-100 w-full h-[2.2em] px-3 outline-none text-lg border-gray-300 border rounded-md focus:border-black"
-              value={city}
+          {postalData ? (
+            <div className="relative my-4">
+              <label
+                className="absolute -top-[14.4px] left-2 bg-gray-100 p-1 text-[13px] text-gray-400"
+                htmlFor="city"
+              >
+                City*
+              </label>
+              <select
+                className="bg-gray-100 w-full h-[2.2em] px-3 outline-none text-lg border-gray-300 border rounded-md focus:border-black"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              >
+                {postalData?.PostOffice.map((office: any, index: number) => (
+                  <option key={index} value={office.Name}>
+                    {office.Name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ) : (
+            <InputBox
+              label="City*"
               onChange={(e) => setCity(e.target.value)}
-            >
-              {postalData?.PostOffice.map((office: any, index: number) => (
-                <option key={index} value={office.Name}>
-                  {office.Name}
-                </option>
-              ))}
-            </select>
-          </div>:<InputBox
-            label="City*"
-            onChange={(e) => setCity(e.target.value)}
-            value={city}
-          />}
+              value={city}
+            />
+          )}
           <InputBox
             label="State*"
             onChange={(e) => setState(e.target.value)}
@@ -203,7 +224,7 @@ const Address: React.FC<AddressProps> = ({ onClick }) => {
       </div>
       <button
         onClick={() => {
-                    handlePlaceOrder();
+          handlePlaceOrder();
         }}
         className="p-2 px-8 uppercase font-bold my-8 rounded-full w-fit bg-pink-600 text-white"
       >

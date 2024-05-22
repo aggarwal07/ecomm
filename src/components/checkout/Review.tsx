@@ -13,6 +13,10 @@ const Review = () => {
         <FcShipped size={150} />
           Order Placed
         </div>
+        <div className='text-center mt-3'>
+          <p className='text-xs text-gray-400'>ORDER ID:</p>
+          <p className='text-lg mt-1 text-gray-500 font-bold'>{checkout.orderId}</p>
+        </div>
         <div className='bg-gray-300 w-[75%] h-[0.12em] my-5'></div>
         <div className="py-5 flex flex-col gap-2 overflow-y-auto max-lg:shadow-2xl max-lg:p-2">
             {cart.map((item: any, index: number) => (
