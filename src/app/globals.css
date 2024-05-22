@@ -40,3 +40,6 @@ body {
   cursor: pointer;
 }
 
+.red-shadow:focus {
+  box-shadow: 0px 8px 10px rgba(255, 0, 0, 0.5);
+}

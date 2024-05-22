@@ -9,6 +9,7 @@ interface AddressState {
   city : string;
   state: string;
   cart: any[];
+  orderDate : string;
 }
 
 const initialState: AddressState = {
@@ -20,6 +21,7 @@ const initialState: AddressState = {
   state: '',
   city: '',
   cart: [],
+  orderDate : '',
 };
 
 const addressSlice = createSlice({
@@ -50,8 +52,11 @@ const addressSlice = createSlice({
     setCarts(state, action: PayloadAction<any[]>) {
       state.cart = action.payload;
     },
+    setDate(state, action: PayloadAction<string>) {
+      state.orderDate = action.payload;
+    },
   },
 });
 
-export const { setNames, setMobiles, setPostals, setAddresss, setStates, setCarts,setCitys,setOrderId } = addressSlice.actions;
+export const { setNames, setMobiles, setPostals, setAddresss, setStates, setCarts,setCitys,setOrderId,setDate } = addressSlice.actions;
 export default addressSlice.reducer;

@@ -7,6 +7,7 @@ import {
   setAddresss,
   setCarts,
   setCitys,
+  setDate,
   setMobiles,
   setNames,
   setOrderId,
@@ -33,6 +34,7 @@ const Address: React.FC<AddressProps> = ({ onClick }) => {
   const [postalData, setPostalData] = useState<PostalData | null>(null);
   const handlePay = (orderId:string) => {
     dispatch(setOrderId(orderId));
+    dispatch(setDate(new Date().toString()))
     dispatch(setNames(name));
     dispatch(setMobiles(mobile));
     dispatch(setPostals(postal));
@@ -57,7 +59,7 @@ const Address: React.FC<AddressProps> = ({ onClick }) => {
       }
       return result;
     }
-    const randomOrderId = generateRandomOrderId(10);
+    const randomOrderId = generateRandomOrderId(15);
     const formData = {
       orderId : randomOrderId,
       name: name,
@@ -67,6 +69,7 @@ const Address: React.FC<AddressProps> = ({ onClick }) => {
         address: address,
         city: city,
         state: state,
+        orderDate : new Date().toString(),
       },
       cart: cart,
     };
