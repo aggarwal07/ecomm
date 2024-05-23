@@ -11,20 +11,28 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setTab } from "@/store/slices/TabSelected";
+import { IoIosSearch } from "react-icons/io";
+import Search from "./Search";
 
 const Navbar = () => {
   const user = useAppSelector((state) => state.auth.user);
   const selectedTab = useAppSelector((state) => state.tabSelected.selectedTab);
+  const [showSearch, setShowSearch] = useState(false);
   //navbar items
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Posters', path: '/collection/Poster' },
-    { name: 'Mouse Pads', path: '/collection/Mouse Pad' },
-    { name: 'Polaroid', path: '/collection/Polaroid' },
-    { 
-      name: user ? `Hi, ${user.name.split(" ")[0].charAt(0).toUpperCase() + user.name.split(" ")[0].slice(1)}` : 'Sign In', 
-      path: user ? '/user' : '/accounts' 
-    }
+    { name: "Home", path: "/" },
+    { name: "Posters", path: "/collection/Poster" },
+    { name: "Mouse Pads", path: "/collection/Mouse Pad" },
+    { name: "Polaroid", path: "/collection/Polaroid" },
+    {
+      name: user
+        ? `Hi, ${
+            user.name.split(" ")[0].charAt(0).toUpperCase() +
+            user.name.split(" ")[0].slice(1)
+          }`
+        : "Sign In",
+      path: user ? "/user" : "/accounts",
+    },
   ];
   //router
   const router = useRouter();
@@ -33,12 +41,22 @@ const Navbar = () => {
   const [toggleMore, setMore] = useState(false);
   return (
     <div className=" font-light">
+      {showSearch && (
+              <div className="w-full h-[100vh] absolute bg-white top-[2em] z-[1000] bg-opacity-60">
+                <Search closeSearch={()=>{setShowSearch(false)}} />
+              </div>
+            )}
       <div className=" bg-white text-center text-[11px] font-bold py-2 text-black">
         FREE SHIPPPING PAN INDIA
       </div>
       <div className="flex items-center justify-between min-[1300px]:w-[81.25em] mx-auto h-[3.4em] px-2 md:px-24 py-10 bg-black text-white">
         <Link href="/">
-          <div onClick={()=>{dispatch(setTab(0))}} className=" cursor-pointer">
+          <div
+            onClick={() => {
+              dispatch(setTab(0));
+            }}
+            className=" cursor-pointer"
+          >
             <Image
               src="/Images/logo/image.png"
               alt="logo"
@@ -47,6 +65,15 @@ const Navbar = () => {
             />
           </div>
         </Link>
+        {/* search for mobile */}
+        <div className="cursor-pointer sm:hidden">
+            <IoIosSearch
+              onClick={() => {
+                setShowSearch(true);
+              }}
+              size={25}
+            />
+          </div>
         {/*menue for mobile*/}
         <div className="sm:hidden">
           <div
@@ -77,9 +104,14 @@ const Navbar = () => {
               >
                 Home
               </button>
-              <div onClick={() => {
-              router.push("/collection/Polaroid");
-            }} className="p-2">Polaroid</div>
+              <div
+                onClick={() => {
+                  router.push("/collection/Polaroid");
+                }}
+                className="p-2"
+              >
+                Polaroid
+              </div>
               <button
                 onClick={() => {
                   router.push("/collection/Mouse Pad");
@@ -104,21 +136,41 @@ const Navbar = () => {
               >
                 {user ? "Hi, " + user.name : "Sign In"}
               </button>
-              <button onClick={()=>{router.push("/cart")}} className="p-2">Bag</button>
+              <button
+                onClick={() => {
+                  router.push("/cart");
+                }}
+                className="p-2"
+              >
+                Bag
+              </button>
             </div>
           </Drawer>
         </div>
         {/*menue for desktop */}
         <div className="flex text-sm items-center max-sm:hidden">
-          {navItems.map((item, index:number) => (
-        <div
-          key={index}
-          onClick={() => {router.push(item.path); dispatch(setTab(index))}}
-          className={`h-full py-2 mx-3 cursor-pointer hover:border-b ${selectedTab==index?"border-b scale-125":""} `}
-        >
-          {item.name}
-        </div>
-      ))}
+          {navItems.map((item, index: number) => (
+            <div
+              key={index}
+              onClick={() => {
+                router.push(item.path);
+                dispatch(setTab(index));
+              }}
+              className={`h-full py-2 mx-3 cursor-pointer hover:border-b ${
+                selectedTab == index ? "border-b scale-125" : ""
+              } `}
+            >
+              {item.name}
+            </div>
+          ))}
+          <div className="h-full py-2 mx-3 cursor-pointer">
+            <IoIosSearch
+              onClick={() => {
+                setShowSearch(true);
+              }}
+              size={23}
+            />
+          </div>
         </div>
       </div>
     </div>
