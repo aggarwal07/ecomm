@@ -61,7 +61,7 @@ const Cart = () => {
         body: JSON.stringify(requestBody),
       });
       if (response.ok) {
-        console.log("Product added to cart successfully");
+        console.log("Product removed from cart successfully");
       } else {
         console.error(
           "Failed to add product to cart:",
