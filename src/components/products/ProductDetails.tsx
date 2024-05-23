@@ -112,34 +112,43 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
         console.error("Login error:", error);
         setErrors("An error occurred. Please try again later.");
       }
-      const newCart = user?.cart.concat(unit);
-      dispatch(setCart(newCart));
-      try {
-        const endpoint = `https://backendfiggle.onrender.com/api/accounts/${user._id}`;
-        const requestBody = {
-          cart: newCart,
-        };
-        const response = await fetch(endpoint, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestBody),
-        });
-        if (response.ok) {
-          console.log("Product added to cart successfully");
-          dispatch(openCart());
-          handleShowAlert();
-        } else {
-          console.error(
-            "Failed to add product to cart:",
-            response.status,
-            response.statusText
-          );
+      var newCart =[];
+      if (user?.cart && !user.cart.some((item: Product) => item._id === unit?._id)) {
+        newCart = user.cart.concat(unit);
+        
+        try {
+          const endpoint = `https://backendfiggle.onrender.com/api/accounts/${user._id}`;
+          const requestBody = {
+            cart: newCart,
+          };
+          const response = await fetch(endpoint, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestBody),
+          });
+          if (response.ok) {
+            console.log("Product added to cart successfully");
+            dispatch(openCart());
+            dispatch(setCart(newCart));
+            // handleShowAlert();
+          } else {
+            console.error(
+              "Failed to add product to cart:",
+              response.status,
+              response.statusText
+            );
+          }
+        } catch (error: any) {
+          console.error("Error adding product to cart:", error.message);
         }
-      } catch (error: any) {
-        console.error("Error adding product to cart:", error.message);
+      }else{
+        // newCart = user.cart;
+        // dispatch(setCart(newCart));
+        console.log("product already in cart");
       }
+      
     } else {
       router.push("/accounts");
     }

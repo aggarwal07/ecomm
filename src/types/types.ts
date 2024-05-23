@@ -16,6 +16,7 @@ export interface ProductType {
     category: string;
     __v: number;
     productType: string;
+    quantity : number;
   }
   
   export interface Account {
