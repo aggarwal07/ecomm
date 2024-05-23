@@ -3,8 +3,8 @@ import React from "react";
 import { PiDotsThreeOutlineDuotone } from "react-icons/pi";
 import { useState, useEffect } from "react";
 import Address from "./Address";
-import Review from "./Review";
 import Payment from "./Payment";
+import OrderPlaced from "./OrderPlaced";
 const Checkout = () => {
   const pages = [
     {
@@ -13,7 +13,7 @@ const Checkout = () => {
     },
     {
       id: "1",
-      page: <Review />,
+      page: <OrderPlaced />,
     },
     {
       id: "2",

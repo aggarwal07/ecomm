@@ -2,7 +2,7 @@ import { useAppSelector } from '@/store/hooks'
 import React from 'react'
 import { FcShipped } from "react-icons/fc";
 import CartCard from '../account/cart/CartCard';
-const Review = () => {
+const OrderPlaced = () => {
   const checkout = useAppSelector((state)=> state.address);
   const cart = useAppSelector((state)=> state.auth.user.cart);
   console.log(checkout);
@@ -39,4 +39,4 @@ const Review = () => {
   )
 }
 
-export default Review
+export default OrderPlaced
