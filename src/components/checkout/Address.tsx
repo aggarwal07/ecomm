@@ -1,7 +1,7 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import React, { useEffect, useState } from "react";
-import CartCard from "../account/CartCard";
+import CartCard from "../account/cart/CartCard";
 import InputBox from "../ui/InputBox";
 import {
   setAddresss,

@@ -1,5 +1,5 @@
 import React from "react";
-import CartCard from "../CartCard";
+import CartCard from "../cart/CartCard";
 interface OrderDetailsProps {
   data: any;
 }

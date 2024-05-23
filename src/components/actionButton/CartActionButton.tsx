@@ -6,7 +6,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 import { useState } from "react";
-import Cart from "../account/Cart";
+import Cart from "../account/cart/Cart";
 import { GrCart } from "react-icons/gr";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { toggleCart } from "@/store/slices/cart";
