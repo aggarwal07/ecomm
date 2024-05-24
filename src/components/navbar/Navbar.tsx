@@ -49,7 +49,7 @@ const Navbar = () => {
       <div className=" bg-white text-center text-[11px] font-bold py-2 text-black">
         FREE SHIPPPING PAN INDIA
       </div>
-      <div className="flex items-center justify-between min-[1300px]:w-[81.25em] mx-auto h-[3.4em] px-2 md:px-24 py-10 bg-black text-white">
+      <div className="flex items-center justify-between min-[1300px]:w-[60em] mx-auto px-2 md:px-24 py-6 bg-[rgba(0, 0, 0, 0.942)] text-white">
         <Link href="/">
           <div
             onClick={() => {
@@ -148,7 +148,7 @@ const Navbar = () => {
           </Drawer>
         </div>
         {/*menue for desktop */}
-        <div className="flex text-sm items-center max-sm:hidden">
+        <div className="flex flex-wrap text-sm px-5 items-center max-sm:hidden">
           {navItems.map((item, index: number) => (
             <div
               key={index}
@@ -163,7 +163,8 @@ const Navbar = () => {
               {item.name}
             </div>
           ))}
-          <div className="h-full py-2 mx-3 cursor-pointer">
+        </div>
+          <div className="py-2 mx-3 cursor-pointer max-sm:hidden">
             <IoIosSearch
               onClick={() => {
                 setShowSearch(true);
@@ -171,7 +172,6 @@ const Navbar = () => {
               size={23}
             />
           </div>
-        </div>
       </div>
     </div>
   );
