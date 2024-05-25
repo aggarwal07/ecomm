@@ -358,7 +358,7 @@ const LandingSection = () => {
         <p className="text-xl md:text-2xl xl:text-3xl font-semibold mt-10 text-center">
           FEATURED DROPS
         </p>
-        <div className="w-[97vw] max-sm:grid max-sm:grid-cols-2 xl:w-[66em] flex flex-wrap gap-2 xl:gap-5 mx-auto mt-10 mb-10">
+        <div className="w-fit max-sm:grid max-sm:grid-cols-2 xl:w-[66em] flex flex-wrap gap-4 sm:gap-2 xl:gap-5 mx-auto mt-10 mb-10">
           {ProductData &&
             ProductData.slice(0,8).map((item, index) => (
               <div
