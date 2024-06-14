@@ -41,7 +41,7 @@ const CartCard: React.FC<ProductCardProps> = ({ product,popup }) => {
           className="w-[1.9em] h-[1.9em] border-2 text-center"
         /> */}
         {product.maxPrice && (
-          <p className={` line-through text-xs lg:text-sm ${popup?"hidden":""} `}>Rs. {product.maxPrice}</p>
+          <p className={` line-through text-xs lg:text-sm ${popup?"hidden":""} max-lg:hidden `}>Rs. {product.maxPrice}</p>
         )}
         <p className="font-bold text-lg max-lg:mx-[2em] lg:ml-[0.5em]">₹ {product.price}</p>
       </div>

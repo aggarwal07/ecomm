@@ -7,7 +7,10 @@ import { useEffect } from "react";
 import { MdDelete } from "react-icons/md";
 import CartCard from "./CartCard";
 import { HiOutlineArrowLongLeft, HiMiniArrowLongRight } from "react-icons/hi2";
+import { RxCross2 } from "react-icons/rx";
 import { FaPlus, FaMinus } from "react-icons/fa6";
+import { LuShoppingCart } from "react-icons/lu";
+import { closeCart } from "@/store/slices/cart";
 const Cart = () => {
   const router = useRouter();
   const cart = useAppSelector((state) => state.auth.user?.cart || []);
@@ -99,6 +102,18 @@ const Cart = () => {
     }
     return totalPrice;
   }
+  //discount
+  function calculateDiscount(): number {
+    let totalDiscount = 0;
+    for (const item of cart) {
+      if (item.maxPrice != "") {
+        console.log(totalDiscount);
+        totalDiscount += parseInt(item.maxPrice) - parseInt(item.price);
+      }
+      // totalDiscount += parseInt(item.discount);
+    }
+    return totalDiscount;
+  }
   //handling quantity
   const handleIncreaseQuantity = async (unit: any) => {
     let newCart = user.cart.map((item: any) =>
@@ -107,8 +122,8 @@ const Cart = () => {
     await updateCart(newCart);
   };
 
-  const handleDecreaseQuantity = async (unit: any,index:number) => {
-    if (unit.quantity ==1){
+  const handleDecreaseQuantity = async (unit: any, index: number) => {
+    if (unit.quantity == 1) {
       handleRemoveCart(index);
     }
     let newCart = user.cart.map((item: any) =>
@@ -155,15 +170,29 @@ const Cart = () => {
     }
   };
   return (
-    <div className="w-fit h-[78vh] mx-auto text-gray-600 p-2 sm:p-5 bg-gray-200 ">
+    <div className="w-fit h-[100vh] mx-auto text-white p-2 sm:p-5 background-gradient">
       <div className="font-medium max-sm:mt-2">
-        <p>Shopping Cart</p>
-        <p className="mt-1">
+        <div className="flex justify-between">
+          <p className="font-black text-2xl">Cart</p>
+          <button onClick={()=>{dispatch(closeCart())}} className="flex gap-1 items-center border bg-white px-2 cursor-pointer rounded-full text-sm text-black">
+            <RxCross2 size={15} />
+            Close
+          </button>
+        </div>
+        <p className="mt-4 text-right">
           You have {cart.length} {cart.length > 1 ? "items" : "item"} in your
           cart
         </p>
       </div>
-      <div className="w-fit gap-1 md:gap-2 mt-4 flex flex-col h-[50vh] overflow-y-auto">
+      <div className="w-fit gap-1 md:gap-2 mt-1 flex flex-col h-[65vh] overflow-y-auto p-2 rounded-lg shadow-2xl bg-gray-200 min-w-[25vw]">
+        {cart.length < 1 ? (
+          <div className="flex flex-col items-center justify-center h-[35%] w-full text-gray-400">
+            <LuShoppingCart size={120} />
+            <p className="text-lg mt-4">No items in the cart</p>
+          </div>
+        ) : (
+          ""
+        )}
         {cart.map((product: any, index: any) => (
           <div
             key={index}
@@ -174,7 +203,7 @@ const Cart = () => {
                 className="cursor-pointer"
                 size={14}
                 onClick={() => {
-                  handleDecreaseQuantity(product,index);
+                  handleDecreaseQuantity(product, index);
                 }}
               />
               <input
@@ -217,16 +246,38 @@ const Cart = () => {
             <p className="mt-2">Free</p>
           </div>
         </div> */}
-      <div className="flex w-[19em] items-center p-2 px-5 mx-auto bg-gradient-to-r from-[#4ca2be] to bg-[#54b4d3] rounded-lg  mt-5 justify-between">
-        <p className="text-right">₹ {calculateTotalPrice()}</p>
-        <button
+      <div className="w-full text-black p-2 px-5 mx-auto h-[21vh] bg-gray-200 rounded-lg  mt-5">
+        <div className="justify-between h-[30%] flex items-center">
+          <p className="text-gray-500 text-sm">Discount</p>
+          <p className="text-lg">-₹{calculateDiscount()}</p>
+        </div>
+        <div className="flex items-center text-lg h-[40%] border-t border-b border-gray-300">
+          <div className="w-[40%] h-full flex flex-col justify-center">
+            <p className="text-gray-500 text-sm">Subtotal</p>{" "}
+            <p className="font-bold text-xl"> ₹{calculateTotalPrice()}</p>
+          </div>
+          <button
+            onClick={() => {
+              if (cart.length < 1) {
+                alert("Please Add Products To Your Cart!!!");
+              } else {
+                router.push("/checkout");
+              }
+            }}
+            className="flex items-center justify-center text-white bg-green-500  h-full w-[60%] hover:text-xl hover:w-[95%]"
+          >
+            CHECKOUT
+            {/* <HiMiniArrowLongRight className="ml-2" size={25} />{" "} */}
+          </button>
+        </div>
+        <div
           onClick={() => {
-            router.push("/checkout");
+            router.back();
           }}
-          className="flex items-center"
+          className="text-center cursor-pointer font-bold h-[30%] flex items-center justify-center"
         >
-          CHECKOUT <HiMiniArrowLongRight className="ml-2" size={25} />{" "}
-        </button>
+          Continue Shopping
+        </div>
       </div>
       {/* </div> */}
     </div>

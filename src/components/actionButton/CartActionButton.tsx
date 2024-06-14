@@ -19,7 +19,7 @@ const ContactUs = () => {
     <div className="max-sm:hidden">
       <div className="fixed bottom-9 right-14 flex flex-col items-end">
        {isOpen&& <div
-          className={`bg-gray-200 rounded-2xl absolute -top-[78vh] -right-10`}
+          className={`bg-gray-200 rounded-2xl absolute -top-[91.5vh] -right-[5.8vw] lg:-top-[90.8vh] lg:-right-[3.9vw] 2xl:-top-[91.3vh] 2xl:-right-[2.9vw]`}
         >
           {/* <div>
             <FaInstagram size={35} />
