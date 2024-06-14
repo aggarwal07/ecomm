@@ -42,10 +42,14 @@ const Navbar = () => {
   return (
     <div className=" font-light">
       {showSearch && (
-              <div className="w-full h-[100vh] absolute bg-white top-[2em] z-[1000] bg-opacity-60">
-                <Search closeSearch={()=>{setShowSearch(false)}} />
-              </div>
-            )}
+        <div className="w-full h-[100vh] absolute bg-white top-[2em] z-[1000] bg-opacity-60">
+          <Search
+            closeSearch={() => {
+              setShowSearch(false);
+            }}
+          />
+        </div>
+      )}
       <div className=" bg-white text-center text-[11px] font-bold py-2 text-black">
         FREE SHIPPPING PAN INDIA
       </div>
@@ -67,13 +71,13 @@ const Navbar = () => {
         </Link>
         {/* search for mobile */}
         <div className="cursor-pointer sm:hidden">
-            <IoIosSearch
-              onClick={() => {
-                setShowSearch(true);
-              }}
-              size={25}
-            />
-          </div>
+          <IoIosSearch
+            onClick={() => {
+              setShowSearch(true);
+            }}
+            size={25}
+          />
+        </div>
         {/*menue for mobile*/}
         <div className="sm:hidden">
           <div
@@ -154,24 +158,23 @@ const Navbar = () => {
               key={index}
               onClick={() => {
                 router.push(item.path);
-                dispatch(setTab(index));
+                // dispatch(setTab(index));
               }}
-              className={`h-full py-2 mx-3 cursor-pointer hover:border-b ${
-                selectedTab == index ? "border-b scale-125" : ""
-              } `}
+              className={`h-full py-2 mx-3 cursor-pointer hover:border-b hover:scale-125 `}
             >
               {item.name}
             </div>
           ))}
         </div>
-          <div className="py-2 mx-3 cursor-pointer max-sm:hidden">
-            <IoIosSearch
-              onClick={() => {
-                setShowSearch(true);
-              }}
-              size={23}
-            />
-          </div>
+        <div className="py-2 mx-3 cursor-pointer max-sm:hidden">
+          <IoIosSearch
+            onClick={() => {
+              setShowSearch(true);
+            }}
+            size={23}
+            className="hover:scale-125"
+          />
+        </div>
       </div>
     </div>
   );

@@ -41,7 +41,7 @@ const ContactUs = () => {
             // toggleContact ? setContact(false) : setContact(true);
             dispatch(toggleCart());
           }}
-          className=" rounded-lg  cursor-pointer hover:shadow-2xl hover:text-gray-400 mt-3"
+          className=" rounded-full flex items-center justify-center cursor-pointer hover:shadow-2xl mt-3 hover:scale-110"
         >
           <GrCart size={35} />
         </div>

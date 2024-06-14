@@ -146,7 +146,7 @@ const Address: React.FC<AddressProps> = ({ onClick }) => {
   function calculateTotalPrice(): number {
     let totalPrice = 0;
     for (const item of cart) {
-      totalPrice += parseInt(item.price);
+      totalPrice += parseInt(item.price)*parseInt(item.quantity);
     }
     return totalPrice;
   }
@@ -247,8 +247,9 @@ const Address: React.FC<AddressProps> = ({ onClick }) => {
           <div className="my-4 lg:hidden border border-gray-200 " />
           <div className="h-[25em] flex flex-col gap-2 overflow-y-auto max-lg:shadow-2xl max-lg:p-2">
             {cart.map((item: any, index: number) => (
-              <div key={index} className="bg-black rounded-2xl">
+              <div key={index} className="bg-black rounded-2xl relative flex items-center">
                 <CartCard product={item} />
+                <p className="absolute text-white right-[45%] z-[1001]">{item.quantity}</p>
               </div>
             ))}
           </div>
@@ -276,7 +277,8 @@ const Address: React.FC<AddressProps> = ({ onClick }) => {
         }}
         className="p-2 px-8 uppercase font-bold my-8 rounded-full w-fit bg-pink-600 text-white"
       >
-        Pay Rs.{calculateTotalPrice()}
+        {/* Pay Rs.{calculateTotalPrice()} */}
+        Place Order
       </button>
     </div>
   );

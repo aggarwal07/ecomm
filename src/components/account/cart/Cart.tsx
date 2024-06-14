@@ -98,7 +98,7 @@ const Cart = () => {
   function calculateTotalPrice(): number {
     let totalPrice = 0;
     for (const item of cart) {
-      totalPrice += parseInt(item.price);
+      totalPrice += parseInt(item.price)*parseInt(item.quantity);
     }
     return totalPrice;
   }
@@ -108,7 +108,7 @@ const Cart = () => {
     for (const item of cart) {
       if (item.maxPrice != "") {
         console.log(totalDiscount);
-        totalDiscount += parseInt(item.maxPrice) - parseInt(item.price);
+        totalDiscount += (parseInt(item.maxPrice) - parseInt(item.price))*parseInt(item.quantity);
       }
       // totalDiscount += parseInt(item.discount);
     }
