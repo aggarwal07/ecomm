@@ -11,7 +11,7 @@ import { RxCross2 } from "react-icons/rx";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import { LuShoppingCart } from "react-icons/lu";
 import { closeCart } from "@/store/slices/cart";
-const Cart = () => {
+const MobileCart = () => {
   const router = useRouter();
   const cart = useAppSelector((state) => state.auth.user?.cart || []);
   const user = useAppSelector((state) => state.auth.user);
@@ -170,14 +170,14 @@ const Cart = () => {
     }
   };
   return (
-    <div className="w-fit h-[100vh] mx-auto text-white p-2 sm:p-5 background-gradient">
+    <div className="w-[97vw] mx-auto h-[100vh] text-white p-2 sm:p-5">
       <div className="font-medium max-sm:mt-2">
         <div className="flex justify-between">
           <p className="font-black text-2xl">Cart</p>
-          <button onClick={()=>{dispatch(closeCart())}} className="flex gap-1 items-center border bg-white px-2 cursor-pointer rounded-full text-sm text-black">
+          {/* <button onClick={()=>{dispatch(closeCart())}} className="flex gap-1 items-center border bg-white px-2 cursor-pointer rounded-full text-sm text-black">
             <RxCross2 size={15} />
             Close
-          </button>
+          </button> */}
         </div>
         <p className="mt-4 text-right">
           You have {cart.length} {cart.length > 1 ? "items" : "item"} in your
@@ -186,7 +186,7 @@ const Cart = () => {
       </div>
       <div className="w-fit gap-1 md:gap-2 mt-1 flex flex-col h-[65vh] overflow-y-auto p-2 rounded-lg shadow-2xl bg-gray-200 min-w-[25vw]">
         {cart.length < 1 ? (
-          <div className="flex flex-col items-center justify-center h-[35%] w-full text-gray-400">
+          <div className="flex flex-col items-center justify-center h-[35%] w-[90vw] text-gray-400">
             <LuShoppingCart size={120} />
             <p className="text-lg mt-4">No items in the cart</p>
           </div>
@@ -196,12 +196,12 @@ const Cart = () => {
         {cart.map((product: any, index: any) => (
           <div
             key={index}
-            className="h-fit w-[97vw] sm:w-[34em] flex items-center relative rounded-md bg-black"
+            className="h-fit w-[90vw] sm:w-[34em] flex items-center relative rounded-md bg-black"
           >
-            <div className="flex text-gray-400 absolute left-[45%] items-center gap-1">
+            <div className="flex text-gray-400 absolute left-[54%] items-center gap-1">
               <FaMinus
                 className="cursor-pointer"
-                size={14}
+                size={12}
                 onClick={() => {
                   handleDecreaseQuantity(product, index);
                 }}
@@ -214,7 +214,7 @@ const Cart = () => {
               />
               <FaPlus
                 className="cursor-pointer"
-                size={14}
+                size={12}
                 onClick={() => {
                   handleIncreaseQuantity(product);
                 }}
@@ -225,7 +225,7 @@ const Cart = () => {
                 handleRemoveCart(index);
               }}
               className="absolute right-2 cursor-pointer text-white"
-              size={25}
+              size={22}
             />
             <CartCard product={product} />
           </div>
@@ -284,4 +284,5 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default MobileCart;
+
