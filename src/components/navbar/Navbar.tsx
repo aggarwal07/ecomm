@@ -15,7 +15,7 @@ import { IoIosSearch } from "react-icons/io";
 import Search from "./Search";
 
 const Navbar = () => {
-  const user = useAppSelector((state) => state.auth.user);
+  
   const selectedTab = useAppSelector((state) => state.tabSelected.selectedTab);
   const [showSearch, setShowSearch] = useState(false);
   //navbar items
@@ -24,15 +24,15 @@ const Navbar = () => {
     { name: "Posters", path: "/collection/Poster" },
     { name: "Mouse Pads", path: "/collection/Mouse Pad" },
     { name: "Polaroid", path: "/collection/Polaroid" },
-    {
-      name: user
-        ? `Hi, ${
-            user.name.split(" ")[0].charAt(0).toUpperCase() +
-            user.name.split(" ")[0].slice(1)
-          }`
-        : "Sign In",
-      path: user ? "/user" : "/accounts",
-    },
+    // {
+    //   name: user
+    //     ? `Hi, ${
+    //         user.name.split(" ")[0].charAt(0).toUpperCase() +
+    //         user.name.split(" ")[0].slice(1)
+    //       }`
+    //     : "Sign In",
+    //   path: user ? "/user" : "/accounts",
+    // },
   ];
   //router
   const router = useRouter();
@@ -132,14 +132,14 @@ const Navbar = () => {
               >
                 Posters
               </button>
-              <button
+              {/* <button
                 onClick={() => {
                   user ? router.push("/user") : router.push("/accounts");
                 }}
                 className="p-2"
               >
                 {user ? "Hi, " + user.name : "Sign In"}
-              </button>
+              </button> */}
               <button
                 onClick={() => {
                   router.push("/cart");

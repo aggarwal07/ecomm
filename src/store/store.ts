@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import productsReducer from './slices/products'
-import authReducer from './slices/auth';
+// import authReducer from './slices/auth';
 import cartReducer from './slices/cart';
 import addressReducer from './slices/checkout';
 import tabSelectedReducer from './slices/TabSelected';
@@ -8,8 +8,8 @@ import tabSelectedReducer from './slices/TabSelected';
 export const store = configureStore({
   reducer: {
     product: productsReducer,
-    auth: authReducer,
-    isCartOpen : cartReducer,
+    // auth: authReducer,
+    cart : cartReducer,
     address : addressReducer,
     tabSelected: tabSelectedReducer,
   },

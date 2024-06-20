@@ -16,15 +16,16 @@ import {
 } from "@/store/slices/checkout";
 import axios from "axios";
 import { PostalData } from "@/types/types";
-import { setErrors, setUser } from "@/store/slices/auth";
+import { clearCart } from "@/store/slices/cart";
+// import { setErrors, setUser } from "@/store/slices/auth";
 interface AddressProps {
   onClick: () => void;
 }
 
 const Address: React.FC<AddressProps> = ({ onClick }) => {
   const dispatch = useAppDispatch();
-  const cart = useAppSelector((state) => state.auth.user?.cart) || [];
-  const user = useAppSelector((state) => state.auth.user);
+  const cart = useAppSelector((state) => state.cart.cart) || [];
+  // const user = useAppSelector((state) => state.auth.user);
   //form data
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
@@ -35,47 +36,7 @@ const Address: React.FC<AddressProps> = ({ onClick }) => {
   const [postalData, setPostalData] = useState<PostalData | null>(null);
    //remove all products from Cart
    const handleRemoveCart = async () => {
-    // const newCart = user?.cart.filter((item: any, i: any) => i !== index);
-    try {
-      const endpoint = `https://backendfiggle.onrender.com/api/accounts/${user._id}`;
-      const requestBody = {
-        cart: [],
-      };
-      const response = await fetch(endpoint, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
-      if (response.ok) {
-        console.log("Products removed from cart successfully");
-      } else {
-        console.error(
-          "Failed to add product to cart:",
-          response.status,
-          response.statusText
-        );
-      }
-    } catch (error: any) {
-      console.error("Error adding product to cart:", error.message);
-    }
-    // try {
-    //   const response = await fetch(
-    //     `https://backendfiggle.onrender.com/api/accounts/${user.email}/${user.password}`
-    //   );
-    //   if (response.ok) {
-    //     const data = await response.json();
-    //     console.log("Login successful", data);
-    //     dispatch(setUser(data));
-    //   } else {
-    //     const { message } = await response.json();
-    //     setErrors(message);
-    //   }
-    // } catch (error) {
-    //   console.error("Login error:", error);
-    //   setErrors("An error occurred. Please try again later.");
-    // }
+    dispatch(clearCart());
   };
   const handlePay = (orderId:string) => {
     dispatch(setOrderId(orderId));

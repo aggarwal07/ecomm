@@ -31,7 +31,7 @@ const useWindowSize = () => {
 };
 
 const MobileCartPopUp: React.FC<MobileCartPopUpProps> = ({ unit }) => {
-  const isOpen = useAppSelector((state) => state.isCartOpen.isOpen);
+  const isOpen = useAppSelector((state) => state.cart.isOpen);
   const dispatch = useAppDispatch();
   const [visible, setVisible] = useState(false);
   const windowSize = useWindowSize();

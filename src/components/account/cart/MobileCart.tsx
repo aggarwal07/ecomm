@@ -1,6 +1,6 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { setCart, setErrors, setUser } from "@/store/slices/auth";
+// import { setCart, setErrors, setUser } from "@/store/slices/auth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
@@ -10,11 +10,11 @@ import { HiOutlineArrowLongLeft, HiMiniArrowLongRight } from "react-icons/hi2";
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import { LuShoppingCart } from "react-icons/lu";
-import { closeCart } from "@/store/slices/cart";
+import { closeCart, setCart } from "@/store/slices/cart";
 const MobileCart = () => {
   const router = useRouter();
-  const cart = useAppSelector((state) => state.auth.user?.cart || []);
-  const user = useAppSelector((state) => state.auth.user);
+  const cart = useAppSelector((state) => state.cart.cart || []);
+  // const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
   //if user has not signed in
   // if (user) {
@@ -28,71 +28,32 @@ const MobileCart = () => {
   //     </div>
   //   );
   // }
-  useEffect(() => {
-    const loginUser = async () => {
-      try {
-        const response = await fetch(
-          `https://backendfiggle.onrender.com/api/accounts/${user.email}/${user.password}`
-        );
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Login successful", data);
-          dispatch(setUser(data));
-        } else {
-          const { message } = await response.json();
-          dispatch(setErrors(message));
-        }
-      } catch (error) {
-        console.error("Login error:", error);
-        dispatch(setErrors("An error occurred. Please try again later."));
-      }
-    };
+  // useEffect(() => {
+  //   const loginUser = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `https://backendfiggle.onrender.com/api/accounts/${user.email}/${user.password}`
+  //       );
+  //       if (response.ok) {
+  //         const data = await response.json();
+  //         console.log("Login successful", data);
+  //         dispatch(setUser(data));
+  //       } else {
+  //         const { message } = await response.json();
+  //         dispatch(setErrors(message));
+  //       }
+  //     } catch (error) {
+  //       console.error("Login error:", error);
+  //       dispatch(setErrors("An error occurred. Please try again later."));
+  //     }
+  //   };
 
-    // Call the loginUser function when the component mounts
-    loginUser();
-  }, []);
+  //   // Call the loginUser function when the component mounts
+  //   loginUser();
+  // }, []);
   const handleRemoveCart = async (index: number) => {
-    const newCart = user?.cart.filter((item: any, i: any) => i !== index);
-    try {
-      const endpoint = `https://backendfiggle.onrender.com/api/accounts/${user._id}`;
-      const requestBody = {
-        cart: newCart,
-      };
-      const response = await fetch(endpoint, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
-      if (response.ok) {
-        console.log("Product removed from cart successfully");
-      } else {
-        console.error(
-          "Failed to add product to cart:",
-          response.status,
-          response.statusText
-        );
-      }
-    } catch (error: any) {
-      console.error("Error adding product to cart:", error.message);
-    }
-    try {
-      const response = await fetch(
-        `https://backendfiggle.onrender.com/api/accounts/${user.email}/${user.password}`
-      );
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Login successful", data);
-        dispatch(setUser(data));
-      } else {
-        const { message } = await response.json();
-        setErrors(message);
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-      setErrors("An error occurred. Please try again later.");
-    }
+    const newCart = cart.filter((item: any, i: any) => i !== index);
+    dispatch(setCart(newCart));
   };
   //total MRP
   function calculateTotalPrice(): number {
@@ -116,59 +77,59 @@ const MobileCart = () => {
   }
   //handling quantity
   const handleIncreaseQuantity = async (unit: any) => {
-    let newCart = user.cart.map((item: any) =>
+    let newCart = cart.map((item: any) =>
       item._id === unit?._id ? { ...item, quantity: item.quantity + 1 } : item
     );
-    await updateCart(newCart);
+    dispatch(setCart(newCart));
   };
 
   const handleDecreaseQuantity = async (unit: any, index: number) => {
     if (unit.quantity == 1) {
       handleRemoveCart(index);
     }
-    let newCart = user.cart.map((item: any) =>
+    let newCart = cart.map((item: any) =>
       item._id === unit?._id && item.quantity > 1
         ? { ...item, quantity: item.quantity - 1 }
         : item
     );
-    await updateCart(newCart);
+    dispatch(setCart(newCart));
   };
 
   const handleSetQuantity = async (unit: any, quantity: number) => {
-    let newCart = user.cart.map((item: any) =>
+    let newCart = cart.map((item: any) =>
       item._id === unit?._id ? { ...item, quantity: quantity } : item
     );
-    await updateCart(newCart);
+    // await updateCart(newCart);
   };
 
-  const updateCart = async (newCart: any) => {
-    try {
-      const endpoint = `https://backendfiggle.onrender.com/api/accounts/${user._id}`;
-      const requestBody = {
-        cart: newCart,
-      };
-      const response = await fetch(endpoint, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
-      if (response.ok) {
-        console.log("Cart updated successfully");
-        // dispatch(openCart());
-        dispatch(setCart(newCart));
-      } else {
-        console.error(
-          "Failed to update cart:",
-          response.status,
-          response.statusText
-        );
-      }
-    } catch (error: any) {
-      console.error("Error updating cart:", error.message);
-    }
-  };
+  // const updateCart = async (newCart: any) => {
+  //   try {
+  //     const endpoint = `https://backendfiggle.onrender.com/api/accounts/${user._id}`;
+  //     const requestBody = {
+  //       cart: newCart,
+  //     };
+  //     const response = await fetch(endpoint, {
+  //       method: "PUT",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(requestBody),
+  //     });
+  //     if (response.ok) {
+  //       console.log("Cart updated successfully");
+  //       // dispatch(openCart());
+  //       dispatch(setCart(newCart));
+  //     } else {
+  //       console.error(
+  //         "Failed to update cart:",
+  //         response.status,
+  //         response.statusText
+  //       );
+  //     }
+  //   } catch (error: any) {
+  //     console.error("Error updating cart:", error.message);
+  //   }
+  // };
   return (
     <div className="w-[97vw] mx-auto h-[100vh] text-white p-2 sm:p-5">
       <div className="font-medium max-sm:mt-2">

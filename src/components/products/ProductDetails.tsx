@@ -12,9 +12,9 @@ import { useEffect } from "react";
 import { Product } from "@/types/types";
 import { setProducts } from "@/store/slices/products";
 import { useRouter } from "next/navigation";
-import { setCart, setErrors, setUser } from "@/store/slices/auth";
+// import { setCart, setErrors, setUser } from "@/store/slices/auth";
 import Alert from "../alert/Alert";
-import { openCart } from "@/store/slices/cart";
+import { openCart, setCart } from "@/store/slices/cart";
 import MobileCartPopUp from "../actionButton/MobileCartPopUp";
 // import ImageGen from "./ImageGen";
 interface ProductDetails {
@@ -91,69 +91,23 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
 
   //for heart
   const [heart, setHeart] = useState(false);
+  const cart = useAppSelector((state)=> state.cart.cart);
   //handleCart
-  const user = useAppSelector((state) => state.auth.user);
   const handelAddToCart = async () => {
-    //updating Redux before adding to cart
-    if (user) {
-      try {
-        const response = await fetch(
-          `https://backendfiggle.onrender.com/api/accounts/${user.email}/${user.password}`
-        );
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Login successful", data);
-          dispatch(setUser(data));
-        } else {
-          const { message } = await response.json();
-          setErrors(message);
-        }
-      } catch (error) {
-        console.error("Login error:", error);
-        setErrors("An error occurred. Please try again later.");
-      }
       var newCart = [];
       if (
-        user?.cart &&
-        !user.cart.some((item: Product) => item._id === unit?._id)
+        cart.some((item: Product) => item._id === unit?._id)
       ) {
-        newCart = user.cart.concat(unit);
-      } else {
         console.log("product already in cart");
-        newCart = user.cart.map((item: Product) =>
+        newCart = cart.map((item: Product) =>
           item._id === unit?._id ? { ...item, quantity: item.quantity + 1 } : item
         );
+      } else {
+        
+        newCart = cart.concat(unit);
       }
-      try {
-        const endpoint = `https://backendfiggle.onrender.com/api/accounts/${user._id}`;
-        const requestBody = {
-          cart: newCart,
-        };
-        const response = await fetch(endpoint, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestBody),
-        });
-        if (response.ok) {
-          console.log("Product added to cart successfully");
-          dispatch(openCart());
-          dispatch(setCart(newCart));
-          // handleShowAlert();
-        } else {
-          console.error(
-            "Failed to add product to cart:",
-            response.status,
-            response.statusText
-          );
-        }
-      } catch (error: any) {
-        console.error("Error adding product to cart:", error.message);
-      }
-    } else {
-      router.push("/accounts");
-    }
+      dispatch(setCart(newCart));
+      
   };
   //slider settings
   var settings = {

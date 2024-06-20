@@ -14,7 +14,7 @@ import { toggleCart } from "@/store/slices/cart";
 const ContactUs = () => {
   //toggle contact us
   const dispatch = useAppDispatch();
-  const isOpen = useAppSelector((state)=> state.isCartOpen.isOpen);
+  const isOpen = useAppSelector((state)=> state.cart.isOpen);
   return (
     <div className="max-sm:hidden">
       <div className="fixed bottom-9 right-14 flex flex-col items-end">

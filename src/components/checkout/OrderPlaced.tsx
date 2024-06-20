@@ -4,7 +4,7 @@ import { FcShipped } from "react-icons/fc";
 import CartCard from '../account/cart/CartCard';
 const OrderPlaced = () => {
   const checkout = useAppSelector((state)=> state.address);
-  const cart = useAppSelector((state)=> state.auth.user.cart);
+  const cart = useAppSelector((state)=> state.cart.cart);
   console.log(checkout);
   return (
     <div className='bg-gray-100 w-full py-10'>
