@@ -10,12 +10,13 @@ import { HiOutlineArrowLongLeft, HiMiniArrowLongRight } from "react-icons/hi2";
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import { LuShoppingCart } from "react-icons/lu";
-import { closeCart, setCart } from "@/store/slices/cart";
+import { clearCart, closeCart, setCart } from "@/store/slices/cart";
 const Cart = () => {
   const router = useRouter();
   const cart = useAppSelector((state) => state.cart.cart || []);
   // const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
+  // dispatch(clearCart());
   //if user has not signed in
   // if (user) {
   // } else {

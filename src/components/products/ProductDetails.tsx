@@ -24,13 +24,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   //Added to Cart Succesfully
-  const [showAlert, setShowAlert] = useState(false);
-  const handleShowAlert = () => {
-    setShowAlert(true);
-  };
-  const handleCloseAlert = () => {
-    setShowAlert(false);
-  };
+  const [typeSelected, setTypeSelected] = useState(0);
   //Product Api data fetching
   const [ProductData, setProdData] = useState<Product[] | null>(null);
   useEffect(() => {
@@ -57,12 +51,14 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
     return ProductData?.find((product) => product._id === productId);
   };
   const [unit, setUnit] = useState(findProductById(productName));
+  const [CartUnit, setCartUnit] = useState(findProductById(productName));
   useEffect(() => {
     if (ProductData) {
       const foundProduct = ProductData.find(
         (product) => product._id === productName
       );
       setUnit(foundProduct);
+      setCartUnit(foundProduct);
     }
   }, [ProductData, productName]);
 
@@ -80,11 +76,16 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
       // Setting the price of unit as the type selected
       const updatedUnit = {
         ...unit,
+        price: selectedItem.price,
+      };
+      const updatedCartUnit = {
+        ...unit,
         type: sortedType,
         price: selectedItem.price,
       };
       // Update the state with the modified unit
       setUnit(updatedUnit);
+      setCartUnit(updatedCartUnit);
     }
     console.log(unit, "final");
   };
@@ -96,15 +97,15 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const handelAddToCart = async () => {
       var newCart = [];
       if (
-        cart.some((item: Product) => item._id === unit?._id)
+        cart.some((item: Product) => item._id === CartUnit?._id)
       ) {
         console.log("product already in cart");
         newCart = cart.map((item: Product) =>
-          item._id === unit?._id ? { ...item, quantity: item.quantity + 1 } : item
+          item._id === CartUnit?._id ? { ...item, quantity: item.quantity + 1 } : item
         );
       } else {
-        
-        newCart = cart.concat(unit);
+       
+        newCart = cart.concat(CartUnit);
       }
       dispatch(setCart(newCart));
       dispatch(openCart());
@@ -248,8 +249,8 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                     return (
                       <div
                         key={index}
-                        onClick={(e) => handleTypeSelect(e, item._id)}
-                        className={`border rounded-md flex flex-col items-center min-w-fit p-5 cursor-pointer hover:bg-black hover:text-white`}
+                        onClick={(e) => {handleTypeSelect(e, item._id); setTypeSelected(index)}}
+                        className={`${index == typeSelected ? "border-black border-2":""} border rounded-md flex flex-col items-center min-w-fit p-5 cursor-pointer hover:scale-105`}
                       >
                         <p>Rs. {item.price}</p>
                         <p>{item.material}</p>
