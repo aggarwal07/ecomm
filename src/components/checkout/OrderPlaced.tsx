@@ -19,7 +19,7 @@ const OrderPlaced = () => {
         </div>
         <div className='bg-gray-300 w-[75%] h-[0.12em] my-5'></div>
         <div className="py-5 flex flex-col gap-2 overflow-y-auto max-lg:shadow-2xl max-lg:p-2">
-            {cart.map((item: any, index: number) => (
+            {checkout.cart.map((item: any, index: number) => (
               <div key={index} className="bg-black rounded-2xl">
                 <CartCard product={item} />
               </div>

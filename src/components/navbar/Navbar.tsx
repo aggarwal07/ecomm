@@ -24,6 +24,7 @@ const Navbar = () => {
     { name: "Posters", path: "/collection/Poster" },
     { name: "Mouse Pads", path: "/collection/Mouse Pad" },
     { name: "Polaroid", path: "/collection/Polaroid" },
+    { name: "Track Your Order", path: "/trackYourOrder" },
     // {
     //   name: user
     //     ? `Hi, ${
@@ -132,14 +133,14 @@ const Navbar = () => {
               >
                 Posters
               </button>
-              {/* <button
+              <button
                 onClick={() => {
-                  user ? router.push("/user") : router.push("/accounts");
+                  router.push("/trackYourOrder")
                 }}
                 className="p-2"
               >
-                {user ? "Hi, " + user.name : "Sign In"}
-              </button> */}
+                Track Your Order
+              </button>
               <button
                 onClick={() => {
                   router.push("/cart");

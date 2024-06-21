@@ -107,6 +107,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
         newCart = cart.concat(unit);
       }
       dispatch(setCart(newCart));
+      dispatch(openCart());
       
   };
   //slider settings

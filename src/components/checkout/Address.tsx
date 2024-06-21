@@ -75,7 +75,7 @@ const Address: React.FC<AddressProps> = ({ onClick }) => {
         address: address,
         city: city,
         state: state,
-        orderDate : new Date().toString(),
+        orderDate : new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }),
       },
       cart: cart,
     };
