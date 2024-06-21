@@ -23,8 +23,8 @@ interface ProductDetails {
 const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  //Added to Cart Succesfully
   const [typeSelected, setTypeSelected] = useState(0);
+  const [ImgSelected, setImgSelected] = useState(0);
   //Product Api data fetching
   const [ProductData, setProdData] = useState<Product[] | null>(null);
   useEffect(() => {
@@ -164,7 +164,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
       <div className="w-full bg-white">
         <div className="w-[97vw] lg:w-[66em] mx-auto">
           <div className="flex font-light">
-            Home / Collection /{" "}
+            Home / Collection / {unit?.productType} /{" "}
             <p className="ml-2 text-gray-400">{unit?.name}</p>
           </div>
           {/*images of products and slider dots */}
@@ -186,16 +186,16 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                     height: "100%",
                   }}
                   alt="polaroid"
-                  src={unit?.images[0] || ""}
+                  src={unit?.images[ImgSelected] || ""}
                   width={1600}
                   height={1600}
                 />
               </div>
               <div className="grid grid-cols-4 gap-2 md:gap-6 mt-4 mx-2">
-                {unit?.images.slice(1).map((item, i) => (
+                {unit?.images.map((item, i) => (
                   <div
                     key={i}
-                    // onClick={()=>{setGalleryImage(item)}}
+                    onClick={()=>{setImgSelected(i)}}
                     className="cursor-pointer"
                   >
                     <Image
