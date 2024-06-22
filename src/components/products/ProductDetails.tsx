@@ -97,11 +97,11 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const handelAddToCart = async () => {
       var newCart = [];
       if (
-        cart.some((item: Product) => item._id === CartUnit?._id)
+        cart.some((item: Product) => item.type[0]._id === CartUnit?.type[0]?._id)
       ) {
         console.log("product already in cart");
         newCart = cart.map((item: Product) =>
-          item._id === CartUnit?._id ? { ...item, quantity: item.quantity + 1 } : item
+          item.type[0]._id === CartUnit?.type[0]?._id ? { ...item, quantity: item.quantity + 1 } : item
         );
       } else {
        
