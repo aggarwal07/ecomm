@@ -15,8 +15,15 @@ import { Product } from "@/types/types";
 import { motion, useScroll } from "framer-motion";
 import { HiArrowLongRight } from "react-icons/hi2";
 import { useAnimation, useMotionValue, useTransform } from "framer-motion";
+import Splash from "../splash/Splash";
 
 const LandingSection = () => {
+  //splash when website is loaded
+  const [showSplash, setShowSplash] = useState(true);
+
+  const handleTimeout = () => {
+    setShowSplash(false);
+  };
   const dispatch = useAppDispatch();
   //Product Api data fetching
   const [ProductData, setProdData] = useState<Product[] | null>(null);
@@ -109,6 +116,11 @@ const LandingSection = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   return (
     <div className="text-white">
+      {showSplash ? (
+        <Splash onTimeout={handleTimeout} />
+      ) :(<div>
+
+     
       {/*landing image */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -376,6 +388,7 @@ const LandingSection = () => {
       </motion.div>
       {/*contanct action button */}
       <ContactUs />
+      </div>)}
     </div>
   );
 };
