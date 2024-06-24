@@ -375,10 +375,10 @@ const LandingSection = () => {
             ProductData.slice(0,8).map((item, index) => (
               <div
                 className="cursor-pointer"
-                onClick={() => {
-                  var query = "/products/" + item._id;
-                  router.push(query);
-                }}
+                // onClick={() => {
+                //   var query = "/products/" + item._id;
+                //   router.push(query);
+                // }}
                 key={index}
               >
                 <ProductCard product={item} />

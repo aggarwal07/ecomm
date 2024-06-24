@@ -76,10 +76,6 @@ const ProductsListing: React.FC<ProductListing> = ({ productType }) => {
                 <div
                   key={index}
                   className="cursor-pointer"
-                  onClick={() => {
-                    var query = "/products/" + item._id;
-                    router.push(query);
-                  }}
                 >
                   <ProductCard product={item} />
                 </div>
