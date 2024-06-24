@@ -278,7 +278,7 @@ const LandingSection = () => {
                   height: "100%",
                 }}
                 alt="polaroid"
-                src="/Images/home/1.webp"
+                src="/Images/home/genre/TVShows.png"
                 width={1600}
                 height={1600}
                 className="transition-transform duration-300 transform hover:scale-110"
@@ -296,7 +296,7 @@ const LandingSection = () => {
                     height: "100%",
                   }}
                   alt="polaroid"
-                  src="/Images/home/1.webp"
+                  src="/Images/home/genre/Football.png"
                   width={1600}
                   height={1600}
                   className="transition-transform duration-300 transform hover:scale-110"
@@ -313,7 +313,7 @@ const LandingSection = () => {
                     height: "100%",
                   }}
                   alt="polaroid"
-                  src="/Images/home/1.webp"
+                  src="/Images/home/genre/DC.png"
                   width={1600}
                   height={1600}
                   className="transition-transform duration-300 transform hover:scale-110"
