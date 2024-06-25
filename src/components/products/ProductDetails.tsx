@@ -12,6 +12,9 @@ import { useEffect } from "react";
 import { Product } from "@/types/types";
 import { setProducts } from "@/store/slices/products";
 import { useRouter } from "next/navigation";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { MdOutlineDescription } from "react-icons/md";
+import { FaPlus,FaMinus } from "react-icons/fa6";
 // import { setCart, setErrors, setUser } from "@/store/slices/auth";
 import Alert from "../alert/Alert";
 import { openCart, setCart } from "@/store/slices/cart";
@@ -25,6 +28,8 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const dispatch = useAppDispatch();
   const [typeSelected, setTypeSelected] = useState(0);
   const [ImgSelected, setImgSelected] = useState(0);
+  //quantity of the product
+  const [quantity , setQuantity] = useState(1);
   //Product Api data fetching
   const [ProductData, setProdData] = useState<Product[] | null>(null);
   useEffect(() => {
@@ -45,7 +50,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
     };
     fetchData();
   }, []);
-  console.log(ProductData);
+  // console.log(ProductData);
   // Function to find a product by its _id
   const findProductById = (productId: any) => {
     return ProductData?.find((product) => product._id === productId);
@@ -61,6 +66,8 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
       setCartUnit(foundProduct);
     }
   }, [ProductData, productName]);
+  //handle show prod description
+  const [showDesc, setShowDesc] = useState(false);
 
   //handle type selection
   const handleTypeSelect = (e: any, selectedItemId: string) => {
@@ -92,25 +99,32 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
 
   //for heart
   const [heart, setHeart] = useState(false);
-  const cart = useAppSelector((state)=> state.cart.cart);
+  const cart = useAppSelector((state) => state.cart.cart);
   //handleCart
   const handelAddToCart = async () => {
-      var newCart = [];
-      if (
-        cart.some((item: Product) => item.type[0]._id === CartUnit?.type[0]?._id)
-      ) {
-        console.log("product already in cart");
-        newCart = cart.map((item: Product) =>
-          item.type[0]._id === CartUnit?.type[0]?._id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      } else {
-       
-        newCart = cart.concat(CartUnit);
-      }
-      dispatch(setCart(newCart));
-      dispatch(openCart());
-      
+    var newCart = [];
+    if (
+      cart.some((item: Product) => item.type[0]._id === CartUnit?.type[0]?._id)
+    ) {
+      console.log("product already in cart");
+      newCart = cart.map((item: Product) =>
+        item.type[0]._id === CartUnit?.type[0]?._id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+    } else {
+      newCart = cart.concat({ ...CartUnit, quantity: quantity });
+    }
+    dispatch(setCart(newCart));
+    dispatch(openCart());
   };
+  // Split the key by uppercase letters and join with spaces
+  const makeKeyReadable = (key: string) =>
+    key
+      .replace(/_/g, " ") // Replace underscores with spaces
+      .split(/(?=[A-Z])/)
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(" ");
   //slider settings
   var settings = {
     dots: true,
@@ -160,15 +174,15 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   return (
     <div className="">
       {/* white space */}
-      <div className="w-full h-[1em] sm:h-[2em] bg-white"></div>
-      <div className="w-full bg-white">
-        <div className="w-[97vw] lg:w-[66em] mx-auto">
-          <div className="flex font-light">
+      {/* <div className="w-full h-[1em] sm:h-[2em] bg-[#fffffff6]"></div> */}
+      <div className="w-full bg-[#fffffff6] py-6 sm:py-10">
+        <div className="w-[97vw] min-[1069px]:w-[66em] mx-auto">
+          <div className="flex flex-wrap font-light">
             Home / Collection / {unit?.productType} /{" "}
             <p className="ml-2 text-gray-400">{unit?.name}</p>
           </div>
           {/*images of products and slider dots */}
-          <div className="flex max-xl:flex-col max-xl:items-center">
+          <div className="flex max-[1069px]:flex-col max-xl:items-center">
             <div className="w-fit mx-auto flex flex-col items-center mt-5 ">
               <div className="w-[95vw] h-[60vh] max-sm:h-[26em] md:w-[32em] md:h-[38em] max-md:relative">
                 <div className="rounded-full p-1 bg-white md:hidden absolute top-3 right-3">
@@ -195,8 +209,10 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                 {unit?.images.map((item, i) => (
                   <div
                     key={i}
-                    onClick={()=>{setImgSelected(i)}}
-                    className="cursor-pointer"
+                    onClick={() => {
+                      setImgSelected(i);
+                    }}
+                    className="cursor-pointer sm:max-[1069px]:w-[12vw]"
                   >
                     <Image
                       className="h-full"
@@ -211,14 +227,18 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
             </div>
             {/*product details */}
             <div className="w-full mt-5 px-5">
-              <p className="text-4xl font-black ">{unit?.name}</p>
-              <p className="text-sm">{unit?.category}</p>
+              <p className="text-2xl md:text-4xl font-black ">{unit?.name}</p>
+              <p className="text-sm mt-1">
+                {makeKeyReadable(unit?.category || "")}
+              </p>
               <hr className="my-4" />
               <div className="flex items-center mt-1">
                 {unit?.maxPrice && (
-                  <p className=" line-through text-lg ">Rs. {unit?.maxPrice}</p>
+                  <p className=" line-through text-sm md:text-md text-[#8f8f8f] ">
+                    Rs. {unit?.maxPrice}
+                  </p>
                 )}
-                <p className=" text-xl font-semibold ml-2 ">
+                <p className="text-lg md:text-xl font-semibold ml-2 ">
                   Rs. {unit?.price}
                 </p>
               </div>
@@ -242,15 +262,20 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                   })}
                 </select>
               </div> */}
-              <div className="mt-2">
-                <p>Select the type</p>
+              <div className="mt-5">
+                <p className="text-gray-400 text-sm">Select the type</p>
                 <div className="mt-1 flex flex-wrap gap-3">
                   {unit?.type.map((item, index) => {
                     return (
                       <div
                         key={index}
-                        onClick={(e) => {handleTypeSelect(e, item._id); setTypeSelected(index)}}
-                        className={`${index == typeSelected ? "border-black border-2":""} border rounded-md flex flex-col items-center min-w-fit p-5 cursor-pointer hover:scale-105`}
+                        onClick={(e) => {
+                          handleTypeSelect(e, item._id);
+                          setTypeSelected(index);
+                        }}
+                        className={`${
+                          index == typeSelected ? "border-black border-2" : ""
+                        } border rounded-md flex flex-col items-center min-w-fit p-5 cursor-pointer hover:scale-105`}
                       >
                         <p>Rs. {item.price}</p>
                         <p>{item.material}</p>
@@ -260,16 +285,62 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                   })}
                 </div>
               </div>
-              <div className="mt-3">
-                {unit?.description.map((item, index) => {
-                  return <div key={index}>{item}</div>;
-                })}
+              {/* quantity */}
+              <p className="text-gray-400 mt-5 text-sm">Quantity</p>
+              <div className="border border-black py-3 px-2 flex items-center font-extralight justify-between mt-1 w-[6em] text-lg">
+              <FaMinus onClick={()=>{quantity>0&&setQuantity(quantity-1)}} className="cursor-pointer" size={12} />
+              {quantity}
+              <FaPlus onClick={()=>{setQuantity(quantity+1)}} className="cursor-pointer" size={12} />
               </div>
+              {/* offers */}
+              <ul className="text-gray-500 list-disc mt-5 ml-6 text-md">
+                <li className="my-3">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit,
+                  recusandae! Lorem ipsum dolor sit amet.
+                </li>
+                <li className="my-3">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit,
+                  recusandae! Lorem ipsum dolor sit amet.
+                </li>
+                <li className="my-3">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit,
+                  recusandae! Lorem ipsum dolor sit amet.
+                </li>
+                <li className="my-3">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit,
+                  recusandae! Lorem ipsum dolor sit amet.
+                </li>
+                <li className="my-3">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit,
+                  recusandae! Lorem ipsum dolor sit amet.
+                </li>
+              </ul>
               <div
                 onClick={handelAddToCart}
-                className="lg:w-[50%] mt-2 border-2 rounded-lg p-2 text-center cursor-pointer bg-black text-white font-black"
+                className="lg:w-[50%] mt-5 border-2 rounded-lg p-2 text-center cursor-pointer bg-black text-white font-black"
               >
                 Add to Cart
+              </div>
+              <div className="cursor-pointer border-t border-b px-2 py-2 border-gray-300 text-black w-[100%] sm:w-[70%] mt-5">
+                <div
+                  onClick={() => {
+                    showDesc ? setShowDesc(false) : setShowDesc(true);
+                  }}
+                  className="flex items-center justify-between"
+                >
+                  <div className="flex w-fit items-center gap-2">
+                    <MdOutlineDescription size={25} />
+                    PRODUCT DESCRIPTION
+                  </div>
+                  <RiArrowDropDownLine size={27} />
+                </div>
+                {showDesc && (
+                  <ul className="list-disc ml-8 mt-2 max-sm:text-sm text-gray-500">
+                    {unit?.description.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
               {/* product added successful popup */}
               {/* {showAlert && (
@@ -295,10 +366,27 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
         </div>
       </div>
       {/*white space */}
-      <div className="w-full h-[1em] sm:h-[2em] bg-white"></div>
+      {/* <div className="w-full h-[1em] sm:h-[2em] bg-[#fffffff6]"></div> */}
       {/*recommendation sections */}
-      <div className="text-white w-[90vw] max-sm:w-[96vw] max-lg:w-[97vw] mt-10 mx-auto">
-        <p className="mb-5 text-2xl font-semibold mt-10 text-center">
+      {/* <div className="text-white w-[90vw] max-sm:w-[96vw] max-lg:w-[97vw] mt-10 mx-auto"> */}
+        {/* recommendations */}
+        <div className="w-[97vw] min-[1069px]:w-[66em] mx-auto text-white">
+          <p className="text-lg lg:text-3xl mt-10">You May Also Like ...</p>
+          <div className="flex flex-wrap justify-around lg:justify-between">
+            {ProductData?.filter(
+              (item) =>
+                item.productType === unit?.productType &&
+                item.category === unit?.category
+            )
+              ?.slice(0, 4)
+              ?.map((item, index) => (
+                <div className="mt-5" key={index}>
+                  <ProductCard product={item} />
+                </div>
+              ))}
+          </div>
+        </div>
+        {/* <p className="mb-5 text-2xl font-semibold mt-10 text-center">
           FEATURED DROPS
         </p>
         <Slider {...settings}>
@@ -307,9 +395,8 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
               <ProductCard product={item} />
             </div>
           ))}
-        </Slider>
-        {/* <ImagePreview/> */}
-      </div>
+        </Slider> */}
+      {/* </div> */}
       {/* added to cart PopUp */}
       <div>
         <MobileCartPopUp unit={unit} />
