@@ -200,23 +200,23 @@ const Cart = () => {
             key={index}
             className="h-fit w-[97vw] sm:w-[34em] flex items-center relative rounded-md bg-black"
           >
-            <div className="flex text-gray-400 absolute left-[45%] items-center gap-1">
+            <div className="flex text-gray-400 absolute left-[53%] items-center gap-1">
               <FaMinus
                 className="cursor-pointer"
-                size={14}
+                size={12}
                 onClick={() => {
                   handleDecreaseQuantity(product, index);
                 }}
               />
               <input
                 type="text"
-                className="outline-none w-[2em] p-1 text-sm text-center bg-black text-white rounded-md "
+                className="outline-none w-[2em] p-1 text-xs text-center bg-black text-white rounded-md "
                 value={product?.quantity}
                 // onChange={()=>{handleSetQuantity(product, product?.quantity)}}
               />
               <FaPlus
                 className="cursor-pointer"
-                size={14}
+                size={12}
                 onClick={() => {
                   handleIncreaseQuantity(product);
                 }}

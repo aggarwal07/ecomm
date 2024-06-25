@@ -182,7 +182,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
             <p className="ml-2 text-gray-400">{unit?.name}</p>
           </div>
           {/*images of products and slider dots */}
-          <div className="flex max-[1069px]:flex-col max-xl:items-center">
+          <div className="flex max-[1069px]:flex-col min-[1069px]:gap-8 max-xl:items-center">
             <div className="w-fit mx-auto flex flex-col items-center mt-5 ">
               <div className="w-[95vw] h-[60vh] max-sm:h-[26em] md:w-[32em] md:h-[38em] max-md:relative">
                 <div className="rounded-full p-1 bg-white md:hidden absolute top-3 right-3">

@@ -28,9 +28,9 @@ const CartCard: React.FC<ProductCardProps> = ({ product,popup }) => {
             height={1600}
           />
         </div>
-        <div className="flex flex-col h-fit justify-around ml-4">
-          <p className="font-bold text-md lg:text-xl mb-1 ">{product.name.toUpperCase()}</p>
-          <p className="max-sm:text-sm">
+        <div className="flex flex-col h-fit justify-around ml-4 max-sm:w-[25%] w-[40%]">
+          <p className="font-bold text-sm lg:text-md mb-1 line-clamp-2 ">{product.name.toUpperCase()}</p>
+          <p className="text-xs lg:text-sm">
             {product.type[0].size}, {product.type[0].material}
           </p>
         </div>
@@ -41,9 +41,9 @@ const CartCard: React.FC<ProductCardProps> = ({ product,popup }) => {
           className="w-[1.9em] h-[1.9em] border-2 text-center"
         /> */}
         {product.maxPrice && (
-          <p className={` line-through text-xs lg:text-sm ${popup?"hidden":""} max-lg:hidden `}>Rs. {product.maxPrice}</p>
+          <p className={` line-through text-xs ${popup?"hidden":""} max-lg:hidden `}>Rs. {product.maxPrice}</p>
         )}
-        <p className="font-bold text-md lg:text-lg max-lg:mx-[2em] lg:ml-[0.5em]">₹ {product.price}</p>
+        <p className="font-bold text-sm sm:text-md max-sm:w-[2.2em] max-sm:mr-[2.2em] max-lg:mx-[1em] lg:ml-[0.5em]">₹ {product.price}</p>
       </div>
     </div>
   );
