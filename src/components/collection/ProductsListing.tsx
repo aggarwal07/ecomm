@@ -2,7 +2,7 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import React, { useEffect, useState } from "react";
 import ProductCard from "../products/ProductCard";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Product } from "@/types/types";
 import { setProducts } from "@/store/slices/products";
 interface ProductListing {
@@ -10,14 +10,21 @@ interface ProductListing {
 }
 
 const ProductsListing: React.FC<ProductListing> = ({ productType }) => {
-  const router = useRouter();
+  //conditionally checking for category (genre)
+  const searchParams = useSearchParams();
+  var category = searchParams.get("category");
+  if (category) {
+  } else {
+    category = "";
+  }
+  console.log(category, "category");
   const dispatch = useAppDispatch();
   const [ProductData, setProdData] = useState<Product[] | null>(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://backendfiggle.onrender.com/api/products/${productType}`
+          `https://backendfiggle.onrender.com/api/products/${productType}?category=${category}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -73,10 +80,7 @@ const ProductsListing: React.FC<ProductListing> = ({ productType }) => {
           {ProductData &&
             ProductData.map((item, index) => {
               return (
-                <div
-                  key={index}
-                  className="cursor-pointer"
-                >
+                <div key={index} className="cursor-pointer">
                   <ProductCard product={item} />
                 </div>
               );
