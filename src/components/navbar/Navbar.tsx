@@ -56,14 +56,23 @@ const Navbar = () => {
       </div>
       <div className="flex items-center justify-between min-[1300px]:w-[60em] mx-auto px-2 md:px-24 py-6 bg-[rgba(0, 0, 0, 0.942)] text-white">
         <Link href="/">
+        {/* desktop Logo */}
           <div
-            onClick={() => {
-              dispatch(setTab(0));
-            }}
-            className=" cursor-pointer"
+            className="max-sm:hidden cursor-pointer"
           >
             <Image
-              src="/Images/logo/image.png"
+              src="/Images/logo/Canvify_Logo6.png"
+              alt="logo"
+              width={160}
+              height={55}
+            />
+          </div>
+          {/* mobile logo */}
+          <div
+            className="sm:hidden cursor-pointer"
+          >
+            <Image
+              src="/Images/logo/Canvify_Logo6.png"
               alt="logo"
               width={100}
               height={55}
