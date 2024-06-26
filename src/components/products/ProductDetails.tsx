@@ -14,7 +14,7 @@ import { setProducts } from "@/store/slices/products";
 import { useRouter } from "next/navigation";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { MdOutlineDescription } from "react-icons/md";
-import { FaPlus,FaMinus } from "react-icons/fa6";
+import { FaPlus, FaMinus } from "react-icons/fa6";
 // import { setCart, setErrors, setUser } from "@/store/slices/auth";
 import Alert from "../alert/Alert";
 import { openCart, setCart } from "@/store/slices/cart";
@@ -29,7 +29,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const [typeSelected, setTypeSelected] = useState(0);
   const [ImgSelected, setImgSelected] = useState(0);
   //quantity of the product
-  const [quantity , setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   //Product Api data fetching
   const [ProductData, setProdData] = useState<Product[] | null>(null);
   useEffect(() => {
@@ -117,6 +117,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
     }
     dispatch(setCart(newCart));
     dispatch(openCart());
+    setQuantity(1);
   };
   // Split the key by uppercase letters and join with spaces
   const makeKeyReadable = (key: string) =>
@@ -288,9 +289,21 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
               {/* quantity */}
               <p className="text-gray-400 mt-5 text-sm">Quantity</p>
               <div className="border border-black py-3 px-2 flex items-center font-extralight justify-between mt-1 w-[6em] text-lg">
-              <FaMinus onClick={()=>{quantity>0&&setQuantity(quantity-1)}} className="cursor-pointer" size={12} />
-              {quantity}
-              <FaPlus onClick={()=>{setQuantity(quantity+1)}} className="cursor-pointer" size={12} />
+                <FaMinus
+                  onClick={() => {
+                    quantity > 0 && setQuantity(quantity - 1);
+                  }}
+                  className="cursor-pointer"
+                  size={12}
+                />
+                {quantity}
+                <FaPlus
+                  onClick={() => {
+                    setQuantity(quantity + 1);
+                  }}
+                  className="cursor-pointer"
+                  size={12}
+                />
               </div>
               {/* offers */}
               <ul className="text-gray-500 list-disc mt-5 ml-6 text-md">
@@ -369,24 +382,24 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
       {/* <div className="w-full h-[1em] sm:h-[2em] bg-[#fffffff6]"></div> */}
       {/*recommendation sections */}
       {/* <div className="text-white w-[90vw] max-sm:w-[96vw] max-lg:w-[97vw] mt-10 mx-auto"> */}
-        {/* recommendations */}
-        <div className="w-[97vw] min-[1069px]:w-[66em] mx-auto text-white">
-          <p className="text-lg lg:text-3xl mt-10">You May Also Like ...</p>
-          <div className="flex flex-wrap justify-around lg:justify-between">
-            {ProductData?.filter(
-              (item) =>
-                item.productType === unit?.productType &&
-                item.category === unit?.category
-            )
-              ?.slice(0, 4)
-              ?.map((item, index) => (
-                <div className="mt-5" key={index}>
-                  <ProductCard product={item} />
-                </div>
-              ))}
-          </div>
+      {/* recommendations */}
+      <div className="w-[97vw] min-[1069px]:w-[66em] mx-auto text-white">
+        <p className="text-lg lg:text-3xl mt-10">You May Also Like ...</p>
+        <div className="flex flex-wrap justify-around lg:justify-between">
+          {ProductData?.filter(
+            (item) =>
+              item.productType === unit?.productType &&
+              item.category === unit?.category
+          )
+            ?.slice(0, 4)
+            ?.map((item, index) => (
+              <div className="mt-5" key={index}>
+                <ProductCard product={item} />
+              </div>
+            ))}
         </div>
-        {/* <p className="mb-5 text-2xl font-semibold mt-10 text-center">
+      </div>
+      {/* <p className="mb-5 text-2xl font-semibold mt-10 text-center">
           FEATURED DROPS
         </p>
         <Slider {...settings}>

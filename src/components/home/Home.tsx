@@ -90,25 +90,25 @@ const LandingSection = () => {
   };
   const popularCategories = [
     {
-      image: "https://picsum.photos/200/300",
-      text: "Fashion",
-      slug: "fashion",
+      image: "/Images/home/popularCategories/Posters.Jpg",
+      text: "Posters",
+      slug: "Poster",
     },
     {
-      image: "https://picsum.photos/200/300",
-      text: "Technology",
-      slug: "technology",
+      image: "/Images/home/popularCategories/MousePads.Jpg",
+      text: "Mouse Pads",
+      slug: "Mouse Pad",
     },
     {
       image: "https://picsum.photos/200/300",
       text: "Travel",
       slug: "travel",
     },
-    {
-      image: "https://picsum.photos/200/300",
-      text: "Food",
-      slug: "food",
-    },
+    // {
+    //   image: "https://picsum.photos/200/300",
+    //   text: "Food",
+    //   slug: "food",
+    // },
   ];
   const controls = useAnimation();
   const { scrollYProgress } = useScroll();
@@ -154,12 +154,13 @@ const LandingSection = () => {
             <p className="py-3 tex-xl md:text-2xl xl:text-3xl font-bold">
               Discover the Best: Explore Our Popular Categories!
             </p>
-            <div className="w-full grid xl:grid-cols-4 grid-cols-2 max-xl:w-fit mx-auto gap-2 md:gap-4 h-[25em]">
+            <div className="w-full grid lg:grid-cols-3 grid-cols-2 max-xl:w-fit mx-auto gap-2 md:gap-4 h-[25em]">
               {popularCategories.map((item, index) => {
                 return (
                   <div
+                    onClick={()=>{router.push('/collection/' + item.slug)}}
                     key={index}
-                    className="h-full w-[11.5em] md:w-[13em] xl:w-[15.5em] flex justify-center items-center overflow-hidden rounded-sm relative"
+                    className="cursor-pointer h-full w-[11.5em] md:w-[18em] xl:w-[21em] flex justify-center items-center overflow-hidden rounded-sm relative"
                   >
                     <Image
                       style={{
@@ -172,9 +173,9 @@ const LandingSection = () => {
                       height={1600}
                       className="transition-transform duration-300 transform hover:scale-110"
                     />
-                    <p className="absolute font-bold text-md md:text-2xl xl:text-3xl z-[800]  w-fit">
+                    {/* <p className="absolute font-bold text-md md:text-2xl xl:text-3xl z-[800]  w-fit">
                       {item.text}
-                    </p>
+                    </p> */}
                     <div className="text-black font-semibold text-md lg:text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-1 lg:py-2 bg-[#dbdbdb]">
                       Shop Now
                       <HiArrowLongRight size={22} className="ml-2" />

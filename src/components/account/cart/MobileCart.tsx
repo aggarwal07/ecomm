@@ -55,26 +55,26 @@ const MobileCart = () => {
     const newCart = cart.filter((item: any, i: any) => i !== index);
     dispatch(setCart(newCart));
   };
-  //total MRP
-  function calculateTotalPrice(): number {
-    let totalPrice = 0;
-    for (const item of cart) {
-      totalPrice += parseInt(item.price);
-    }
-    return totalPrice;
+//total MRP
+function calculateTotalPrice(): number {
+  let totalPrice = 0;
+  for (const item of cart) {
+    totalPrice += parseInt(item.price)*parseInt(item.quantity);
   }
-  //discount
-  function calculateDiscount(): number {
-    let totalDiscount = 0;
-    for (const item of cart) {
-      if (item.maxPrice != "") {
-        console.log(totalDiscount);
-        totalDiscount += parseInt(item.maxPrice) - parseInt(item.price);
-      }
-      // totalDiscount += parseInt(item.discount);
+  return totalPrice;
+}
+//discount
+function calculateDiscount(): number {
+  let totalDiscount = 0;
+  for (const item of cart) {
+    if (item.maxPrice != "") {
+      console.log(totalDiscount);
+      totalDiscount += (parseInt(item.maxPrice) - parseInt(item.price))*parseInt(item.quantity);
     }
-    return totalDiscount;
+    // totalDiscount += parseInt(item.discount);
   }
+  return totalDiscount;
+}
   //handling quantity
   const handleIncreaseQuantity = async (unit: any) => {
     let newCart = cart.map((item: any) =>
