@@ -1,11 +1,13 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="w-full bg-[#171a20c6] text-white">
-      <div className="w-[97vw] min-[1069px]:w-[66em] mx-auto py-10 flex justify-between">
+    <div className="w-full bg-[#171a20c6] text-white py-10 ">
+      <div className="w-[97vw] min-[1069px]:w-[66em] mx-auto flex justify-between">
         {/* about us */}
         <div className="w-[60%]">
           <Link href="/">
@@ -34,11 +36,28 @@ const Footer = () => {
         <div className="w-[30%]">
           <p className="text-xl">Quick Links</p>
           <ul className="text-md mt-3 text-gray-400">
-            <li className=" cursor-pointer hover:underline hover:text-white">Search</li>
-            <li className=" cursor-pointer hover:underline hover:text-white">About</li>
-            <li className=" cursor-pointer hover:underline hover:text-white">Contact</li>
-            <li className=" cursor-pointer hover:underline hover:text-white">Product</li>
+            <li className=" cursor-pointer hover:underline hover:text-white">
+              Search
+            </li>
+            <li className=" cursor-pointer hover:underline hover:text-white">
+              About
+            </li>
+            <li className=" cursor-pointer hover:underline hover:text-white">
+              Contact
+            </li>
+            <li className=" cursor-pointer hover:underline hover:text-white">
+              Product
+            </li>
           </ul>
+        </div>
+      </div>
+      <div className="w-[97vw] min-[1069px]:w-[66em] mx-auto flex flex-col">
+        <hr className="my-5 border-0 h-[1px] bg-gray-300" />
+        <div className="flex self-end ">
+          <FaInstagram
+            className="cursor-pointer hover:scale-125"
+            size={25}
+          />
         </div>
       </div>
     </div>

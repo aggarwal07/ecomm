@@ -100,9 +100,9 @@ const LandingSection = () => {
       slug: "Mouse Pad",
     },
     {
-      image: "https://picsum.photos/200/300",
-      text: "Travel",
-      slug: "travel",
+      image: "/Images/home/popularCategories/Keyboard.png",
+      text: "Keyboard Stickers",
+      slug: "Keyboard Stickers",
     },
     // {
     //   image: "https://picsum.photos/200/300",
