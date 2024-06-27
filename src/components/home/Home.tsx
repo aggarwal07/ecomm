@@ -16,6 +16,7 @@ import { motion, useScroll } from "framer-motion";
 import { HiArrowLongRight } from "react-icons/hi2";
 import { useAnimation, useMotionValue, useTransform } from "framer-motion";
 import Splash from "../splash/Splash";
+import Paralax from "./Paralax";
 
 const LandingSection = () => {
   //splash when website is loaded
@@ -380,6 +381,8 @@ const LandingSection = () => {
               </div>
             </div>
           </motion.div>
+          {/*paralax */}
+          <Paralax/>
 
           {/*product categories*/}
           <motion.div
