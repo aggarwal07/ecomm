@@ -122,77 +122,82 @@ const LandingSection = () => {
       ) : (
         <div>
           {/*landing image */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <div className="w-full  mx-auto rounded-md overflow-hidden relative">
-              <Image
-                style={{
-                  objectFit: "cover",
-                  height: "100%",
-                  width: "100%",
-                }}
-                alt="polaroid"
-                src="/Images/home/landing.png"
-                width={1600}
-                height={1600}
-              />
-              {/* <div className="absolute w-[30em] left-10 top-96">
+          <div className="bg-[#111111]">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
+              <div className="w-full  mx-auto  overflow-hidden relative bg-[#111111] ">
+                <Image
+                  style={{
+                    objectFit: "cover",
+                    height: "100%",
+                    width: "100%",
+                  }}
+                  alt="polaroid"
+                  src="/Images/home/landing.png"
+                  width={1600}
+                  height={1600}
+                />
+                {/* <div className="absolute w-[30em] left-10 top-96">
             <p className=" w-fit bg-opacity-30 bg-green-600 text-green-400 border border-green-600 rounded-full px-4">
-              Elevating Ideas, Creating Experiences
+            Elevating Ideas, Creating Experiences
             </p>
             <p className="text-5xl mt-4">
-              Transform your ideas into wearable art with our customizable
-              print-on-demand platform.
+            Transform your ideas into wearable art with our customizable
+            print-on-demand platform.
             </p>
-          </div> */}
-            </div>
-          </motion.div>
+            </div> */}
+              </div>
+            </motion.div>
+          </div>
           {/*Popular Category */}
-          <div className="w-[97vw] xl:w-[66em] mt-10 mx-auto">
-            <p className="py-3 tex-xl md:text-2xl xl:text-3xl font-bold">
-              Discover the Best: Explore Our Popular Categories!
-            </p>
-            <div className="w-full grid lg:grid-cols-3 grid-cols-2 max-xl:w-fit mx-auto gap-2 md:gap-4 h-[25em]">
-              {popularCategories.map((item, index) => {
-                return (
-                  <div
-                    onClick={()=>{router.push('/collection/' + item.slug)}}
-                    key={index}
-                    className="cursor-pointer h-full w-[11.5em] md:w-[18em] xl:w-[21em] flex justify-center items-center overflow-hidden rounded-sm relative"
-                  >
-                    <Image
-                      style={{
-                        objectFit: "fill",
-                        height: "100%",
+          <div className="bg-[#111111]">
+            <div className="w-[97vw] xl:w-[66em] pt-10 mx-auto ">
+              <p className="py-3 tex-xl md:text-2xl xl:text-3xl font-bold">
+                Discover the Best: Explore Our Popular Categories!
+              </p>
+              <div className="w-full grid lg:grid-cols-3 grid-cols-2 max-xl:w-fit mx-auto gap-2 md:gap-4 h-[25em]">
+                {popularCategories.map((item, index) => {
+                  return (
+                    <div
+                      onClick={() => {
+                        router.push("/collection/" + item.slug);
                       }}
-                      alt="polaroid"
-                      src={item.image}
-                      width={1600}
-                      height={1600}
-                      className="transition-transform duration-300 transform hover:scale-110"
-                    />
-                    {/* <p className="absolute font-bold text-md md:text-2xl xl:text-3xl z-[800]  w-fit">
+                      key={index}
+                      className="cursor-pointer h-full w-[11.5em] md:w-[18em] xl:w-[21em] flex justify-center items-center overflow-hidden rounded-sm relative"
+                    >
+                      <Image
+                        style={{
+                          objectFit: "fill",
+                          height: "100%",
+                        }}
+                        alt="polaroid"
+                        src={item.image}
+                        width={1600}
+                        height={1600}
+                        className="transition-transform duration-300 transform hover:scale-110"
+                      />
+                      {/* <p className="absolute font-bold text-md md:text-2xl xl:text-3xl z-[800]  w-fit">
                       {item.text}
-                    </p> */}
-                    <div className="text-black font-semibold text-md lg:text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-1 lg:py-2 bg-[#dbdbdb]">
-                      Shop Now
-                      <HiArrowLongRight size={22} className="ml-2" />
+                      </p> */}
+                      <div className="text-black font-semibold text-md lg:text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-1 lg:py-2 bg-[#dbdbdb]">
+                        Shop Now
+                        <HiArrowLongRight size={22} className="ml-2" />
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
-
           {/*2nd division */}
           {/* <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
-      >
+        >
         <div className="w-full py-8">
           <p className="text-[2em] text-center">
             Find the perfect custom canvas for you
@@ -266,45 +271,23 @@ const LandingSection = () => {
         </Slider>
       </div> */}
           {/* football cat. */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="w-66em mx-auto mt-5 md:mt-10"
-          >
-            <div className="w-[97vw] xl:w-[66em] mx-auto">
-              <p className="font-bold tex-xl md:text-2xl xl:text-3xl py-4">
-                Browse by Genre: Find Your Perfect Poster!
-              </p>
-              <div className="w-full h-[25em] md:h-[35em] xl:h-[45em] flex gap-2 md:gap-4">
-                <div
-                  onClick={() => {
-                    router.push("/collection/Poster?category=Tv_Show");
-                  }}
-                  className="w-[50%] h-full overflow-hidden rounded-sm relative cursor-pointer"
-                >
-                  <Image
-                    style={{
-                      objectFit: "fill",
-                      height: "100%",
-                    }}
-                    alt="polaroid"
-                    src="/Images/home/genre/TVShows.png"
-                    width={1600}
-                    height={1600}
-                    className="transition-transform duration-300 transform hover:scale-110"
-                  />
-                  <div className="text-black font-semibold text-md lg:text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-1 lg:py-2 bg-[#dbdbdb]">
-                    Shop Now
-                    <HiArrowLongRight size={22} className="ml-2" />
-                  </div>
-                </div>
-                <div className="w-[50%] flex flex-col gap-2 md:gap-4">
+          <div className="bg-[#111111]">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="w-66em mx-auto pt-5 md:pt-10 pb-10"
+            >
+              <div className="w-[97vw] xl:w-[66em] mx-auto">
+                <p className="font-bold tex-xl md:text-2xl xl:text-3xl py-4">
+                  Browse by Genre: Find Your Perfect Poster!
+                </p>
+                <div className="w-full h-[25em] md:h-[35em] xl:h-[45em] flex gap-2 md:gap-4">
                   <div
                     onClick={() => {
-                      router.push("/collection/Poster?category=Football");
+                      router.push("/collection/Poster?category=Tv_Show");
                     }}
-                    className="cursor-pointer w-full h-[50%] overflow-hidden rounded-sm relative"
+                    className="w-[50%] h-full overflow-hidden rounded-sm relative cursor-pointer"
                   >
                     <Image
                       style={{
@@ -312,7 +295,7 @@ const LandingSection = () => {
                         height: "100%",
                       }}
                       alt="polaroid"
-                      src="/Images/home/genre/Football.png"
+                      src="/Images/home/genre/TVShows.png"
                       width={1600}
                       height={1600}
                       className="transition-transform duration-300 transform hover:scale-110"
@@ -322,93 +305,124 @@ const LandingSection = () => {
                       <HiArrowLongRight size={22} className="ml-2" />
                     </div>
                   </div>
-                  <div
-                    onClick={() => {
-                      router.push("/collection/Poster?category=DC");
-                    }}
-                    className="cursor-pointer w-full h-[50%] overflow-hidden rounded-sm relative"
-                  >
-                    <Image
-                      style={{
-                        objectFit: "fill",
-                        height: "100%",
-                      }}
-                      alt="polaroid"
-                      src="/Images/home/genre/DC.png"
-                      width={1600}
-                      height={1600}
-                      className="transition-transform duration-300 transform hover:scale-110"
-                    />
-                    <div className="text-black font-semibold text-md lg:text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-1 lg:py-2 bg-[#dbdbdb]">
-                      Shop Now
-                      <HiArrowLongRight size={22} className="ml-2" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-          {/*Category Slider */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <div className="bg-black mt-10 py-2">
-              <div className="mx-5 my-5">
-                <Slider {...settingsProducts}>
-                  {featuredDrops.map((item, index) => (
+                  <div className="w-[50%] flex flex-col gap-2 md:gap-4">
                     <div
-                      key={index}
-                      className="w-[23vw] h-[16em] md:h-[25em] bg-red-600 relative overflow-hidden"
+                      onClick={() => {
+                        router.push("/collection/Poster?category=Football");
+                      }}
+                      className="cursor-pointer w-full h-[50%] overflow-hidden rounded-sm relative"
                     >
                       <Image
                         style={{
-                          objectFit: "cover",
+                          objectFit: "fill",
                           height: "100%",
                         }}
                         alt="polaroid"
-                        src="/Images/home/1.webp"
+                        src="/Images/home/genre/Football.png"
                         width={1600}
                         height={1600}
+                        className="transition-transform duration-300 transform hover:scale-110"
                       />
-                      <div className="hover:bg-opacity-0 hover:text-[0px] text-white text-xl md:text-2xl absolute top-0 left-0 w-full h-full bg-black bg-opacity-60 flex items-center justify-center uppercase">
-                        text
+                      <div className="text-black font-semibold text-md lg:text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-1 lg:py-2 bg-[#dbdbdb]">
+                        Shop Now
+                        <HiArrowLongRight size={22} className="ml-2" />
                       </div>
                     </div>
-                  ))}
-                </Slider>
+                    <div
+                      onClick={() => {
+                        router.push("/collection/Poster?category=DC");
+                      }}
+                      className="cursor-pointer w-full h-[50%] overflow-hidden rounded-sm relative"
+                    >
+                      <Image
+                        style={{
+                          objectFit: "fill",
+                          height: "100%",
+                        }}
+                        alt="polaroid"
+                        src="/Images/home/genre/DC.png"
+                        width={1600}
+                        height={1600}
+                        className="transition-transform duration-300 transform hover:scale-110"
+                      />
+                      <div className="text-black font-semibold text-md lg:text-xl absolute bottom-0 w-full flex justify-center items-center cursor-pointer py-1 lg:py-2 bg-[#dbdbdb]">
+                        Shop Now
+                        <HiArrowLongRight size={22} className="ml-2" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
+          {/*Category Slider */}
+          {/* <div className="bg-[#111111]">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
+              <div className=" pt-10 py-2">
+                <div className="mx-5 my-5">
+                  <Slider {...settingsProducts}>
+                    {featuredDrops.map((item, index) => (
+                      <div
+                        key={index}
+                        className="w-[23vw] h-[16em] md:h-[25em] bg-red-600 relative overflow-hidden"
+                      >
+                        <Image
+                          style={{
+                            objectFit: "cover",
+                            height: "100%",
+                          }}
+                          alt="polaroid"
+                          src="/Images/home/1.webp"
+                          width={1600}
+                          height={1600}
+                        />
+                        <div className="hover:bg-opacity-0 hover:text-[0px] text-white text-xl md:text-2xl absolute top-0 left-0 w-full h-full bg-black bg-opacity-60 flex items-center justify-center uppercase">
+                          text
+                        </div>
+                      </div>
+                    ))}
+                  </Slider>
+                </div>
+              </div>
+            </motion.div>
+          </div> */}
           {/*paralax */}
-          <Paralax/>
+          <div className="">
+
+          <Paralax />
+          </div>
 
           {/*product categories*/}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <p className="text-xl md:text-2xl xl:text-3xl font-semibold mt-10 text-center">
-              FEATURED DROPS
-            </p>
-            <div className="w-fit max-sm:grid max-sm:grid-cols-2 xl:w-[66em] flex flex-wrap gap-4 sm:gap-2 xl:gap-5 mx-auto mt-10 mb-10">
-              {ProductData &&
-                ProductData.slice(0, 8).map((item, index) => (
-                  <div
-                    className="cursor-pointer"
-                    // onClick={() => {
-                    //   var query = "/products/" + item._id;
-                    //   router.push(query);
-                    // }}
-                    key={index}
-                  >
-                    <ProductCard product={item} />
-                  </div>
-                ))}
-            </div>
-          </motion.div>
+          <div className="bg-[#111111]">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
+              <p className="text-xl md:text-2xl xl:text-3xl font-semibold pt-10 text-center">
+                FEATURED DROPS
+              </p>
+              <div className="w-fit max-sm:grid max-sm:grid-cols-2 xl:w-[66em] flex flex-wrap gap-4 sm:gap-2 xl:gap-5 mx-auto mt-10 pb-10">
+                {ProductData &&
+                  ProductData.slice(0, 8).map((item, index) => (
+                    <div
+                      className="cursor-pointer"
+                      // onClick={() => {
+                      //   var query = "/products/" + item._id;
+                      //   router.push(query);
+                      // }}
+                      key={index}
+                    >
+                      <ProductCard product={item} />
+                    </div>
+                  ))}
+              </div>
+            </motion.div>
+          </div>
           {/*contanct action button */}
           <ContactUs />
         </div>

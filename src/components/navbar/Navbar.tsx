@@ -41,7 +41,7 @@ const Navbar = () => {
   //Drawer Menu
   const [toggleMore, setMore] = useState(false);
   return (
-    <div className=" font-light">
+    <div className=" font-light bg-[#111111]">
       {showSearch && (
         <div className="w-full h-[100vh] absolute bg-white top-[2em] z-[1000] bg-opacity-60">
           <Search
