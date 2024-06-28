@@ -91,12 +91,12 @@ const LandingSection = () => {
   };
   const popularCategories = [
     {
-      image: "/Images/home/popularCategories/Posters.Jpg",
+      image: "/Images/home/popularCategories/Posters.jpg",
       text: "Posters",
       slug: "Poster",
     },
     {
-      image: "/Images/home/popularCategories/MousePads.Jpg",
+      image: "/Images/home/popularCategories/MousePads.jpg",
       text: "Mouse Pads",
       slug: "Mouse Pad",
     },
