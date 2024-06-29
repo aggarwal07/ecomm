@@ -395,6 +395,10 @@ const LandingSection = () => {
 
           <Paralax />
           </div>
+          {/* design your own poster */}
+          <div className="w-[97vw] xl:w-[66em] mx-auto">
+
+            </div>
 
           {/*product categories*/}
           <div className="bg-[#111111]">
@@ -422,6 +426,7 @@ const LandingSection = () => {
                   ))}
               </div>
             </motion.div>
+            
           </div>
           {/*contanct action button */}
           <ContactUs />

@@ -12,7 +12,7 @@ const Paralax = () => {
   const scale4 = useTransform(scrollYProgress , [0,1],[1.5,1])
   return (
     <div ref={container} className=" overflow-hidden my-[25vh]">
-      <motion.div style={{scale : scale4}} className="w-full h-[100vh] fixed top-[0vh] z-[-1]">
+      <motion.div  style={{scale : scale4}} className="w-full h-[100vh] fixed top-[0vh] z-[-1] ">
         <Image
           style={{
             objectFit: "cover",
