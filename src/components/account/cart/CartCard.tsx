@@ -11,7 +11,7 @@ interface ProductCardProps {
 const CartCard: React.FC<ProductCardProps> = ({ product,popup }) => {
   const router = useRouter();
   return (
-    <div className="flex items-center justify-between h-fit w-full sm:w-[29.5em] text-white p-3">
+    <div className="flex items-center justify-between h-fit w-full sm:w-[29.5em] text-white py-3 pl-3">
       <div className="flex items-center">
         <div onClick={() => {
                 var query = "/products/" + product._id;
@@ -24,8 +24,8 @@ const CartCard: React.FC<ProductCardProps> = ({ product,popup }) => {
             }}
             alt="polaroid"
             src={product.images[0]}
-            width={1600}
-            height={1600}
+            width={160}
+            height={160}
           />
         </div>
         <div className="flex flex-col h-fit justify-around ml-4 max-sm:w-[25%] w-[40%]">
@@ -35,7 +35,7 @@ const CartCard: React.FC<ProductCardProps> = ({ product,popup }) => {
           </p>
         </div>
       </div>
-      <div className="h-fit flex items-center ">
+      <div className="h-fit flex items-center justify-between max-sm:mr-5 w-[20%] ">
         {/* <input
           type="text"
           className="w-[1.9em] h-[1.9em] border-2 text-center"
@@ -43,7 +43,7 @@ const CartCard: React.FC<ProductCardProps> = ({ product,popup }) => {
         {product.maxPrice && (
           <p className={` line-through text-xs ${popup?"hidden":""} max-lg:hidden `}>Rs. {product.maxPrice}</p>
         )}
-        <p className="font-bold text-sm sm:text-md max-sm:w-[2.2em] max-sm:mr-[2.2em] max-lg:mx-[1em] lg:ml-[0.5em]">₹ {product.price}</p>
+        <p className="font-bold text-sm sm:text-md ">₹ {product.price}</p>
       </div>
     </div>
   );
