@@ -16,7 +16,7 @@ const ImageUploader = () => {
         {files.map((file) => (
           <div key={file.uuid}>
             <img
-              src={file.cdnUrl + '-/scale_crop/500x1000/smart/'}
+              src={file.cdnUrl + '-/scale_crop/400x500/smart/'}
               alt={file.fileInfo.originalFilename}
             />
           </div>

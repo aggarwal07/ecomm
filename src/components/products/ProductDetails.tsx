@@ -243,26 +243,6 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                   Rs. {unit?.price}
                 </p>
               </div>
-              {/* <div className="mt-2">
-                <label className="" htmlFor="select">
-                  Select the type
-                </label>
-                <br />
-                <select
-                  className="w-[50%] rounded-lg border-2 p-1 mt-1 text-center"
-                  name=""
-                  id="select"
-                  onChange={handleTypeSelect}
-                >
-                  {unit?.type.map((item, index) => {
-                    return (
-                      <option key={index} value={item._id}>
-                        {item.price} - {item.material} - {item.size}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div> */}
               <div className="mt-5">
                 <p className="text-gray-400 text-sm">Select the type</p>
                 <div className="mt-1 flex flex-wrap gap-3">
@@ -355,33 +335,11 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                   </ul>
                 )}
               </div>
-              {/* product added successful popup */}
-              {/* {showAlert && (
-                <Alert
-                  message="Product Added To Cart!"
-                  onClose={handleCloseAlert}
-                />
-              )} */}
-              {/* <div className="max-md:hidden lg:w-[20%] max-lg:mt-3 border-2 lg:p-2 rounded-lg flex items-center justify-center">
-                <FaHeartCirclePlus
-                  onClick={() => {
-                    heart ? setHeart(false) : setHeart(true);
-                  }}
-                  className={`${heart ? "text-red-600" : "text-black"}`}
-                  size={30}
-                />
-              </div> */}
-              {/* <div className="w-full p-2 rounded-lg bg-black text-white mt-3 text-center text-2xl font-medium ">
-                Buy Now
-              </div> */}
             </div>
           </div>
         </div>
       </div>
       {/*white space */}
-      {/* <div className="w-full h-[1em] sm:h-[2em] bg-[#fffffff6]"></div> */}
-      {/*recommendation sections */}
-      {/* <div className="text-white w-[90vw] max-sm:w-[96vw] max-lg:w-[97vw] mt-10 mx-auto"> */}
       {/* recommendations */}
       <div className="w-[97vw] min-[1069px]:w-[66em] mx-auto text-white">
         <p className="text-lg lg:text-3xl mt-10">You May Also Like ...</p>
@@ -399,18 +357,6 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
             ))}
         </div>
       </div>
-      {/* <p className="mb-5 text-2xl font-semibold mt-10 text-center">
-          FEATURED DROPS
-        </p>
-        <Slider {...settings}>
-          {ProductData?.map((item, index) => (
-            <div className="" key={index}>
-              <ProductCard product={item} />
-            </div>
-          ))}
-        </Slider> */}
-      {/* </div> */}
-      {/* added to cart PopUp */}
       <div>
         <MobileCartPopUp unit={unit} />
       </div>

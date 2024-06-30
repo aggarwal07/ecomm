@@ -1,8 +1,11 @@
+'use client'
 import React from "react";
 import ImageUploader from "../imageUploader/ImageUploader";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const CustomCreate = () => {
+  const router = useRouter();
   return (
     <div className="md:flex w-[97vw] xl:w-[66em] mx-auto bg-[#242833] max-md:py-3">
       <div className="max-md:mx-auto w-[75%] sm:w-[50%] md:w-[50%] h-[40vh] md:h-[60vh]">
@@ -31,7 +34,7 @@ const CustomCreate = () => {
             products like Wall Posters, Mousepads, Canvas, and more. Express
             your creativity and make everyday items uniquely yours.
           </p>
-          <button className="bg-white p-2 px-3 md:p-3 md:px-6 md:self-start mt-5 md:mt-10  rounded-xl border border-black text-black text-md md:text-xl hover:scale-110">
+          <button onClick={()=>{router.push("/designYourOwn")}} className="bg-white p-2 px-3 md:p-3 md:px-6 md:self-start mt-5 md:mt-10  rounded-xl border border-black text-black text-md md:text-xl hover:scale-110">
             Create !
           </button>
         </div>

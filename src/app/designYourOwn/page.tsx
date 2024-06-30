@@ -1,5 +1,7 @@
 import ContactUs from '@/components/actionButton/CartActionButton'
-import Polaroid from '@/components/designing/Polaroid'
+import DesignYourOwn from '@/components/designing/DesignYourOwn'
+import Footer from '@/components/footer/Footer'
+
 import Navbar from '@/components/navbar/Navbar'
 import React from 'react'
 
@@ -10,10 +12,13 @@ const page = () => {
         <Navbar />
       </div>
       <div>
-        <Polaroid/>
+        <DesignYourOwn/>
       </div>
       <div>
         <ContactUs/>
+      </div>
+      <div>
+        <Footer/>
       </div>
     </div>
   )
