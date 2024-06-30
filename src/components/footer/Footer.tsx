@@ -13,7 +13,7 @@ const Footer = () => {
           <Link href="/">
             <div className="cursor-pointer">
               <Image
-                src="/Images/logo/Canvify_Logo6.png"
+                src="/Images/logo/Canvify_LogoW.png"
                 alt="logo"
                 width={180}
                 height={55}
