@@ -72,7 +72,7 @@ const Navbar = () => {
             className="sm:hidden cursor-pointer"
           >
             <Image
-              src="/Images/logo/Canvify_Logo6.png"
+              src="/Images/logo/Canvify_LogoW.png"
               alt="logo"
               width={100}
               height={55}
