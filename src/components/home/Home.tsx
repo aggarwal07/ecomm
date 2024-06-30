@@ -17,6 +17,7 @@ import { FaShippingFast, FaUpload } from "react-icons/fa";
 import Splash from "../splash/Splash";
 import Paralax from "./Paralax";
 import { BiSolidOffer } from "react-icons/bi";
+import CustomCreate from "./CustomCreate";
 
 const LandingSection = () => {
   //splash when website is loaded
@@ -282,8 +283,6 @@ const LandingSection = () => {
           <div className="">
             <Paralax />
           </div>
-          {/* design your own poster */}
-          <div className="w-[97vw] xl:w-[66em] mx-auto"></div>
           {/*white space */}
           <div className="h-[5vh] bg-[#111111] "></div>
           {/*agenda */}
@@ -291,7 +290,10 @@ const LandingSection = () => {
             <div className="grid grid-cols-2 gap-y-8 md:grid-cols-4 items-center w-[97vw] xl:w-[66em] mx-auto">
               {agenda.map((item, index) => {
                 return (
-                  <div key={index} className="flex flex-col justify-center items-center">
+                  <div
+                    key={index}
+                    className="flex flex-col justify-center items-center"
+                  >
                     {item.icon}
                     <p className="text-gray-400 text-xs md:text-sm mt-3 text-center px-5">
                       Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -303,6 +305,10 @@ const LandingSection = () => {
                 );
               })}
             </div>
+          </div>
+          {/* design your own poster */}
+          <div className="bg-[#111111] pt-10">
+            <CustomCreate />
           </div>
 
           {/*product categories*/}
