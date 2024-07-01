@@ -18,7 +18,7 @@ import { FaPlus, FaMinus } from "react-icons/fa6";
 // import { setCart, setErrors, setUser } from "@/store/slices/auth";
 import Alert from "../alert/Alert";
 import { openCart, setCart } from "@/store/slices/cart";
-import MobileCartPopUp from "../actionButton/MobileCartPopUp";
+import AddedCartPopUp from "../actionButton/AddedCartPopUp";
 // import ImageGen from "./ImageGen";
 interface ProductDetails {
   productName: string;
@@ -32,6 +32,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
   const [quantity, setQuantity] = useState(1);
   //Product Api data fetching
   const [ProductData, setProdData] = useState<Product[] | null>(null);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -116,8 +117,12 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
       newCart = cart.concat({ ...CartUnit, quantity: quantity });
     }
     dispatch(setCart(newCart));
-    dispatch(openCart());
+    // dispatch(openCart());
     setQuantity(1);
+    setIsPopupVisible(true);
+    setTimeout(() => {
+      setIsPopupVisible(false);
+    }, 2000);
   };
   // Split the key by uppercase letters and join with spaces
   const makeKeyReadable = (key: string) =>
@@ -313,6 +318,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                 className="lg:w-[50%] mt-5 border-2 rounded-lg p-2 text-center cursor-pointer bg-black text-white font-black"
               >
                 Add to Cart
+                
               </div>
               <div className="cursor-pointer border-t border-b px-2 py-2 border-gray-300 text-black w-[100%] sm:w-[70%] mt-5">
                 <div
@@ -357,9 +363,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
             ))}
         </div>
       </div>
-      <div>
-        <MobileCartPopUp unit={unit} />
-      </div>
+      
     </div>
   );
 };

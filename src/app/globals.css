@@ -66,3 +66,18 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@keyframes slideDown {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 36;
+    opacity: 1;
+  }
+}
+
+.added-cart-popup {
+  animation: slideDown 0.5s forwards;
+}

@@ -1,9 +1,11 @@
-import React from "react";
+'use client'
+import React, { useState } from "react";
 import Image from "next/image";
 import { Product } from "@/types/types";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { openCart, setCart } from "@/store/slices/cart";
 import { useRouter } from "next/navigation";
+import AddedCartPopUp from "../actionButton/AddedCartPopUp";
 
 interface ProductCardProps {
   product: Product;
@@ -13,6 +15,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const cart = useAppSelector((state) => state.cart.cart);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
   const handelAddToCart = async () => {
     var newCart = [];
     if (
@@ -28,7 +31,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       newCart = cart.concat(product);
     }
     dispatch(setCart(newCart));
-    dispatch(openCart());
+    setIsPopupVisible(true);
+    setTimeout(() => {
+      setIsPopupVisible(false);
+    }, 2000);
+    // dispatch(openCart());
   };
   return (
     <div className="transition-transform duration-300 transform sm:hover:scale-105 md:w-[15.5em] w-[10.5em]">
@@ -87,6 +94,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         >
           Add To Cart
         </button>
+      </div>
+      <div className="fixed top-0">
+        <AddedCartPopUp unit={product} isVisible={isPopupVisible}/>
       </div>
     </div>
   );
