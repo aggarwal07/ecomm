@@ -50,7 +50,7 @@ const Search: React.FC<SearchProps> = ({ closeSearch }) => {
           </div>
           {searchText && (
             <div className="w-[70vw] lg:w-[50em] h-[60vh] bg-gray-800 mx-auto absolute border border-t-0 border-gray-400 rounded-lg p-5 overflow-y-auto ">
-                <p className="text-md text-gray-400 uppercase w-[65%] mx-auto ">Products</p>
+                <p className="text-md text-gray-400 uppercase w-[65%] mx-auto ">Products / {searchText}</p>
                 <div className="w-[65%] mx-auto h-[0.01em] bg-gray-400 my-3"></div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 gap-y-5 mt-7 w-fit h-fit my-auto mx-auto">
                 {limitedData.map((item, index) => (
