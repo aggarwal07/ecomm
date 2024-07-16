@@ -175,18 +175,18 @@ const Cart = () => {
     <div className="w-fit h-[100vh] mx-auto text-white p-2 sm:p-5 background-gradient">
       <div className="font-medium max-sm:mt-2">
         <div className="flex justify-between">
-          <p className="font-black text-2xl">Cart</p>
-          <button onClick={()=>{dispatch(closeCart())}} className="flex gap-1 items-center border bg-white px-2 cursor-pointer rounded-full text-sm text-black">
+          <p className="font-black text-xl lg:text-2xl">Cart</p>
+          <button onClick={()=>{dispatch(closeCart())}} className="flex gap-1 items-center border bg-white px-2 cursor-pointer rounded-full text-xs lg:text-sm text-black">
             <RxCross2 size={15} />
             Close
           </button>
         </div>
-        <p className="mt-4 text-right">
+        <p className="mt-4 text-right text-sm lg:text-md">
           You have {cart.length} {cart.length > 1 ? "items" : "item"} in your
           cart
         </p>
       </div>
-      <div className="w-fit gap-1 md:gap-2 mt-1 flex flex-col h-[65vh] overflow-y-auto p-2 rounded-lg shadow-2xl bg-gray-200 min-w-[25vw]">
+      <div className="w-fit gap-1 md:gap-2 mt-1 flex flex-col h-[65%] overflow-y-auto p-2 rounded-lg shadow-2xl bg-gray-200 min-w-[25vw]">
         {cart.length < 1 ? (
           <div className="flex flex-col items-center justify-center h-[35%] w-full text-gray-400">
             <LuShoppingCart size={120} />
@@ -248,15 +248,15 @@ const Cart = () => {
             <p className="mt-2">Free</p>
           </div>
         </div> */}
-      <div className="w-full text-black p-2 px-5 mx-auto h-[21vh] bg-gray-200 rounded-lg  mt-5">
+      <div className="w-full text-black p-2 px-5 mx-auto h-[21%] bg-gray-200 rounded-lg  mt-5">
         <div className="justify-between h-[30%] flex items-center">
-          <p className="text-gray-500 text-sm">Discount</p>
-          <p className="text-lg">-₹{calculateDiscount()}</p>
+          <p className="text-gray-500 text-xs 2xl:text-sm">Discount</p>
+          <p className="text-sm 2xl:text-lg">-₹{calculateDiscount()}</p>
         </div>
         <div className="flex items-center text-lg h-[40%] border-t border-b border-gray-300">
-          <div className="w-[40%] h-full flex flex-col justify-center">
+          <div className="w-[40%] h-full flex max-2xl:items-center 2xl:flex-col max-2xl:justify-around justify-center">
             <p className="text-gray-500 text-sm">Subtotal</p>{" "}
-            <p className="font-bold text-xl"> ₹{calculateTotalPrice()}</p>
+            <p className="font-bold text-lg 2xl:text-xl"> ₹{calculateTotalPrice()}</p>
           </div>
           <button
             onClick={() => {
@@ -276,7 +276,7 @@ const Cart = () => {
           onClick={() => {
             router.back();
           }}
-          className="text-center cursor-pointer font-bold h-[30%] flex items-center justify-center"
+          className="text-center text-sm lg:text-md cursor-pointer font-bold h-[30%] flex items-center justify-center"
         >
           Continue Shopping
         </div>

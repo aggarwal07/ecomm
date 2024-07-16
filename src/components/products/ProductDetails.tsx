@@ -363,6 +363,9 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
             ))}
         </div>
       </div>
+      <div>
+        <AddedCartPopUp unit={unit} isVisible={isPopupVisible} />
+      </div>
       
     </div>
   );

@@ -8,7 +8,7 @@ const CustomCreate = () => {
   const router = useRouter();
   return (
     <div className="md:flex w-[97vw] xl:w-[66em] mx-auto bg-[#242833] max-md:py-3">
-      <div className="max-md:mx-auto w-[75%] sm:w-[50%] md:w-[50%] h-[40vh] md:h-[60vh]">
+      <div className="max-md:mx-auto w-[75%] sm:w-[50%] md:w-[50%] h-[80vh] 2xl:h-[60vh]">
         <Image
           style={{
             objectFit: "fill",
@@ -22,8 +22,8 @@ const CustomCreate = () => {
         />
       </div>
       <div className=" w-[97%] md:w-[50%] flex justify-center max-md:mx-auto">
-        <div className="text-center w-[80%] mt-5 md:mt-24 flex flex-col items-center">
-          <p className="text-white text-3xl md:text-5xl font-bold">
+        <div className="text-center w-[80%] mt-16 2xl:mt-24 flex flex-col items-center">
+          <p className="text-white text-3xl md:text-4xl 2xl:text-5xl font-bold">
             Create Your Personalized Products
           </p>
           <p
@@ -34,7 +34,7 @@ const CustomCreate = () => {
             products like Wall Posters, Mousepads, Canvas, and more. Express
             your creativity and make everyday items uniquely yours.
           </p>
-          <button onClick={()=>{router.push("/designYourOwn")}} className="bg-white p-2 px-3 md:p-3 md:px-6 md:self-start mt-5 md:mt-10  rounded-xl border border-black text-black text-md md:text-xl hover:scale-110">
+          <button onClick={()=>{router.push("/designYourOwn")}} className="bg-white p-2 px-3 2xl:p-3 2xl:px-6 md:self-start mt-5 md:mt-10  rounded-xl border border-black text-black text-md 2xl:text-xl hover:scale-110">
             Create !
           </button>
         </div>
