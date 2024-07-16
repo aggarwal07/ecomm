@@ -1,4 +1,3 @@
-import MobileCartPopUp from "@/components/actionButton/MobileCartPopUp";
 import Footer from "@/components/footer/Footer";
 import LandingSection from "@/components/home/Home";
 import Navbar from "@/components/navbar/Navbar";
