@@ -190,7 +190,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
           {/*images of products and slider dots */}
           <div className="flex max-[1069px]:flex-col min-[1069px]:gap-8 max-xl:items-center">
             <div className="w-fit mx-auto flex flex-col items-center mt-5 ">
-              <div className="w-[95vw] h-[60vh] max-sm:h-[26em] md:w-[32em] md:h-[38em] max-md:relative">
+              <div className="w-[95vw] h-[60vh] max-sm:h-[26em] md:w-[32em] md:h-[38em] max-md:relative bg-gray-400">
                 <div className="rounded-full p-1 bg-white md:hidden absolute top-3 right-3">
                   <FaHeartCirclePlus
                     onClick={() => {
@@ -202,7 +202,7 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                 </div>
                 <Image
                   style={{
-                    objectFit: "cover",
+                    objectFit: "contain",
                     height: "100%",
                   }}
                   alt="polaroid"
@@ -218,9 +218,13 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                     onClick={() => {
                       setImgSelected(i);
                     }}
-                    className="cursor-pointer sm:max-[1069px]:w-[12vw]"
+                    className="cursor-pointer sm:max-[1069px]:w-[12vw] bg-black"
                   >
                     <Image
+                      style={{
+                        objectFit: "contain",
+                        height: "100%",
+                      }}
                       className="h-full"
                       src={item}
                       alt="productLayout2"
@@ -293,24 +297,10 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
               {/* offers */}
               <ul className="text-gray-500 list-disc mt-5 ml-6 text-md">
                 <li className="my-3">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit,
-                  recusandae! Lorem ipsum dolor sit amet.
+                  Add 2 Set Of Cards (Wall Collage) and get free shipping.
                 </li>
                 <li className="my-3">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit,
-                  recusandae! Lorem ipsum dolor sit amet.
-                </li>
-                <li className="my-3">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit,
-                  recusandae! Lorem ipsum dolor sit amet.
-                </li>
-                <li className="my-3">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit,
-                  recusandae! Lorem ipsum dolor sit amet.
-                </li>
-                <li className="my-3">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit,
-                  recusandae! Lorem ipsum dolor sit amet.
+                  Buy 3 sets of cards (Wall Collage) and get 1 poster free.
                 </li>
               </ul>
               <div
@@ -318,9 +308,8 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                 className="lg:w-[50%] mt-5 border-2 rounded-lg p-2 text-center cursor-pointer bg-black text-white font-black"
               >
                 Add to Cart
-                
               </div>
-              <div className="cursor-pointer border-t border-b px-2 py-2 border-gray-300 text-black w-[100%] sm:w-[70%] mt-5">
+              <div className="cursor-pointer border-t border-b px-2 py-2 border-gray-300 text-black w-[100%] sm:w-[100%] mt-5">
                 <div
                   onClick={() => {
                     showDesc ? setShowDesc(false) : setShowDesc(true);
@@ -336,7 +325,9 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
                 {showDesc && (
                   <ul className="list-disc ml-8 mt-2 max-sm:text-sm text-gray-500">
                     {unit?.description.map((item, index) => (
-                      <li key={index}>{item}</li>
+                      <li className="mt-2" key={index}>
+                        {item}
+                      </li>
                     ))}
                   </ul>
                 )}
@@ -366,7 +357,6 @@ const ProductDetails: React.FC<ProductDetails> = ({ productName }) => {
       <div>
         <AddedCartPopUp unit={unit} isVisible={isPopupVisible} />
       </div>
-      
     </div>
   );
 };

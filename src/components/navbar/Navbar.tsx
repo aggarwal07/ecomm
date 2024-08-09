@@ -22,7 +22,7 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Posters", path: "/collection/Poster" },
-    { name: "Mouse Pads", path: "/collection/Mouse Pad" },
+    { name: "Wall Collage", path: "/collection/Wall Collage" },
     { name: "Polaroid", path: "/collection/Polaroid" },
     { name: "Track Your Order", path: "/trackYourOrder" },
     // {
@@ -128,11 +128,11 @@ const Navbar = () => {
               </div>
               <button
                 onClick={() => {
-                  router.push("/collection/Mouse Pad");
+                  router.push("/collection/Wall Collage");
                 }}
                 className="p-2"
               >
-                Mouse Pads
+                Wall Collage
               </button>
               <button
                 onClick={() => {
