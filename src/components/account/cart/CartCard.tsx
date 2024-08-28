@@ -35,7 +35,7 @@ const CartCard: React.FC<ProductCardProps> = ({ product,popup }) => {
           </p>
         </div>
       </div>
-      <div className="h-fit flex items-center justify-between max-sm:mr-5 w-[20%] ">
+      <div className="h-fit flex items-center justify-between max-sm:mr-5 w-[25%] gap-x-2 ">
         {/* <input
           type="text"
           className="w-[1.9em] h-[1.9em] border-2 text-center"
