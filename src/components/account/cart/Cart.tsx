@@ -11,6 +11,7 @@ import { RxCross2 } from "react-icons/rx";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import { LuShoppingCart } from "react-icons/lu";
 import { clearCart, closeCart, setCart } from "@/store/slices/cart";
+import gsap from "gsap";
 const Cart = () => {
   const router = useRouter();
   const cart = useAppSelector((state) => state.cart.cart || []);
@@ -176,7 +177,18 @@ const Cart = () => {
       <div className="font-medium max-sm:mt-2">
         <div className="flex justify-between">
           <p className="font-black text-xl lg:text-2xl">Cart</p>
-          <button onClick={()=>{dispatch(closeCart())}} className="flex gap-1 items-center border bg-white px-2 cursor-pointer rounded-full text-xs lg:text-sm text-black">
+          <button onClick={()=>{setTimeout(()=>{
+            dispatch(closeCart());
+          },500);
+            gsap.to("#cart", {
+              opacity: 0,
+              duration: 0.7,
+              scale: 0,
+              x: 150,
+              y: 200,
+              ease: "power4.out",
+            });
+          }} className="flex gap-1 items-center border bg-white px-2 cursor-pointer rounded-full text-xs lg:text-sm text-black">
             <RxCross2 size={15} />
             Close
           </button>
