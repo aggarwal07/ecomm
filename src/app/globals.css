@@ -15,7 +15,14 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
+/* scrollbar work */
+::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, rgb(156, 45, 156), orange , red);
+  border-radius: 600px;
+}
 body {
   overflow-x: hidden;
   background-color: #111111;
