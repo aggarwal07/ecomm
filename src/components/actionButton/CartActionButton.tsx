@@ -28,15 +28,15 @@ const ContactUs = () => {
   }, [isOpen]);
   return (
     <div className="max-sm:hidden">
-      <div className="fixed bottom-10 right-8 flex flex-col items-end">
-        {isOpen && (
+      {isOpen && (
           <div
             id="cart"
-            className={`rounded-2xl absolute -bottom-[2.2em] -right-[3.7vw] lg:-bottom-[2.4em] lg:-right-[2.4vw] 2xl:-bottom-[2.5em] 2xl:-right-[1.9vw]`}
+            className={`rounded-2xl fixed top-0 right-0`}
           >
             <Cart />
           </div>
         )}
+      <div className="fixed bottom-10 right-8 flex flex-col items-end">
 
         {!isOpen && (
           <div
