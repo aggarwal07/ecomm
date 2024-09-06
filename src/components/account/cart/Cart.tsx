@@ -15,93 +15,17 @@ import gsap from "gsap";
 const Cart = () => {
   const router = useRouter();
   const cart = useAppSelector((state) => state.cart.cart || []);
-  // const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
-  // dispatch(clearCart());
-  //if user has not signed in
-  // if (user) {
-  // } else {
-  //   return (
-  //     <div className="bg-gray-200 h-[78vh] w-[24em] absolute top-0 rounded-xl right-0  flex flex-col items-center justify-center p-2">
-  //       <p className="text-2xl text-gray-700 font-semibold text-center uppercase">
-  //         Please sign in to add this product to your cart!!
-  //       </p>
-  //       {/* <form action=""></form> */}
-  //     </div>
-  //   );
-  // }
-  // useEffect(() => {
-  //   const loginUser = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `https://backendfiggle.onrender.com/api/accounts/${user.email}/${user.password}`
-  //       );
-  //       if (response.ok) {
-  //         const data = await response.json();
-  //         console.log("Login successful", data);
-  //         dispatch(setUser(data));
-  //       } else {
-  //         const { message } = await response.json();
-  //         dispatch(setErrors(message));
-  //       }
-  //     } catch (error) {
-  //       console.error("Login error:", error);
-  //       dispatch(setErrors("An error occurred. Please try again later."));
-  //     }
-  //   };
 
-  //   // Call the loginUser function when the component mounts
-  //   loginUser();
-  // }, []);
   const handleRemoveCart = async (index: number) => {
     const newCart = cart.filter((item: any, i: any) => i !== index);
     dispatch(setCart(newCart));
-    // try {
-    //   const endpoint = `https://backendfiggle.onrender.com/api/accounts/${user._id}`;
-    //   const requestBody = {
-    //     cart: newCart,
-    //   };
-    //   const response = await fetch(endpoint, {
-    //     method: "PUT",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(requestBody),
-    //   });
-    //   if (response.ok) {
-    //     console.log("Product removed from cart successfully");
-    //   } else {
-    //     console.error(
-    //       "Failed to add product to cart:",
-    //       response.status,
-    //       response.statusText
-    //     );
-    //   }
-    // } catch (error: any) {
-    //   console.error("Error adding product to cart:", error.message);
-    // }
-    // try {
-    //   const response = await fetch(
-    //     `https://backendfiggle.onrender.com/api/accounts/${user.email}/${user.password}`
-    //   );
-    //   if (response.ok) {
-    //     const data = await response.json();
-    //     console.log("Login successful", data);
-    //     dispatch(setUser(data));
-    //   } else {
-    //     const { message } = await response.json();
-    //     setErrors(message);
-    //   }
-    // } catch (error) {
-    //   console.error("Login error:", error);
-    //   setErrors("An error occurred. Please try again later.");
-    // }
   };
   //total MRP
   function calculateTotalPrice(): number {
     let totalPrice = 0;
     for (const item of cart) {
-      totalPrice += parseInt(item.price)*parseInt(item.quantity);
+      totalPrice += parseInt(item.price) * parseInt(item.quantity);
     }
     return totalPrice;
   }
@@ -111,7 +35,9 @@ const Cart = () => {
     for (const item of cart) {
       if (item.maxPrice != "") {
         console.log(totalDiscount);
-        totalDiscount += (parseInt(item.maxPrice) - parseInt(item.price))*parseInt(item.quantity);
+        totalDiscount +=
+          (parseInt(item.maxPrice) - parseInt(item.price)) *
+          parseInt(item.quantity);
       }
       // totalDiscount += parseInt(item.discount);
     }
@@ -144,51 +70,27 @@ const Cart = () => {
     // await updateCart(newCart);
   };
 
-  // const updateCart = async (newCart: any) => {
-  //   try {
-  //     const endpoint = `https://backendfiggle.onrender.com/api/accounts/${user._id}`;
-  //     const requestBody = {
-  //       cart: newCart,
-  //     };
-  //     const response = await fetch(endpoint, {
-  //       method: "PUT",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(requestBody),
-  //     });
-  //     if (response.ok) {
-  //       console.log("Cart updated successfully");
-  //       // dispatch(openCart());
-  //       dispatch(setCart(newCart));
-  //     } else {
-  //       console.error(
-  //         "Failed to update cart:",
-  //         response.status,
-  //         response.statusText
-  //       );
-  //     }
-  //   } catch (error: any) {
-  //     console.error("Error updating cart:", error.message);
-  //   }
-  // };
   return (
     <div className="w-fit h-[100vh] mx-auto text-white p-2 sm:p-5 background-gradient">
       <div className="font-medium max-sm:mt-2">
         <div className="flex justify-between">
           <p className="font-black text-xl lg:text-2xl">Cart</p>
-          <button onClick={()=>{setTimeout(()=>{
-            dispatch(closeCart());
-          },500);
-            gsap.to("#cart", {
-              opacity: 0,
-              duration: 0.7,
-              scale: 0,
-              x: 150,
-              y: 200,
-              ease: "power4.out",
-            });
-          }} className="flex gap-1 items-center border bg-white px-2 cursor-pointer rounded-full text-xs lg:text-sm text-black">
+          <button
+            onClick={() => {
+              setTimeout(() => {
+                dispatch(closeCart());
+              }, 500);
+              gsap.to("#cart", {
+                opacity: 0,
+                duration: 0.7,
+                scale: 0,
+                x: 150,
+                y: 200,
+                ease: "power4.out",
+              });
+            }}
+            className="flex gap-1 items-center border bg-white px-2 cursor-pointer rounded-full text-xs lg:text-sm text-black"
+          >
             <RxCross2 size={15} />
             Close
           </button>
@@ -268,7 +170,10 @@ const Cart = () => {
         <div className="flex items-center text-lg h-[40%] border-t border-b border-gray-300">
           <div className="w-[40%] h-full flex max-2xl:items-center 2xl:flex-col max-2xl:justify-around justify-center">
             <p className="text-gray-500 text-sm">Subtotal</p>{" "}
-            <p className="font-bold text-lg 2xl:text-xl"> ₹{calculateTotalPrice()}</p>
+            <p className="font-bold text-lg 2xl:text-xl">
+              {" "}
+              ₹{calculateTotalPrice()}
+            </p>
           </div>
           <button
             onClick={() => {
