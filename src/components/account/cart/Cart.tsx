@@ -12,6 +12,7 @@ import { FaPlus, FaMinus } from "react-icons/fa6";
 import { LuShoppingCart } from "react-icons/lu";
 import { clearCart, closeCart, setCart } from "@/store/slices/cart";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 const Cart = () => {
   const router = useRouter();
   const cart = useAppSelector((state) => state.cart.cart || []);
@@ -69,9 +70,17 @@ const Cart = () => {
     );
     // await updateCart(newCart);
   };
-
+  useGSAP(()=>{
+    gsap.from('#cartMainDiv div',{
+      x:50,
+      duration:0.5,
+      ease:"power1.out",
+      stagger:0.1,
+      opacity : 0,
+    })
+  })
   return (
-    <div className="w-fit h-[100vh] mx-auto text-white p-2 sm:p-5 background-gradient">
+    <div id="cartMainDiv" className="w-fit h-[100vh] mx-auto text-white p-2 sm:p-5 background-gradient">
       <div className="font-medium max-sm:mt-2">
         <div className="flex justify-between">
           <p className="font-black text-xl lg:text-2xl">Cart</p>
