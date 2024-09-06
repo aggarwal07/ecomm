@@ -5,6 +5,7 @@ import ProductCard from "../products/ProductCard";
 import { useSearchParams } from "next/navigation";
 import { Product } from "@/types/types";
 import { setProducts } from "@/store/slices/products";
+import { HashLoader } from "react-spinners";
 interface ProductListing {
   productType: string;
 }
@@ -20,6 +21,7 @@ const ProductsListing: React.FC<ProductListing> = ({ productType }) => {
   console.log(category, "category");
   const dispatch = useAppDispatch();
   const [ProductData, setProdData] = useState<Product[] | null>(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,6 +36,8 @@ const ProductsListing: React.FC<ProductListing> = ({ productType }) => {
         dispatch(setProducts(jsonData));
       } catch (error) {
         console.error("Error fetching data:", error);
+      }finally{
+        setLoading(false);
       }
     };
     fetchData();
@@ -77,7 +81,7 @@ const ProductsListing: React.FC<ProductListing> = ({ productType }) => {
           </div>
         </div>
         <div className="w-fit gap-4 sm:gap-2 md:gap-5 grid grid-cols-2 lg:grid-cols-3 mx-auto  mb-10">
-          {ProductData &&
+          {loading ? <div><HashLoader color="#ffffff" /></div> :ProductData &&
             ProductData.map((item, index) => {
               return (
                 <div key={index} className="cursor-pointer">
