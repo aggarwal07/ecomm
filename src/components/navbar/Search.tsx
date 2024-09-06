@@ -35,50 +35,34 @@ const Search: React.FC<SearchProps> = ({ closeSearch }) => {
 
     fetchData();
   }, [searchText]);
-  // console.log(limitedData, "search Data");
+
   // animation work for the search bar
   useGSAP(() => {
     const tl = gsap.timeline();
-    tl
-      // .from("#searchDiv", {
-      //   duration: 0.4,
-      //   y: -100,
-      //   opacity: 0,
-      //   // ease:"elastic.in",
-      // })
-      .from("#inputBox", {
-        duration: 0.4,
-        x: 1000,
-        // opacity: 0,
-        ease: "circ.out",
-      });
-    gsap.from("#resultBox", {
-      duration: 1,
-      y: 100,
-      opacity: 0,
-      ease: "elastic.out",
+    tl.from("#searchDiv div", {
+      duration: 0.4,
+      x: 1000,
+      stagger: 0.1,
+      ease: "circ.out",
     });
   });
   // close button clicked animation
   function closeBar() {
-    gsap.to("#inputBox", {
+    gsap.to("#searchDiv", {
       duration: 0.4,
       x: 1000,
-      // opacity: 0,
+      stagger: 0.1,
       ease: "circ.in",
     });
     setTimeout(() => {
       closeSearch();
-    },400);
+    }, 400);
   }
 
   return (
-    <div id="searchDiv" className="z-[1001]">
-      <div className="h-[7em] bg-gray-800 flex items-center justify-center">
-        <div
-          id="inputBox"
-          className="w-[70vw] lg:w-[50em] h-[2em] sm:h-[3em] relative"
-        >
+    <div className="z-[1001] bg-gray-800">
+      <div id="searchDiv" className="h-[7em]  flex items-center justify-center">
+        <div className="w-[70vw] lg:w-[50em] h-[2em] sm:h-[3em] relative">
           <input
             type="text"
             className="rounded-lg w-full h-full bg-gray-800 text-white text-sm sm:text-lg p-1 px-3 outline-none border border-gray-400 focus:border-white focus:border-2"
@@ -90,10 +74,7 @@ const Search: React.FC<SearchProps> = ({ closeSearch }) => {
             <IoIosSearch size={24} />
           </div>
           {searchText && (
-            <div
-              id="resultBox"
-              className="w-[70vw] lg:w-[50em] h-[60vh] bg-gray-800 mx-auto absolute border border-t-0 border-gray-400 rounded-lg p-5 overflow-y-auto "
-            >
+            <div className="w-[70vw] lg:w-[50em] h-[60vh] bg-gray-800 mx-auto absolute border border-t-0 border-gray-400 rounded-lg p-5 overflow-y-auto ">
               <p className="text-md text-gray-400 uppercase w-[65%] mx-auto ">
                 Products / {searchText}
               </p>
@@ -108,11 +89,13 @@ const Search: React.FC<SearchProps> = ({ closeSearch }) => {
             </div>
           )}
         </div>
-        <IoCloseOutline
-          onClick={closeBar}
-          className="text-white cursor-pointer ml-2 "
-          size={30}
-        />
+        <div>
+          <IoCloseOutline
+            onClick={closeBar}
+            className="text-white cursor-pointer ml-2 "
+            size={30}
+          />
+        </div>
       </div>
     </div>
   );
