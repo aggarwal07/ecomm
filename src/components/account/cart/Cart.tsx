@@ -26,7 +26,7 @@ const Cart = () => {
   function calculateTotalPrice(): number {
     let totalPrice = 0;
     for (const item of cart) {
-      totalPrice += parseInt(item.price) * parseInt(item.quantity);
+      totalPrice += parseInt(item?.price) * parseInt(item?.quantity);
     }
     return totalPrice;
   }
@@ -34,20 +34,20 @@ const Cart = () => {
   function calculateDiscount(): number {
     let totalDiscount = 0;
     for (const item of cart) {
-      if (item.maxPrice != "") {
+      if (item?.maxPrice != "") {
         console.log(totalDiscount);
         totalDiscount +=
-          (parseInt(item.maxPrice) - parseInt(item.price)) *
-          parseInt(item.quantity);
+          (parseInt(item?.maxPrice) - parseInt(item?.price)) *
+          parseInt(item?.quantity);
       }
-      // totalDiscount += parseInt(item.discount);
+      // totalDiscount += parseInt(item?.discount);
     }
     return totalDiscount;
   }
   //handling quantity
   const handleIncreaseQuantity = async (unit: any) => {
     let newCart = cart.map((item: any) =>
-      item._id === unit?._id ? { ...item, quantity: item.quantity + 1 } : item
+      item?._id === unit?._id ? { ...item, quantity: item?.quantity + 1 } : item
     );
     dispatch(setCart(newCart));
   };
@@ -57,8 +57,8 @@ const Cart = () => {
       handleRemoveCart(index);
     }
     let newCart = cart.map((item: any) =>
-      item._id === unit?._id && item.quantity > 1
-        ? { ...item, quantity: item.quantity - 1 }
+      item?._id === unit?._id && item?.quantity > 1
+        ? { ...item, quantity: item?.quantity - 1 }
         : item
     );
     dispatch(setCart(newCart));
@@ -66,7 +66,7 @@ const Cart = () => {
 
   const handleSetQuantity = async (unit: any, quantity: number) => {
     let newCart = cart.map((item: any) =>
-      item._id === unit?._id ? { ...item, quantity: quantity } : item
+      item?._id === unit?._id ? { ...item, quantity: quantity } : item
     );
     // await updateCart(newCart);
   };
