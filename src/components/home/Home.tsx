@@ -15,6 +15,8 @@ import { FaShippingFast, FaUpload } from "react-icons/fa";
 import Paralax from "./Paralax";
 import { BiSolidOffer } from "react-icons/bi";
 import CustomCreate from "./CustomCreate";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const LandingSection = () => {
   const dispatch = useAppDispatch();
@@ -76,20 +78,96 @@ const LandingSection = () => {
       text: "",
     },
   ];
+  //gsap work starts here
+  const [currentImage, setCurrentImage] = useState(0);
+  const images = [
+    '/Images/home/landing4.gif',
+    '/Images/home/landing5.jpg',
+    '/Images/home/landing6.jpg',
+  ];
+  useGSAP(() => {
+    const tl = gsap.timeline();
+    tl.from("#landingImg", {
+      scale: 1.5,
+      duration: 2,
+      // delay : 0.2,
+      ease: "elastic.out",
+    })
+      .to("#landingImg", {
+        filter: "blur(6px)",
+      })
+      .from(
+        "#landingText p",
+        {
+          y: 200,
+          duration: 0.7,
+          ease: "power1.out",
+          stagger: 0.7,
+          opacity: 0,
+        },
+        "1"
+      )
+      .to("#landingImg", {
+        delay : 0.7,
+        filter: "blur(0px)",
+        duration : 0.7
+      })
+      .to("#landingText #head", {
+        delay : 0.7,
+        y : -500,
+        x : -350,
+        scale : 0,
+        ease: "power1.out",
+        duration : 1.5,
+      },'3').to("#landingText #tagline", {
+        delay : 0.7,
+        opacity : 0,
+        duration : 0.7,
+      },'3').to("#landingImg", { opacity: 0, duration: 0.5 }) // Fade out
+      .call(() => setCurrentImage((prev) => (prev + 1) % images.length)) // Change the image
+      .to("#landingImg", { opacity: 1, duration: 0.5 , width : "80%" }); // Fade in
+  });
+  //gsap work ends here
   return (
     <div className="text-white">
       <div>
         {/*landing image */}
         <div className="bg-[#111111]">
-          <div className="w-full  mx-auto  overflow-hidden relative bg-[#111111] ">
+          <div className="w-full  mx-auto  overflow-hidden relative bg-[#111111] flex justify-center ">
+            <div className="absolute z-[1001] w-[100vw] top-[17vh]">
+              <div
+                id="landingText"
+                className="w-[50vw] flex flex-col items-center gap-[2em] text-center mx-auto"
+              >
+                <p
+                  id="head"
+                  style={{ fontSize: "200px" }}
+                  className="font-bold"
+                >
+                  Canvify
+                </p>
+                <p id="tagline" className="text-4xl uppercase">
+                  Elevate your space with custom designs and prints.
+                </p>
+                <p id="tagline" className="text-4xl uppercase">
+                  From posters and wall canvases to mousepads and keyboard
+                  skins, we bring your ideas to life with quality prints.
+                </p>
+                <p id="tagline" className="text-4xl uppercase">
+                  Let Canvify add creativity and artistry to every corner of
+                  your home or office.
+                </p>
+              </div>
+            </div>
             <Image
+              id="landingImg"
               style={{
                 objectFit: "cover",
                 height: "100%",
                 width: "100%",
               }}
               alt="polaroid"
-              src="/Images/home/landing.png"
+              src={images[currentImage]}
               width={1600}
               height={1600}
             />
