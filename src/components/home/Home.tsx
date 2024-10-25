@@ -145,19 +145,20 @@ const LandingSection = () => {
       <div>
         {/*landing image */}
         <div className="bg-[#111111]">
-          <div className="w-full  mx-auto  overflow-hidden relative bg-[#111111] flex justify-center ">
+          {/* for screen more then md */}
+          <div className="w-full  mx-auto  overflow-hidden relative bg-[#111111] flex justify-center max-md:hidden ">
             <div className="absolute z-[1001] w-[100vw] top-[10vh]">
               <div
                 id="landingText"
                 className={`w-[50vw] flex flex-col items-center text-center mx-auto ${Dancing.className}`}
               >
-                <p id="tagline" className="text-4xl uppercase">
+                <p id="tagline" className="text-3xl lg:text-4xl uppercase">
                   Bring Your Imagination To Life{" "}
                 </p>
                 <p
                   id="head"
-                  style={{ fontSize: "200px" }}
-                  className="font-bold"
+                  // style={{ fontSize: "200px" }}
+                  className="font-bold text-[120px] lg:text-[200px]"
                 >
                   Canvify
                 </p>
@@ -180,6 +181,20 @@ const LandingSection = () => {
               }}
               alt="polaroid"
               src={images[currentImage]}
+              width={1600}
+              height={1600}
+            />
+          </div>
+          <div className="w-full  mx-auto  overflow-hidden relative bg-[#111111] flex justify-center md:hidden ">
+            <Image
+              // id="landingImg"
+              style={{
+                objectFit: "cover",
+                height: "100%",
+                width: "100%",
+              }}
+              alt="polaroid"
+              src={images[1]}
               width={1600}
               height={1600}
             />
